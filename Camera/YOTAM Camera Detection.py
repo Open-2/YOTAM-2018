@@ -19,7 +19,7 @@ centreY = 115  #110 #120
 
 # (L Min, L Max, A Min, A Max, B Min, B Max)
 if robot == 1:
-    ball = [(48,64,37,77,12,43)]
+    ball = [(54,62,51,74,22,63)]
     blueGoal = [(0,0,0,0,0,0)]
     yellowGoal = [(0,0,0,0,0)]
 else:
