@@ -1,0 +1,35 @@
+#ifndef DEFINES_H
+#define DEFINES_H
+
+//Maths
+
+// Light Sensor
+
+// Compass
+
+// Motor
+
+#define MOTOR_ANGLE 45
+
+#define MOTOR_FRONT_LEFT_ENA 8
+#define MOTOR_FRONT_LEFT_IN1 9
+#define MOTOR_FRONT_LEFT_IN2 10
+#define MOTOR_FRONT_LEFT_REVERSED false
+#define MOTOR_BACK_LEFT_ENA 13
+#define MOTOR_BACK_LEFT_IN1 12
+#define MOTOR_BACK_LEFT_IN2 11
+#define MOTOR_BACK_LEFT_REVERSED false
+#define MOTOR_BACK_RIGHT_ENA 2
+#define MOTOR_BACK_RIGHT_IN1 3
+#define MOTOR_BACK_RIGHT_IN2 4
+#define MOTOR_BACK_RIGHT_REVERSED false
+#define MOTOR_FRONT_RIGHT_ENA 7
+#define MOTOR_FRONT_RIGHT_IN1 6
+#define MOTOR_FRONT_RIGHT_IN2 5
+#define MOTOR_FRONT_RIGHT_REVERSED false
+
+// Camera
+
+#define CAMERA_PACKET_SIZE 7
+
+#endif
