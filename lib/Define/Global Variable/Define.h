@@ -46,6 +46,6 @@
 
 // Camera
 
-#define CAMERA_PACKET_SIZE 7
+#define CAM_BUFFER_NUM 7
 
 #endif
