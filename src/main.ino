@@ -2,7 +2,7 @@
 
 #include <Arduino.h>
 
-//All the library namin goes here
+//All the library naming goes here
 
 //Camera camera;
 //MotorController Motor;

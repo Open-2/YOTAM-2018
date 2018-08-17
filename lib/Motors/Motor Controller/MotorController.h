@@ -1,9 +1,9 @@
 #ifndef MOTORCONTROLLER_H
 #define MOTORCONTROLLER_H
 
-#include "Arduino.h"
+#include <Arduino.h>
 #include <Motor.h>
-#include "Common.h"
+#include <Common.h>
 
 class MotorController{
 public:

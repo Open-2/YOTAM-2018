@@ -1,6 +1,6 @@
 #include <Arduino.h>
-#include <define.h>
-#include "MotorController.h"
+#include <Define.h>
+#include <MotorController.h>
 
 void MotorController::Setup(){
     motorFrontLeft.Setup(MOTOR_FRONT_LEFT_ENA,MOTOR_FRONT_LEFT_IN1,MOTOR_FRONT_LEFT_IN2,MOTOR_FRONT_LEFT_REVERSED);

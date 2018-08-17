@@ -1,4 +1,4 @@
-#include "Compass.h"
+#include <Compass.h>
 
 void Compass::compassSetup() {
     I2CwriteByte(MPU9250_ADDRESS, 29, 0x06);

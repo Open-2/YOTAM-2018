@@ -2,7 +2,7 @@
 #define COMPASS_H
 
 #include <I2C.h>
-#include <define.h>
+#include <Define.h>
 #include <Common.h>
 
 #define MPU9250_ADDRESS 0x68
