@@ -2,6 +2,7 @@
 
 #include <Arduino.h>
 
+
 //All the library naming goes here
 
 //Camera camera;
