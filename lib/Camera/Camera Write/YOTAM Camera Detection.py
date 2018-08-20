@@ -98,9 +98,13 @@ while(True):
 
     for i in outBuffer:
         try:
+            LED(2).on()
             uart.writechar(i)
+            LED(2).off()
+
         except Exception as X:
             print(X)
+
 
 
 
