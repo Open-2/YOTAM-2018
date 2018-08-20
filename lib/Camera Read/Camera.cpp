@@ -1,80 +1,44 @@
 #include <Camera.h>
 
-Camera::camera(){
-
-}
+int currentin = 0;
 
 void Camera::setup(){
-  cameraSerial.begin(9600);
-  update():
-  blueAttack = isBlueAttack();
+  Serial3.begin(9600);
 }
 
 void Camera::update(){
-  while(cameraSerial.read() != 255)
-  for (int i = 0; 1 < CAM_BUFFER_NUM; i++){
-    while(!(cameraSerial.available() > 0));
-    camBuffer[i] = cameraSerial.read();
-  }
-  ball.x = camBuffer[0];
-  ball.y = camBuffer[1];
-  ball.visible = !(ball.x == 0 && ball.y == 0 || ball.x == -1 && ball.y == -1);
+  if(Serial3.available() >= 7) {
+    if(Serial3.read() == 255){
+      while(Serial3.read() != 255) {
+        for (int i = 0; i < CAM_BUFFER_NUM; i++){
+          currentin = Serial3.read();
+          if(currentin != -1){
+            camBuffer[i] = currentin;
+                }
+              }
+           }
+        }
+    }
+  ballx = camBuffer[1];
+  bally = camBuffer[2];
 
-  yellowGoal.x = camBuffer[2];
-  yellowGoal.y = camBuffer[3];
-  yellowGoal.visible = !(yellowGoal.x == 0 && yellowGoal.y == 0 || yellowGoal.x == -1 && yellowGoal.y == -1);
+  yellowGoalx = camBuffer[3];
+  yellowGoaly = camBuffer[4];
 
-  blueGoal.x = camBuffer[4];
-  blueGoal.y = camBuffer[5];
-  blueGoal.visible = !(blueGoal.x == 0 && blueGoal.y == 0 || blueGoal.x == -1 && blueGoal.y == -1);
+  blueGoalx = camBuffer[5];
+  blueGoaly = camBuffer[6];
 
-  #if DEBUG_CAMERA_RAW
   Serial.print("Ball (");
-  Serial.print(ball.x);
+  Serial.print(ballx);
   Serial.print(", ");
-  Serial.print(ball.y);
+  Serial.print(bally);
   Serial.print(") Blue Goal (");
-  Serial.print(blueGoal.x);
+  Serial.print(blueGoalx);
   Serial.print(", ");
-  Serial.print(blueGoal.y);
+  Serial.print(blueGoaly);
   Serial.print(") Yellow Goal (");
-  Serial.print(yellowGoal.x);
+  Serial.print(yellowGoalx);
   Serial.print(", ");
-  Serial.print(yellowGoal.y);
+  Serial.print(yellowGoaly);
   Serial.println(")");
-  #endif
-
-  if(blueAttack == Role::undecided) {
-    blueAttack = isBlueAttack();
-  }
-}
-
-bool Camera::isAvailable(){
-  return cameraSerial.available() >=32;
-}
-
-Image Camera::getball(){
-  return ball;
-}
-
-Image Camera::getAttackGoal(){
-  return blueAttack == Role::attack ? blueGoal : yellowGoal;
-}
-
-Image Camera::getDefendGoal(){
-  return blueAttack == Role::attack ? yellowGoal : blueGoal;
-}
-
-Role Camera::isBlueAttack(){
-  #if ATTACK_GOAL_OVERIDE
-    return ATTACK_BLUE ? Role::attack : Role::defend;
-  #else
-    if((blueGoal.visible && blueGoal.y < CAM_CENTRE_Y) || (yellowGoal.visible && yellowGoal.y > CAM_CENTRE_Y)){
-      return Role::attack;
-    }
-    else if ((blueGoal.visible && blueGoal.y > CAM_CENTRE_Y) || (yellowGoal.visible && yellowGoal.y < CAM_CENTRE_Y)){
-      return Role::defend;
-    }
-    return Role::undecided;
-  #endif
 }

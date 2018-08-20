@@ -1,29 +1,34 @@
-//All the includes go here
+//All the includes go here:
 
 #include <Arduino.h>
+#include <Camera.h>
+#include <Define.h>
 
 
-//All the library naming goes here
+//All the library naming goes here:
 
-//Camera camera;
+Camera camera;
 //MotorController Motor;
 
-//All the variable naming goes here
+//All the variable naming goes here:
 int bAngle = 0;
 
 void setup() {
   Serial.begin(9600);
+  camera.setup();
   //Motor.Setup();
   //Wire.begin();
   //camera.init();
 }
 
 void loop() {
-  //camera.update();
-  Serial.print(Serial3.read());
+
+  //Constant Data Refreshing and Movement:
+
+  camera.update();
   //Motor.move(0, 0, 75);
 
-  //Movement If Statements
+  //Movement If Statements:
 
   // if (camera.ballAngle > 340 || camera.ballAngle < 20) {
   //   bAngle = 0

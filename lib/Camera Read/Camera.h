@@ -2,32 +2,28 @@
 #define CAMERA_H
 
 #include <Arduino.h>
-//#include <Timer.h>
-//#include <Pins.h>
-//#include <Image.h>
-//#include <Role.h>
-//#include <Debug.h>
+#include <Define.h>
+
 
 class Camera{
   public:
-    Camera();
 
     void setup();
     void update();
 
     bool isAvailable();
 
-    Image getAttackGoal();
-    Image getDefendGoal();
-    Image getBall();
-  private:
-    Role isBlueAttack();
-    Role blueAttack = Role::undecided;
 
     int camBuffer[CAM_BUFFER_NUM] = {0};
-    Image blueGoal;
-    Image yellowGoal;
-    Image ball;
+    int ballx = 0;
+    int bally = 0;
+    int blueGoalx = 0;
+    int blueGoaly = 0;
+    int yellowGoalx = 0;
+    int yellowGoaly = 0;
+
+
+
 };
 
 #endif
