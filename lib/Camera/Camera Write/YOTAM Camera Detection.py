@@ -35,6 +35,8 @@ sensor.set_framesize(sensor.QVGA)
 sensor.skip_frames(time = 2000)
 sensor.set_auto_gain(False)
 sensor.set_auto_whitebal(False)
+sensor.set_windowing((40,0,240,240))
+
 
 LED(1).on()
 time.sleep(100)
