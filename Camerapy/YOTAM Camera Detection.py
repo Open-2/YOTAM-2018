@@ -143,10 +143,10 @@ while(True):
             print('Ball', ballBlob.cx(), ballBlob.cy())
 
         if yellowBlob != None and xy_coords:
-            print('Ball', yellowBlob.cx(), yellowBlob.cy())
+            print('Yellow', yellowBlob.cx(), yellowBlob.cy())
 
         if blueBlob != None and xy_coords:
-            print('Ball', blueBlob.cx(), blueBlob.cy())
+            print('Blue', blueBlob.cx(), blueBlob.cy())
 
         #Draws Cross in Centre of Screen
         if draw_cross != None:
