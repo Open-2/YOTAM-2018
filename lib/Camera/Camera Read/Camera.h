@@ -2,11 +2,11 @@
 #define CAMERA_H
 
 #include <Arduino.h>
-#include <Timer.h>
-#include <Pins.h>
-#include <Image.h>
-#include <Role.h>
-#include <Debug.h>
+//#include <Timer.h>
+//#include <Pins.h>
+//#include <Image.h>
+//#include <Role.h>
+//#include <Debug.h>
 
 class Camera{
   public:
