@@ -8,14 +8,15 @@ robot = 1
 
 #DEBUGGING & TOGGLES
 scanning_defines = 0
-draw_cross = True
+draw_cross = False
 draw_rect = True
-draw_line = True
+draw_line = False
 xy_coords = True
+led_flash = False
 
 #DEFINES
-centreX = 145 #190 #160
-centreY = 115  #110 #120
+centreX = 120 #145 #190 #160
+centreY = 120 #115  #110 #120
 
 # (L Min, L Max, A Min, A Max, B Min, B Max)
 if robot == 1:
@@ -35,6 +36,7 @@ sensor.set_framesize(sensor.QVGA)
 sensor.skip_frames(time = 2000)
 sensor.set_auto_gain(False)
 sensor.set_auto_whitebal(False)
+sensor.set_windowing((40,0,240,240))
 
 LED(1).on()
 time.sleep(100)
@@ -148,7 +150,14 @@ while(True):
         if blueBlob != None and xy_coords:
             print('Ball', blueBlob.cx(), blueBlob.cy())
 
+
         #Draws Cross in Centre of Screen
         if draw_cross != None:
             img.draw_cross(centreX, centreY)
+
+
+        #Print X and Y Coords
+        if led_flash:
+            LED(2).on()
+            LED(2).off()
 
