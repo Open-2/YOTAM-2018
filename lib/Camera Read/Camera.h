@@ -21,6 +21,7 @@ class Camera{
     int blueGoaly = 0;
     int yellowGoalx = 0;
     int yellowGoaly = 0;
+    int ballAngle = 0;
 
 
 

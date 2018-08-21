@@ -2,7 +2,7 @@
 #define MOTORCONTROLLER_H
 
 #include <Arduino.h>
-#include <Motor.h>
+#include <Motors.h>
 #include <Common.h>
 
 class MotorController{

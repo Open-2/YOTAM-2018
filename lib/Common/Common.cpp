@@ -32,7 +32,7 @@ double doubleMod(double value, double maxValue) {
 //   double g = (raw * 500.0) / 32768.0;
 //   return g;
 
-}
+//}
 
 double degreesToRadians(double degrees) {
   return degrees * TO_RADIANS;
