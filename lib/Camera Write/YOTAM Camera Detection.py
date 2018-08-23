@@ -8,9 +8,9 @@ robot = 1
 
 #DEBUGGING & TOGGLES
 scanning_defines = 0
-draw_cross = False
+draw_cross = True
 draw_rect = True
-draw_line = False
+draw_line = True
 xy_coords = True
 led_flash = False
 
@@ -145,14 +145,14 @@ while(True):
             print('Ball', ballBlob.cx(), ballBlob.cy())
 
         if yellowBlob != None and xy_coords:
-            print('Ball', yellowBlob.cx(), yellowBlob.cy())
+            print('Yellow', yellowBlob.cx(), yellowBlob.cy())
 
         if blueBlob != None and xy_coords:
-            print('Ball', blueBlob.cx(), blueBlob.cy())
+            print('Blue', blueBlob.cx(), blueBlob.cy())
 
 
         #Draws Cross in Centre of Screen
-        if draw_cross != None:
+        if draw_cross:
             img.draw_cross(centreX, centreY)
 
 
