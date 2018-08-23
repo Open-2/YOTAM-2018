@@ -18,9 +18,8 @@ int bAngle = 0;
 void setup() {
   Serial.begin(9600);
   camera.setup();
-  //Motor.Setup();
+  Motor.Setup();
   //Wire.begin();
-  //camera.init();
 }
 
 void loop() {

@@ -17,12 +17,10 @@ void Motor::Move(int speed){
   			digitalWrite(in1Pin, LOW);
   			digitalWrite(in2Pin, HIGH);
   			analogWrite(enAPin, abs(speed));
-        Serial.print("HMMMMMMMM");
   	} else if(speed < 0){
   			digitalWrite(in1Pin, HIGH);
   			digitalWrite(in2Pin, LOW);
   			analogWrite(enAPin, abs(speed));
-        Serial.print("HMMMMMMMM");
     } else {
   			digitalWrite(in1Pin, LOW);
   			digitalWrite(in2Pin, LOW);
@@ -33,12 +31,10 @@ void Motor::Move(int speed){
   			digitalWrite(in1Pin, HIGH);
   			digitalWrite(in2Pin, LOW);
   			analogWrite(enAPin, abs(speed));
-        Serial.print("HMMMMMMMM");
   	 }else if(speed < 0){
   			digitalWrite(in1Pin, LOW);
   			digitalWrite(in2Pin, HIGH);
   			analogWrite(enAPin, abs(speed));
-        Serial.print("HMMMMMMMM");
   	 }else {
   			digitalWrite(in1Pin, LOW);
   			digitalWrite(in2Pin, LOW);
