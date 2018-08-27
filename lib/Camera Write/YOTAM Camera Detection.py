@@ -1,6 +1,5 @@
 ## YOTAM Camera Code
 
-
 import sensor, image, time
 from pyb import UART, LED
 
@@ -13,10 +12,11 @@ draw_rect = True
 draw_line = True
 xy_coords = True
 led_flash = False
+print_out = False
 
 #DEFINES
-centreX = 120 #145 #190 #160
-centreY = 120 #115  #110 #120
+centreX = 120
+centreY = 120
 
 # (L Min, L Max, A Min, A Max, B Min, B Max)
 if robot == 1:
@@ -45,33 +45,33 @@ sensor.set_saturation(3)
 sensor.set_brightness(-2)
 sensor.set_contrast(0)
 
-if scanning_defines == 1:
-    def BiggestBlob(bBlob):
-        maxBlob = None
-        bbArea = 0
+#if scanning_defines == 1:
+    #def BiggestBlob(bBlob):
+        #maxBlob = None
+        #bbArea = 0
 
-        for blob in bBlob:
+        #for blob in bBlob:
 
-          if maxBlob == None:
-              maxBlob = blob
-              bbArea = blob.area()
-          else:
-              blobArea = blob.area()
+          #if maxBlob == None:
+              #maxBlob = blob
+              #bbArea = blob.area()
+          #else:
+              #blobArea = blob.area()
 
-              if blobArea > bbArea:
-                  maxBlob = blob
-                  bbArea = blobArea
+              #if blobArea > bbArea:
+                  #maxBlob = blob
+                  #bbArea = blobArea
 
-        return maxBlob
-else:
-    def BiggestBlob(bBlob):
-        if not bBlob:
-            return None
-        maxBlob = bBlob[0]
-        for blob in bBlob:
-            if blob.area() > maxBlob.area():
-                maxBlob = blob
-        return maxBlob
+        #return maxBlob
+#else:
+def BiggestBlob(bBlob):
+    if not bBlob:
+        return None
+    maxBlob = bBlob[0]
+    for blob in bBlob:
+        if blob.area() > maxBlob.area():
+            maxBlob = blob
+    return maxBlob
 
 
 while(True):
@@ -156,8 +156,16 @@ while(True):
             img.draw_cross(centreX, centreY)
 
 
-        #Print X and Y Coords
+        #Flashes the LED quickly
         if led_flash:
             LED(2).on()
             LED(2).off()
 
+
+        #Print OutBuffer
+        if print_out:
+            for i in outBuffer:
+                try:
+                    print(i)
+                except Exception as X:
+                    print(X)
