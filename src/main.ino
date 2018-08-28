@@ -25,9 +25,9 @@ void setup() {
 void loop() {
 
   //Constant Data Refreshing and Movement:
-
-  Motor.Move(bAngle, 0, 100);
-  camera.update();
+  Motor.Move(70, 0, 255);
+  // Motor.Move(bAngle, 0, 255);
+  // camera.update();
 
   //Movement If Statements:
 

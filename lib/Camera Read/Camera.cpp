@@ -29,11 +29,11 @@ void Camera::update(){
   blueGoalx = camBuffer[5] - 120;
   blueGoaly = camBuffer[6] -120;
 
-  Serial.print("Ball (");
-  Serial.print(ballx);
-  Serial.print(", ");
-  Serial.print(bally);
-  Serial.print(", ");/*" Blue Goal (")*/
+  // Serial.print("Ball (");
+  // Serial.print(ballx);
+  // Serial.print(", ");
+  // Serial.print(bally);
+  // Serial.print(", ");/*" Blue Goal (")*/
   // Serial.print(blueGoalx);
   // Serial.print(", ");
   // Serial.print(blueGoaly);
@@ -45,7 +45,7 @@ void Camera::update(){
 
   ballAngle = (450 - degrees(atan2(ballx - 120, bally -120)))- 90;
   ballAngle = (ballAngle%360);
-  Serial.print(ballAngle);
-  Serial.println(")");
+  // Serial.print(ballAngle);
+  // Serial.println(")");
 
 }
