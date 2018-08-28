@@ -7,10 +7,10 @@ robot = 1
 
 #DEBUGGING & TOGGLES
 scanning_defines = 0
-draw_cross = True
+draw_cross = False
 draw_rect = True
-draw_line = True
-xy_coords = True
+draw_line = False
+xy_coords = False
 led_flash = False
 print_out = False
 
@@ -20,7 +20,7 @@ centreY = 120
 
 # (L Min, L Max, A Min, A Max, B Min, B Max)
 if robot == 1:
-    ball = [(54,62,51,74,22,63)]
+    ball = [(28, 53, 60, 87, 19, 60)]
     blueGoal = [(0,0,0,0,0,0)]
     yellowGoal = [(0,0,0,0,0)]
 else:
@@ -42,7 +42,7 @@ LED(1).on()
 time.sleep(100)
 LED(1).off()
 sensor.set_saturation(3)
-sensor.set_brightness(-2)
+sensor.set_brightness(10)
 sensor.set_contrast(0)
 
 #if scanning_defines == 1:
