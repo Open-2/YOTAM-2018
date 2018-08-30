@@ -46,6 +46,6 @@
 
 // Camera
 
-#define CAM_BUFFER_NUM 3
+#define CAM_BUFFER_NUM 7
 
 #endif

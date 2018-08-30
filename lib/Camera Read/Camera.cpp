@@ -7,7 +7,7 @@ void Camera::setup(){
 }
 
 void Camera::update(){
-  if(Serial3.available() >= 7) {
+  if(Serial3.available() >= CAM_BUFFER_NUM) {
     if(Serial3.read() == 255){
       while(Serial3.read() != 255) {
         for (int i = 0; i < CAM_BUFFER_NUM; i++){
@@ -23,28 +23,18 @@ void Camera::update(){
   ballx = camBuffer[1];
   bally = camBuffer[2];
 
-  yellowGoalx = camBuffer[3] - 120;
-  yellowGoaly = camBuffer[4] - 120;
+  yellowGoalx = camBuffer[3];
+  yellowGoaly = camBuffer[4];
 
-  blueGoalx = camBuffer[5] - 120;
-  blueGoaly = camBuffer[6] -120;
-
-  // Serial.print("Ball (");
-  // Serial.print(ballx);
-  // Serial.print(", ");
-  // Serial.print(bally);
-  // Serial.print(", ");/*" Blue Goal (")*/
-  // Serial.print(blueGoalx);
-  // Serial.print(", ");
-  // Serial.print(blueGoaly);
-  // Serial.print(") Yellow Goal (");
-  // Serial.print(yellowGoalx);
-  // Serial.print(", ");
-  // Serial.print(yellowGoaly);
-  // Serial.println(")");
+  blueGoalx = camBuffer[5];
+  blueGoaly = camBuffer[6];
 
   ballAngle = (450 - degrees(atan2(ballx - 120, bally -120)))- 90;
-  ballAngle = (ballAngle%360);
+  ballAngle = (yGoalAngle%360);
+  yGoalAngle = (450 - degrees(atan2(ballx - 120, bally -120)))- 90;
+  yGoalAngle = (yGoalAngle%360);
+  bGoalAngle = (450 - degrees(atan2(ballx - 120, bally -120)))- 90;
+  yGoalAngle = (yGoalAngle%360);
   // Serial.print(ballAngle);
   // Serial.println(")");
 
