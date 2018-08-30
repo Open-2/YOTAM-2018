@@ -10,23 +10,25 @@ void Debug::cameraTest(){
   //Here we test the camera output
   Serial.print("Ball (");
   Serial.print(camera.ballx);
-  Serial.print(", ");
+  Serial.print(" x, ");
   Serial.print(camera.bally);
-  Serial.print(", ");
+  Serial.print(" y, ");
   Serial.print(camera.ballAngle);
-  Serial.print(" Blue Goal (");
+  Serial.print(" degrees");
+  Serial.print(") Blue Goal (");
   Serial.print(camera.blueGoalx);
-  Serial.print(", ");
+  Serial.print(" x, ");
   Serial.print(camera.blueGoaly);
-  Serial.print(", ");
+  Serial.print(" y, ");
   Serial.print(camera.bGoalAngle);
+  Serial.print(" degrees");
   Serial.print(") Yellow Goal (");
   Serial.print(camera.yellowGoalx);
-  Serial.print(", ");
+  Serial.print(" x, ");
   Serial.print(camera.yellowGoaly);
-  Serial.print(", ");
+  Serial.print(" y, ");
   Serial.print(camera.bGoalAngle);
-  Serial.println(")");
+  Serial.println(" degrees)");
 }
 
 void Debug::motorTest(){
@@ -34,28 +36,52 @@ void Debug::motorTest(){
   Motor.Setup();
   motoron = false;
   timePassed = millis() - timeStart;
-  if (timePassed < 2000) {
+  if (timePassed < 1000) {
     Motor.Move(0, 0, 0);
     Motor.motorFrontLeft.Move(-255);
-    Serial.println("Front left");
+    Serial.println("Front Left Motor Turning Right");
   } else {
-    if (timePassed < 4000) {
+    if (timePassed < 2000) {
       Motor.Move(0, 0, 0);
       Motor.motorBackLeft.Move(-255);
-      Serial.println("Back left");
+      Serial.println("Back Left Motor Turning Right");
     } else {
-      if (timePassed < 6000) {
+      if (timePassed < 3000) {
         Motor.Move(0, 0, 0);
         Motor.motorBackRight.Move(-255);
-        Serial.println("Back right");
+        Serial.println("Back Right Motor Turning Right");
       } else {
-        if (timePassed < 8000) {
+        if (timePassed < 4000) {
           Motor.Move(0, 0, 0);
           Motor.motorFrontRight.Move(-255);
-          Serial.println("Front right");
+          Serial.println("Front Right Motor Turning Right");
+        } else {
+          if (timePassed < 5000) {
+            Motor.Move(0, 0, 0);
+            Motor.motorFrontLeft.Move(255);
+            Serial.println("Front Left Motor Turning Left");
+          } else {
+            if (timePassed < 60000) {
+              Motor.Move(0, 0, 0);
+              Motor.motorBackLeft.Move(255);
+              Serial.println("Back Left Motor Turning Left");
+            } else {
+              if (timePassed < 7000) {
+                Motor.Move(0, 0, 0);
+                Motor.motorBackRight.Move(255);
+                Serial.println("Back Right Motor Turning Left");
+              } else {
+                if (timePassed < 8000) {
+                  Motor.Move(0, 0, 0);
+                  Motor.motorFrontRight.Move(255);
+                  Serial.println("Front Right Motor Turning Left");
         } else {
           timeStart = millis();
 
+                }
+              }
+            }
+          }
         }
       }
     }
