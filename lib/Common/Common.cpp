@@ -1,4 +1,5 @@
 #include <Common.h>
+#include <Math.h>
 
 int sign(int value) {
   return value >= 0 ? 1 : -1;
@@ -37,3 +38,31 @@ double doubleMod(double value, double maxValue) {
 double degreesToRadians(double degrees) {
   return degrees * TO_RADIANS;
 }
+
+
+
+// double toDegrees(double rad){
+//   return rad*TO_DEGREES;
+// }
+//
+// double toRadians(double deg){
+//   return deg*TO_RADIANS;
+// }
+//
+// int mod(int n, int modulo){
+//   int r = n % modulo;
+//   return r < 0 ? r + modulo : r;
+// }
+//
+// double doubleMod(double value, double maxValue) {
+//     return fmod((value + maxValue), maxValue);
+// }
+//
+// bool isAngleBetween(int angle, int leftAngle, int rightAngle){
+//   if(rightAngle < leftAngle){
+//     return angle < rightAngle || angle > leftAngle;
+//   }
+//   else{
+//     return angle < rightAngle && angle > leftAngle;
+//   }
+// }
