@@ -28,6 +28,7 @@ void setup() {
 void loop() {
   //Constant Data Refreshing and Movement
   camera.update();
+  debug.motorTest();
   //Movement If Statements:
 // if (debug.motoron == true){
 //   if (camera.ballAngle > 340 || camera.ballAngle < 20) {

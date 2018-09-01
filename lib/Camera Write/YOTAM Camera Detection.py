@@ -10,9 +10,9 @@ draw_cross = True      #Draws centre cross
 draw_rect = True       #Draws rectangle around blobs
 draw_line = True       #Draws line from centre cross to centre of blobs
 xy_coords = False       #Print the X & Y coords of the Blobs
-led_flash = False       #Flashes LED quickly
+led_flash = True       #Flashes LED quickly
 print_out = True       #Prints the output values
-fake_output = True     #Fakes output values
+fake_output = False     #Fakes output values
 
 #DEFINES
 centreX = 120
@@ -43,7 +43,7 @@ LED(1).on()
 time.sleep(100)
 LED(1).off()
 sensor.set_saturation(3)
-sensor.set_brightness(-2)
+sensor.set_brightness(10000)
 sensor.set_contrast(0)
 
 

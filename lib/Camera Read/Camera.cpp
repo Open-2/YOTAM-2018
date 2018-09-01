@@ -31,10 +31,10 @@ void Camera::update(){
 
   ballAngle = (450 - degrees(atan2(ballx - 120, bally -120)))- 90;
   ballAngle = (yGoalAngle%360);
-  yGoalAngle = (450 - degrees(atan2(ballx - 120, bally -120)))- 90;
+  yGoalAngle = (450 - degrees(atan2(yellowGoalx - 120, yellowGoaly -120)))- 90;
   yGoalAngle = (yGoalAngle%360);
-  bGoalAngle = (450 - degrees(atan2(ballx - 120, bally -120)))- 90;
-  yGoalAngle = (yGoalAngle%360);
+  bGoalAngle = (450 - degrees(atan2(blueGoalx - 120, blueGoaly -120)))- 90;
+  bGoalAngle = (bGoalAngle%360);
   // Serial.print(ballAngle);
   // Serial.println(")");
 
