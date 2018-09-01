@@ -31,61 +31,97 @@ void Debug::cameraTest(){
   Serial.println(" degrees)");
 }
 
-void Debug::motorTest(){
-  //Here we make all the motors spin right to see what is moving in the correct direction.
-  Motor.Setup();
-  motoron = false;
-  timePassed = millis() - timeStart;
-  if (timePassed < 1000) {
-    Motor.Move(0, 0, 0);
-    Motor.motorFrontLeft.Move(-255);
-    Serial.println("Front Left Motor Turning Right");
-  } else {
-    if (timePassed < 2000) {
-      Motor.Move(0, 0, 0);
+void Debug::Motorrun(int motornum){
+  switch (motornum) {
+    case 1:
+      Motor.motorFrontLeft.Move(-255);
+      break;
+    case 2:
       Motor.motorBackLeft.Move(-255);
-      Serial.println("Back Left Motor Turning Right");
-    } else {
-      if (timePassed < 3000) {
-        Motor.Move(0, 0, 0);
-        Motor.motorBackRight.Move(-255);
-        Serial.println("Back Right Motor Turning Right");
-      } else {
-        if (timePassed < 4000) {
-          Motor.Move(0, 0, 0);
-          Motor.motorFrontRight.Move(-255);
-          Serial.println("Front Right Motor Turning Right");
-        } else {
-          if (timePassed < 5000) {
-            Motor.Move(0, 0, 0);
-            Motor.motorFrontLeft.Move(255);
-            Serial.println("Front Left Motor Turning Left");
-          } else {
-            if (timePassed < 60000) {
-              Motor.Move(0, 0, 0);
-              Motor.motorBackLeft.Move(255);
-              Serial.println("Back Left Motor Turning Left");
-            } else {
-              if (timePassed < 7000) {
-                Motor.Move(0, 0, 0);
-                Motor.motorBackRight.Move(255);
-                Serial.println("Back Right Motor Turning Left");
-              } else {
-                if (timePassed < 8000) {
-                  Motor.Move(0, 0, 0);
-                  Motor.motorFrontRight.Move(255);
-                  Serial.println("Front Right Motor Turning Left");
-        } else {
-          timeStart = millis();
+      break;
+    case 3:
+      Motor.motorBackRight.Move(-255);
+      break;
+    case 4:
+      Motor.motorFrontRight.Move(-255);
+      break;
+    case 5:
+      Motor.motorFrontLeft.Move(255);
+      break;
+    case 6:
+      Motor.motorBackLeft.Move(255);
+      break;
+    case 7:
+      Motor.motorBackRight.Move(255);
+      break;
+    case 8:
+      Motor.motorFrontRight.Move(255);
+      break;
 
-                }
-              }
-            }
-          }
-        }
-      }
-    }
   }
+}
+
+void Debug::motorTest(){
+  //Here we make all the motors spin to see what is moving in the correct direction.
+  motoron = false;
+  if (millis()%500 == 0) {
+    if (timeState == 8) {
+      timeState = 1;
+    }
+    timeState += 1;
+  }
+  Motorrun(timeState);
+  //
+  // if (timePassed < 1000) {
+  //   Motor.Move(0, 0, 0);
+  //   Motor.motorFrontLeft.Move(-255);
+  //   Serial.println("Front Left Motor Turning Right");
+  // } else {
+  //   if (timePassed < 2000) {
+  //     Motor.Move(0, 0, 0);
+  //     Motor.motorBackLeft.Move(-255);
+  //     Serial.println("Back Left Motor Turning Right");
+  //   } else {
+  //     if (timePassed < 3000) {
+  //       Motor.Move(0, 0, 0);
+  //       Motor.motorBackRight.Move(-255);
+  //       Serial.println("Back Right Motor Turning Right");
+  //     } else {
+  //       if (timePassed < 4000) {
+  //         Motor.Move(0, 0, 0);
+  //         Motor.motorFrontRight.Move(-255);
+  //         Serial.println("Front Right Motor Turning Right");
+  //       } else {
+  //         if (timePassed < 5000) {
+  //           Motor.Move(0, 0, 0);
+  //           Motor.motorFrontLeft.Move(255);
+  //           Serial.println("Front Left Motor Turning Left");
+  //         } else {
+  //           if (timePassed < 6000) {
+  //             Motor.Move(0, 0, 0);
+  //             Motor.motorBackLeft.Move(255);
+  //             Serial.println("Back Left Motor Turning Left");
+  //           } else {
+  //             if (timePassed < 7000) {
+  //               Motor.Move(0, 0, 0);
+  //               Motor.motorBackRight.Move(255);
+  //               Serial.println("Back Right Motor Turning Left");
+  //             } else {
+  //               if (timePassed < 8000) {
+  //                 Motor.Move(0, 0, 0);
+  //                 Motor.motorFrontRight.Move(255);
+  //                 Serial.println("Front Right Motor Turning Left");
+  //       } else {
+  //         timeStart = millis();
+  //
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 void Debug::compassTest(){
