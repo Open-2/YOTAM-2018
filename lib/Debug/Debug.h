@@ -13,14 +13,12 @@ class Debug{
     void compassTest();
 
     bool motoron = true;
-
+    int timePassed = 0;
+    int timeStart = 0;
 
 private:
     MotorController Motor;
     Camera camera;
-    void Motorrun(int motornum);
-
-    int timeState = 1;
 };
 
 
