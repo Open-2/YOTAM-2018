@@ -17,7 +17,6 @@ Debug debug;
 //All the variable naming goes here:
 int bAngle = 0;
 
-
 void setup() {
   Serial.begin(9600);
   camera.setup();
@@ -27,19 +26,21 @@ void setup() {
 
 void loop() {
   //Constant Data Refreshing and Movement
+  // debug.motorTest();
   camera.update();
   //Movement If Statements:
-// if (debug.motoron == true){
-//   if (camera.ballAngle > 340 || camera.ballAngle < 20) {
-//     bAngle = 0;
-//   } else {
-//     if (camera.ballAngle > 180) {
-//       bAngle = camera.ballAngle - 2 * (camera.ballAngle - 180) - 90;
-//     } else {
-//         bAngle = camera.ballAngle - 2 * (camera.ballAngle - 180) + 90;
-//         }
-//       }
-//       Motor.Move(0, 0, 255);
-//     }
+if (debug.motoron == true){
+  speed = 100;
+  if (camera.ballAngle > 340 || camera.ballAngle < 20) {
+    bAngle = 0;
+  } else {
+    if (camera.ballAngle > 180) {
+      bAngle = camera.ballAngle - 2 * (camera.ballAngle - 180) - 90;
+    } else {
+        bAngle = camera.ballAngle - 2 * (camera.ballAngle - 180) + 90;
+        }
+      }
+
+    }
 
 }

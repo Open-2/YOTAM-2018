@@ -19,8 +19,9 @@ private:
     MotorController Motor;
     Camera camera;
     void Motorrun(int motornum);
-
-    int timeState = 1;
+    int timeStart = 0;
+    int timeCurrent = 0;
+    int timePassed = 0;
 };
 
 
