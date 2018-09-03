@@ -28,11 +28,9 @@ void loop() {
   //Constant Data Refreshing and Movement
   // debug.motorTest();
   camera.update();
-  debug.motorTest();
   //Movement If Statements:
 if (debug.motoron == true){
-  speed = 100;
-  if (camera.ballAngle > 340 || camera.ballAngle < 20) {
+    if (camera.ballAngle > 340 || camera.ballAngle < 20) {
     bAngle = 0;
   } else {
     if (camera.ballAngle > 180) {
@@ -41,7 +39,7 @@ if (debug.motoron == true){
         bAngle = camera.ballAngle - 2 * (camera.ballAngle - 180) + 90;
         }
       }
-
+      Motor.Move(bAngle, 0, 255);
     }
 
 }
