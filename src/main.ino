@@ -28,6 +28,7 @@ void loop() {
   //Constant Data Refreshing and Movement
   // debug.motorTest();
   camera.update();
+  debug.motorTest();
   //Movement If Statements:
 if (debug.motoron == true){
   speed = 100;

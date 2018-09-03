@@ -5,7 +5,6 @@
 
 
 
-
 void Debug::cameraTest(){
   //Here we test the camera output
   Serial.print("Ball (");
