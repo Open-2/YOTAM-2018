@@ -13,7 +13,9 @@ void Debug::cameraTest(){
   Serial.print(camera.bally);
   Serial.print(" y, ");
   Serial.print(camera.ballAngle);
-  Serial.print(" degrees");
+  Serial.print(" degree ball angle, ");
+  Serial.print(camera.bAngle);
+  Serial.print(" degree movement angle");
   Serial.print(") Blue Goal (");
   Serial.print(camera.blueGoalx);
   Serial.print(" x, ");

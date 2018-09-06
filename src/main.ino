@@ -37,44 +37,35 @@ void setup() {
 
 void loop() {
   //Constant Data Refreshing and Movement
-  // debug.motorTest();
+  debug.cameraTest();
 
   debug.motorTest();
+
   // compass.updateGyro();
 
   // Serial.println("Whomst is it that has performed this action");
 
   // """Compass Correction Code"""
-  unsigned long currentMillis = millis();
-
-  int relativeHeading = compass.heading > 180 ? (360 - compass.heading) : compass.heading;
-
-  double diffTime = ((double)(currentMillis - compMillis))/100.0;
-  double difference = ((double)(relativeHeading - previousHeading)) / diffTime;
-  compMillis = currentMillis;
-  //Serial.print((previousHeading-relativeHeading));
-  //Serial.print("\t");
-  //Serial.println(difference);
-  previousHeading = relativeHeading;
-
-  int correction = round(kp*((double)relativeHeading) + kd*difference);
+  // unsigned long currentMillis = millis();
+  //
+  // int relativeHeading = compass.heading > 180 ? (360 - compass.heading) : compass.heading;
+  //
+  // double diffTime = ((double)(currentMillis - compMillis))/100.0;
+  // double difference = ((double)(relativeHeading - previousHeading)) / diffTime;
+  // compMillis = currentMillis;
+  // //Serial.print((previousHeading-relativeHeading));
+  // //Serial.print("\t");
+  // //Serial.println(difference);
+  // previousHeading = relativeHeading;
+  //
+  // int correction = round(kp*((double)relativeHeading) + kd*difference);
 
   // """Goal Correction Code"""
 
+  // Motor Movement Code
+  camera.angleCalc();
+  if (debug.motoron == true){
+    Motor.Move(camera.bAngle, 0, 255);
 
-  // """Movement If Statements:"""
-
-if (debug.motoron == true){
-    if (camera.ballAngle > 340 || camera.ballAngle < 20) {
-    bAngle = 0;
-  } else {
-    if (camera.ballAngle > 180) {
-      bAngle = camera.ballAngle - 2 * (camera.ballAngle - 180) - 90;
-    } else {
-        bAngle = camera.ballAngle - 2 * (camera.ballAngle - 180) + 90;
-        }
       }
-      Motor.Move(bAngle, 0, 255);
-    }
-
 }

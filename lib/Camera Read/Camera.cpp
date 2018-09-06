@@ -37,5 +37,15 @@ void Camera::update(){
   bGoalAngle = (bGoalAngle%360);
   // Serial.print(ballAngle);
   // Serial.println(")");
-
+}
+  void Camera::angleCalc(){
+      if (ballAngle > 340 || ballAngle < 20) {
+      bAngle = 0;
+    } else {
+      if (ballAngle > 180) {
+        bAngle = ballAngle - 2 * (ballAngle - 180) - 90;
+      } else {
+          bAngle = ballAngle - 2 * (ballAngle - 180) + 90;
+          }
+        }
 }

@@ -7,9 +7,9 @@
 
 class Camera{
   public:
-
     void setup();
     void update();
+    void angleCalc();
 
     bool isAvailable();
 
@@ -24,6 +24,8 @@ class Camera{
     int ballAngle = 0;
     int yGoalAngle = 0;
     int bGoalAngle = 0;
+    int bAngle = 0;
+
 
 
 

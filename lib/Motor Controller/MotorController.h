@@ -17,6 +17,7 @@ public:
   void Turn(int speed);
   void Brake();
   int weights [4] = {0, 0, 0, 0};
+
 };
 
 

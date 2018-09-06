@@ -22,6 +22,7 @@ private:
     int timeStart = 0;
     int timeCurrent = 0;
     int timePassed = 0;
+    int bAngleFake = 0;
 };
 
 
