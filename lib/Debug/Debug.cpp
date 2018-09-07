@@ -3,8 +3,6 @@
 #include <MotorController.h>
 #include <Motors.h>
 
-
-
 void Debug::cameraTest(){
   //Here we test the camera output
   Serial.print("Ball (");

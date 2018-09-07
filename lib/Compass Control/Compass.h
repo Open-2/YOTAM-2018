@@ -23,11 +23,11 @@
 
 class Compass {
 public:
-  double heading;
   double calibration = COMPASS_CALIBRATION;
 
   Compass() {};
   void compassSetup();
+  void compassCalc();
 
   Vector3D readAccelerometer();
   Vector3D readGyroscope();
@@ -35,6 +35,7 @@ public:
 
   void updateGyro();
   double calibrate();
+  int correction = 0;
 
 private:
   long previousTime;
@@ -56,6 +57,16 @@ private:
       double g = (raw * 500.0) / 32768.0;
       return g;
   }
+  const double kp = 0.45;
+  const double kd = 0.9;
+  unsigned long previousMillis = 0;
+  unsigned long compMillis = 0;
+  unsigned long currentMillis = 0;
+  int previousHeading = 0;
+  double heading;
+
+
+
 };
 
 // extern Compass compass;

@@ -46,6 +46,6 @@ void Camera::update(){
         bAngle = ballAngle - 2 * (ballAngle - 180) - 90;
       } else {
           bAngle = ballAngle - 2 * (ballAngle - 180) + 90;
-          }
         }
+    }
 }

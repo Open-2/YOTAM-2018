@@ -1,4 +1,6 @@
 #include <Compass.h>
+#include <Arduino.h>
+
 
 void Compass::compassSetup() {
     I2CwriteByte(MPU9250_ADDRESS, 29, 0x06);
@@ -73,4 +75,17 @@ double Compass::calibrate() {
     calibration = reading;
 
     return reading;
+  }
+void Compass::compassCalc() {
+
+  unsigned long currentMillis = millis();
+
+  int relativeHeading = heading > 180 ? (360 - heading) : heading;
+
+  double diffTime = ((double)(currentMillis - compMillis))/100.0;
+  double difference = ((double)(relativeHeading - previousHeading)) / diffTime;
+  compMillis = currentMillis;
+  previousHeading = relativeHeading;
+
+  int correction = (round(kp*((double)relativeHeading) + kd*difference)) * -1;
 }
