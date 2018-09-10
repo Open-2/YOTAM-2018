@@ -36,7 +36,7 @@ void loop() {
   // compass.updateGyro();
 
   // """Compass Correction Code"""
-  compass.compassCalc();
+  //compass.compassCalc();
 
   // """Goal Correction Code"""
 
