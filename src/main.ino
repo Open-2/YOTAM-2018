@@ -24,13 +24,13 @@ void setup() {
   Serial.begin(9600);
   camera.setup();
   Motor.Setup();
-  compass.compassSetup();
-  compass.calibrate();
-  Wire.begin();
+  // compass.compassSetup();
+  // compass.calibrate();
+  // Wire.begin();
 }
 void loop() {
   //Constant Data Refreshing and Movement
-  debug.cameraTest();
+  // debug.cameraTest();
   debug.motorTest();
 
   // compass.updateGyro();
@@ -40,10 +40,10 @@ void loop() {
 
   // """Goal Correction Code"""
 
-  // Motor Movement Code
-  camera.angleCalc();
-  if (debug.motoron == true){
-    Motor.Move(camera.bAngle, compass.correction, 255);
+  //Motor Movement Code
+  // camera.angleCalc();
+  // if (debug.motoron == true){
+  //   Motor.Move(camera.bAngle, compass.correction, 255);
 
-      }
+      // }
 }
