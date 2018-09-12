@@ -44,6 +44,7 @@ void loop() {
   // camera.angleCalc();
   // if (debug.motoron == true){
   //   Motor.Move(camera.bAngle, compass.correction, 255);
+  Role.action(mvspeed)
 
       // }
 }
