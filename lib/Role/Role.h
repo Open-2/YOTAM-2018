@@ -10,11 +10,13 @@
 
 class Role{
   public:
-    void action(int mvspeed, int state);
+    void action(int mvspeed, int state, int dir);
     int mvspeed = 0;
 
   private:
+    void Defend(int mvspeed, int dir);
     int state;
+    int dir;
     MotorController Motor;
     Compass compass;
     Camera camera;
