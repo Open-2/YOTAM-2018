@@ -7,6 +7,7 @@
 #include <MotorController.h>
 #include <Motors.h>
 #include <Debug.h>
+#include <Role.h>
 
 
 // """All the library naming goes here:"""
@@ -15,6 +16,7 @@ Camera camera;
 MotorController Motor;
 Debug debug;
 Compass compass;
+Role role;
 
 // """All the variable naming goes here:"""
 int bAngle = 0;
@@ -44,7 +46,7 @@ void loop() {
   // camera.angleCalc();
   // if (debug.motoron == true){
   //   Motor.Move(camera.bAngle, compass.correction, 255);
-  Role.action(mvspeed)
+  role.action(255, 1);
 
       // }
 }
