@@ -31,9 +31,8 @@ void setup() {
   // Wire.begin();
 }
 void loop() {
-  //Constant Data Refreshing and Movement
+  //"""Constant Data Refreshing and Movement"""
   // debug.cameraTest();
-  debug.motorTest();
   camera.update();
   //compass.updateGyro();
 
@@ -42,7 +41,7 @@ void loop() {
 
   // """Goal Correction Code"""
 
-  //"""Motor Movement Code
+  //"""Motor Movement Code"""
   camera.angleCalc();
 
   role.action(255, 0, 1);
