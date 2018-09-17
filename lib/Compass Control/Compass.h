@@ -20,6 +20,8 @@ public:
   void updateGyro();
   double calibrate();
   int correction = 0;
+  double heading;
+  int relativeHeading = 0;
 
 private:
   long previousTime;
@@ -47,7 +49,6 @@ private:
   unsigned long compMillis = 0;
   unsigned long currentMillis = 0;
   int previousHeading = 0;
-  double heading;
 
 
 

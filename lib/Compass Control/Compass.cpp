@@ -80,7 +80,7 @@ void Compass::compassCalc() {
 
   unsigned long currentMillis = millis();
 
-  int relativeHeading = heading > 180 ? (360 - heading) : heading;
+  relativeHeading = heading > 180 ? (360 - heading) : heading;
 
   double diffTime = ((double)(currentMillis - compMillis))/100.0;
   double difference = ((double)(relativeHeading - previousHeading)) / diffTime;

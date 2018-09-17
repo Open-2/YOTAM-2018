@@ -5,6 +5,7 @@
 #include <MotorController.h>
 #include <Camera.h>
 #include <Motors.h>
+#include <Compass.h>
 
 class Debug{
   public:
@@ -19,6 +20,7 @@ class Debug{
 private:
     MotorController Motor;
     Camera camera;
+    Compass compass;
     void Motorrun(int motornum);
     int timeStart = 0;
     int timeCurrent = 0;

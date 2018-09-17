@@ -62,5 +62,11 @@ void Debug::motorTestState(int state) {
 }
 
 void Debug::compassTest(){
-  //For now there is nothing here but when we get the compass working we will output this.
+  Serial.print("(");
+  Serial.print(compass.heading);
+  Serial.print(" degree heading, ");
+  Serial.print(compass.relativeHeading);
+  Serial.print(" degree relative heading, ");
+  Serial.print(compass.correction);
+  Serial.print(" correction)");
 }
