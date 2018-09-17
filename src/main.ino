@@ -7,10 +7,12 @@
 #include <MotorController.h>
 #include <Motors.h>
 #include <Debug.h>
+#include <Role.h>
 
 
 // """All the library naming goes here:"""
 
+Role role;
 Camera camera;
 MotorController Motor;
 Debug debug;
@@ -29,22 +31,22 @@ void setup() {
   // Wire.begin();
 }
 void loop() {
-  //Constant Data Refreshing and Movement
+  //"""Constant Data Refreshing and Movement"""
   // debug.cameraTest();
-  debug.motorTest();
+  camera.update();
+  //compass.updateGyro();
 
-  // compass.updateGyro();
-
-  // """Compass Correction Code"""
+  //"""Compass Correction Code"""
   //compass.compassCalc();
 
   // """Goal Correction Code"""
 
-  //Motor Movement Code
-  // camera.angleCalc();
-  // if (debug.motoron == true){
-  //   Motor.Move(camera.bAngle, compass.correction, 255);
-  Role.action(mvspeed)
+  //"""Motor Movement Code"""
+  camera.angleCalc();
 
-      // }
+  role.action(255, 0, 1);
+  //Parameters:
+  //First parameter is the speed of the robot.
+  //Second parameter is the state of the robot. 0 means it is attacking, 1 means it is defending.
+  //Third parameter is the direction of the game. 0 means the direction is yellow, 1 means the direction is blue.
 }

@@ -1,20 +1,19 @@
 #include <Arduino.h>
 #include <Role.h>
-#include <Motors.h>
-#include <Camera.h>
-#include <Compass.h>
-
-Motors Motor;
-Compass compass;
-Camera camera;
 
 
-void Role::action(int mvspeed, int state) {
-  if (state == 1) {
-    Motor.Move(camera.bAngle, compass.correction, mvspeed);
+void Role::action(int mvspeed, int state, int dir) {
+  if (debug.motoron == true) {
+    if (state == 0) {
+      //Attacker Code:
+      Motor.Move(camera.bAngle, compass.correction, mvspeed);
+    }
+    if (state == 1) {
+      //Defender Code
+      Defend(mvspeed, dir);
+    }
   }
-  //else: {
-    //Insert defender code here
-//}
+}
+void Role::Defend(int mvspeed, int dir) {
 
 }

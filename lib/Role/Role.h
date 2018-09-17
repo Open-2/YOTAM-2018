@@ -2,15 +2,25 @@
 #define ROLE_H
 
 #include <Arduino.h>
+#include <MotorController.h>
+#include <Camera.h>
+#include <Compass.h>
+#include <Debug.h>
 
 
 class Role{
   public:
-    void action(int mvspeed, int state);
+    void action(int mvspeed, int state, int dir);
+    int mvspeed = 0;
 
   private:
-    int mvspeed;
+    void Defend(int mvspeed, int dir);
     int state;
+    int dir;
+    MotorController Motor;
+    Compass compass;
+    Camera camera;
+    Debug debug;
 
 };
 
