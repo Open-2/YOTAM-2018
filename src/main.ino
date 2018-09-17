@@ -8,7 +8,6 @@
 #include <Motors.h>
 #include <Debug.h>
 #include <Role.h>
-#include <I2C.h>
 
 // """Library Name Allocation"""
 
@@ -23,23 +22,24 @@ const int GoalAcc = 7;
 
 void setup() {
   Serial.begin(9600);
-  Wire.begin();
+  // Wire.begin();
   camera.setup();
   Motor.Setup();
   //compass.compassSetup();
   //compass.calibrate();
 }
 void loop() {
-  //"""Data Refreshing"""
-  camera.update();
-  //compass.updateGyro();
-
-  //"""Angle/Correction Calculation"""
-  camera.angleCalc();
-  //compass.compassCalc();
-
-  //"""Motor Movement Code"""
-  role.action(255, 0, 1);
+  // Motor.Move(80, 0, 150);
+  debug.motorTest();
+  // debug.motorTest();
+  // //"""Data Refreshing"""
+  // camera.update();
+  // //compass.updateGyro();
+  // //"""Angle/Correction Calculation"""
+  // camera.angleCalc();
+  // //compass.compassCalc();
+  // //"""Motor Movement Code"""
+  // role.action(255, 0, 1);
   //Parameters:
   //First parameter is the speed of the robot.
   //Second parameter is the state of the robot. 0 means it is attacking, 1 means it is defending.

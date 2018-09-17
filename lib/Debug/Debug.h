@@ -12,7 +12,6 @@ class Debug{
     void motorTest();
     void cameraTest();
     void compassTest();
-    void motorTestState(int state);
 
     bool motoron = true;
 
@@ -21,7 +20,6 @@ private:
     MotorController Motor;
     Camera camera;
     Compass compass;
-    void Motorrun(int motornum);
     int timeStart = 0;
     int timeCurrent = 0;
     int timePassed = 0;
