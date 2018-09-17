@@ -29,9 +29,7 @@ void setup() {
   //compass.calibrate();
 }
 void loop() {
-  // Motor.Move(80, 0, 150);
   debug.motorTest();
-  // debug.motorTest();
   // //"""Data Refreshing"""
   // camera.update();
   // //compass.updateGyro();
