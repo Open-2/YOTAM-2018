@@ -1,12 +1,7 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-//Maths
-
-// Light Sensor
-
-// Compass
-
+//Compass Definitions
 #define MPU9250_ADDRESS 0x68
 #define MAG_ADDRESS 0x0C
 
@@ -23,7 +18,7 @@
 #define COMPASS_CALIBRATION 1.39
 #define COMPASS_CALIBRATION_TIME 1000
 
-// Motor
+//Motor Definitions
 
 #define MOTOR_ANGLE 45
 
@@ -44,7 +39,7 @@
 #define MOTOR_FRONT_RIGHT_IN2 6
 #define MOTOR_FRONT_RIGHT_REVERSED false
 
-// Camera
+//Camera Definitions
 
 #define CAM_BUFFER_NUM 7
 

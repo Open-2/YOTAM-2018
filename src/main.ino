@@ -1,4 +1,4 @@
-//All the includes go here:
+//"""Includes"""
 
 #include <Arduino.h>
 #include <Camera.h>
@@ -8,9 +8,9 @@
 #include <Motors.h>
 #include <Debug.h>
 #include <Role.h>
+#include <I2C.h>
 
-
-// """All the library naming goes here:"""
+// """Library Name Allocation"""
 
 Role role;
 Camera camera;
@@ -18,32 +18,27 @@ MotorController Motor;
 Debug debug;
 Compass compass;
 
-// """All the variable naming goes here:"""
-int bAngle = 0;
+//"""Variable Naming"""
 const int GoalAcc = 7;
 
 void setup() {
   Serial.begin(9600);
+  Wire.begin();
   camera.setup();
   Motor.Setup();
-  // compass.compassSetup();
-  // compass.calibrate();
-  // Wire.begin();
+  //compass.compassSetup();
+  //compass.calibrate();
 }
 void loop() {
-  //"""Constant Data Refreshing and Movement"""
-  // debug.cameraTest();
+  //"""Data Refreshing"""
   camera.update();
   //compass.updateGyro();
 
-  //"""Compass Correction Code"""
+  //"""Angle/Correction Calculation"""
+  camera.angleCalc();
   //compass.compassCalc();
 
-  // """Goal Correction Code"""
-
   //"""Motor Movement Code"""
-  camera.angleCalc();
-
   role.action(255, 0, 1);
   //Parameters:
   //First parameter is the speed of the robot.

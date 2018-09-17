@@ -25,7 +25,7 @@ Vector3D Compass::readAccelerometer() {
     return returnVector;
 }
 
-Vector3D Compass::readGyroscope() {
+Vector3D   Compass::readGyroscope() {
     uint8_t buffer[14];
     I2Cread(MPU9250_ADDRESS, 0x3B, 14, buffer);
 
