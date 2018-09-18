@@ -29,17 +29,17 @@ void setup() {
   //compass.calibrate();
 }
 void loop() {
-  debug.motorTest();
-  // //"""Data Refreshing"""
-  // camera.update();
-  // //compass.updateGyro();
-  // //"""Angle/Correction Calculation"""
-  // camera.angleCalc();
-  // //compass.compassCalc();
-  // //"""Motor Movement Code"""
-  // role.action(255, 0, 1);
+  //"""Data Refreshing"""
+  //camera.update();
+  //compass.updateGyro();
+  //"""Angle/Correction Calculation"""
+  //camera.angleCalc();
+  //compass.compassCalc();
+  //"""Motor Movement Code"""
+  role.action(255, 1, 1, 0);
   //Parameters:
   //First parameter is the speed of the robot.
   //Second parameter is the state of the robot. 0 means it is attacking, 1 means it is defending.
   //Third parameter is the direction of the game. 0 means the direction is yellow, 1 means the direction is blue.
+  //Fourth parameter is the fake angle. If it is set to -1, it is off. Otherwise, it is the fake angle of the ball.
 }

@@ -2,7 +2,7 @@
 #include <Role.h>
 
 
-void Role::action(int mvspeed, int state, int dir) {
+void Role::action(int mvspeed, int state, int dir, int fakeangle) {
     if (state == 0) {
       //Attacker Code:
       Motor.Move(0, 0, mvspeed);
@@ -10,8 +10,12 @@ void Role::action(int mvspeed, int state, int dir) {
     }
     if (state == 1) {
       //Defender Code
+      if (fakeangle != -1) {
+        Defend(mvspeed, dir, fakeangle);
+      } else {
       Defend(mvspeed, dir, camera.bAngle);
   }
+}
 }
 
 void Role::Defend(int mvspeed, int dir, int angle) {
