@@ -12,6 +12,7 @@ class Debug{
     void motorTest();
     void cameraTest();
     void compassTest();
+    void motorTestState(int state);
 
     bool motoron = true;
 

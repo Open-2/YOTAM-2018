@@ -14,9 +14,10 @@ class Role{
     int mvspeed = 0;
 
   private:
-    void Defend(int mvspeed, int dir);
+    void Defend(int mvspeed, int dir, int angle);
     int state;
     int dir;
+    int goalmove = 0;
     MotorController Motor;
     Compass compass;
     Camera camera;
