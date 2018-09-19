@@ -29,6 +29,7 @@ void setup() {
   //compass.calibrate();
 }
 void loop() {
+  Motor.Move(0, 0, 255);
   //"""Data Refreshing"""
   //camera.update();
   //compass.updateGyro();
@@ -36,7 +37,7 @@ void loop() {
   //camera.angleCalc();
   //compass.compassCalc();
   //"""Motor Movement Code"""
-  role.action(255, 1, 1, 0);
+  // role.action(255, 1, 1, 0);
   //Parameters:
   //First parameter is the speed of the robot.
   //Second parameter is the state of the robot. 0 means it is attacking, 1 means it is defending.
