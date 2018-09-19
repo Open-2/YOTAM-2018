@@ -32,6 +32,7 @@ void Debug::cameraTest(){
 
 void Debug::motorTest(){
   //Here we make all the motors spin right to see what is moving in the correct direction
+  Motor.Setup();
   motoron = false;
   timePassed = millis() - timeStart;
 

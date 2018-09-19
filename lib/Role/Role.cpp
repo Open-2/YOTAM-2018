@@ -5,8 +5,7 @@
 void Role::action(int mvspeed, int state, int dir, int fakeangle) {
     if (state == 0) {
       //Attacker Code:
-      Motor.Move(0, 0, mvspeed);
-      Serial.print("5");
+      Motor.Move(camera.bAngle, 0, mvspeed);
     }
     if (state == 1) {
       //Defender Code
@@ -27,14 +26,8 @@ void Role::Defend(int mvspeed, int dir, int angle) {
   } else if (angle <= 90) {
     goalmove = (angle*1.5) + 120;
     Motor.Move(90, 0, goalmove);
-  } else if (angle <= 185 && angle >= 165) {
-    if (angle > 180) {
-      Motor.Move(90, 0, 150);
-    } else {
-      Motor.Move(270, 0, 150);
-    }
   } else {
-    Motor.Move(180, 0, 255);
+    action(255, 0, dir, -1);
   }
 
 }
