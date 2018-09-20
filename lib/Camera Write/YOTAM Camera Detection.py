@@ -6,7 +6,7 @@ from pyb import UART, LED
 robot = 1
 
 #DEBUGGING & TOGGLES (Set to false before Competitions)
-draw_cross = False      #Draws centre cross
+draw_cross = True      #Draws centre cross
 draw_rect = False       #Draws rectangle around blobs
 draw_line = False       #Draws line from centre cross to centre of blobs
 xy_coords = False       #Print the X & Y coords of the Blobs
