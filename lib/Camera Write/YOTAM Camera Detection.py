@@ -17,6 +17,8 @@ fake_output = False     #Fakes output values
 #DEFINES
 centreX = 120
 centreY = 120
+#To Calculate the distance from the centre:
+#BDistanceCentre = root(((ballx-120)**2) + ((bally-120)**2))
 
 # (L Min, L Max, A Min, A Max, B Min, B Max)
 if robot == 1:
