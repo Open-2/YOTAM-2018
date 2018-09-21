@@ -22,6 +22,7 @@ void Role::Defend(int mvspeed, int dir, int angle) {
     Motor.Move(0, 0, 50);
   } else if (angle >= 270) {
     goalmove = (angle - 2 * (angle - 180)*1.5 + 120);
+    //Remember to fix this shit lmao
     Motor.Move(270, 0, goalmove);
   } else if (angle <= 90) {
     goalmove = (angle*1.5) + 120;
