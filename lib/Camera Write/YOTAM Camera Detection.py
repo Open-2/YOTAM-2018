@@ -1,6 +1,6 @@
 ## YOTAM Camera Code
 
-import sensor, image, time
+import sensor, image, time, math
 from pyb import UART, LED
 
 robot = 1
@@ -13,14 +13,17 @@ xy_coords = False       #Print the X & Y coords of the Blobs
 led_flash = True       #Flashes LED quickly
 print_out = False       #Prints the output values
 fake_output = False     #Fakes output values
+bdistcent = True
 
 #DEFINES
 centreX = 120
 centreY = 120
+BDistanceCentre = 0
+
 
 # (L Min, L Max, A Min, A Max, B Min, B Max)
 if robot == 1:
-    ball = [(42, 66, 55, 83, 6, 74)]
+    ball = [(57, 91, 11, 80, -19, 68)]
     blueGoal = [(0,0,0,0,0,0)]
     yellowGoal = [(0,0,0,0,0,0)]
 
@@ -60,6 +63,8 @@ def BiggestBlob(bBlob):
 
 while(True):
 
+
+
     outBuffer = [255,1,1,1,1,1,1]
 
     img = sensor.snapshot()
@@ -67,7 +72,6 @@ while(True):
     ballBlob = BiggestBlob(img.find_blobs(ball))
     yellowBlob = BiggestBlob(img.find_blobs(yellowGoal,x_stride=6,y_stride=4,merge=True,margin=34,area_threshold=15))
     blueBlob = BiggestBlob(img.find_blobs(blueGoal,x_stride=6,y_stride=4,merge=True,margin=34,area_threshold=15))
-
 
     #Fake Outputs Debugging
     if fake_output:
@@ -89,10 +93,6 @@ while(True):
         if blueBlob:
             outBuffer[5] = blueBlob.cx()
             outBuffer[6] = blueBlob.cy()
-
-
-
-
 
     for i in outBuffer:
         try:
@@ -165,5 +165,9 @@ while(True):
                     print(i)
                 except Exception as X:
                     print(X)
+
+        if ballBlob != None and bdistcent:
+            BDistanceCentre = math.sqrt(((outBuffer[1]-120)**2) + ((outBuffer[2]-120)**2))
+            print(BDistanceCentre)
 
 
