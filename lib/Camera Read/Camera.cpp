@@ -1,4 +1,5 @@
 #include <Camera.h>
+#include <math.h>
 
 int currentin = 0;
 
@@ -51,4 +52,6 @@ void Camera::update(){
           bAngle = ballAngle /*- 2 * (ballAngle - 180)*/ + 90;
         }
     }
+    camDistance = sqrt(((ballx-120)^2)+((bally-120)^2));
+    ballDistance = ((-59.1132*pow(45.5842, (-0.00842102*camDistance)))+102.468);
 }

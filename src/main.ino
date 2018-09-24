@@ -36,9 +36,9 @@ void loop() {
   //"""Angle/Correction Calculation"""
   camera.angleCalc();
   //compass.compassCalc();
-  //"""Motor Movement Code"""
+  //"""Motor Movement Code""" 
   Motor.Move(camera.bAngle, 0, 255);
-  // role.action(255, 0, 1, 0);
+  // role.action(255, 0, 1, 0, camera.ballDistance);
   //Parameters:
   //First parameter is the speed of the robot.
   //Second parameter is the state of the robot. 0 means it is attacking, 1 means it is defending.
