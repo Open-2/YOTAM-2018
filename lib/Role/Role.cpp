@@ -2,7 +2,7 @@
 #include <Role.h>
 
 
-void Role::action(int mvspeed, int state, int dir, int fakeangle, int balldis) {
+void Role::action(int mvspeed, int state, int fakeangle, int balldis, int dir) {
   Motor.Setup();
     if (state == 0) {
       //Attacker Code:
@@ -15,15 +15,17 @@ void Role::action(int mvspeed, int state, int dir, int fakeangle, int balldis) {
     if (state == 1) {
       //Defender Code
       if (fakeangle != -1) {
-        Defend(mvspeed, dir, fakeangle, balldis);
+        Defend(mvspeed, fakeangle, balldis, dir);
       } else {
-      Defend(mvspeed, dir, camera.bAngle, balldis);
+      Defend(mvspeed, camera.bAngle, balldis, dir);
   }
 }
 }
 
-void Role::Defend(int mvspeed, int dir, int angle, int balldis) {
+void Role::Defend(int mvspeed, int angle, int balldis, int dir) {
   Motor.Setup();
+  // if (dir == 1) {
+// }
   if (angle <= 20 || angle >= 340) {
     Motor.Move(0, 0, 100);
   } else if (angle >= 270) {
@@ -33,7 +35,7 @@ void Role::Defend(int mvspeed, int dir, int angle, int balldis) {
     goalmove = (-0.0104938 * pow(angle, 2) + 3.77778 * angle + (-1.1369 * pow(10, -14)));
     Motor.Move(270, 0, goalmove);
   } else {
-    action(255, 0, dir, -1, camera.ballDistance);
+    action(255, 0, -1, camera.ballDistance, dir);
   }
 
 }

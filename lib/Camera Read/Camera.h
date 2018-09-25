@@ -27,6 +27,8 @@ class Camera{
     int bAngle = 0;
     int camDistance = 0;
     int ballDistance = 0;
+    int bGoalDistance;
+    int yGoalDistance;
 
 
 

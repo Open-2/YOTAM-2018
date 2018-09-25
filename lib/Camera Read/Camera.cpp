@@ -54,4 +54,7 @@ void Camera::update(){
     }
     camDistance = sqrt(((ballx-120)^2)+((bally-120)^2));
     ballDistance = ((-59.1132*pow(45.5842, (-0.00842102*camDistance)))+102.468);
-}
+    bGoalDistance = sqrt(((ballx - 120) ^ 2) + ((bally - 120) ^ 2));
+    yGoalDistance = sqrt(((ballx - 120) ^ 2) + ((bally - 120) ^ 2));
+  }
+

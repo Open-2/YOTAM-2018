@@ -10,11 +10,11 @@
 
 class Role{
   public:
-    void action(int mvspeed, int state, int dir, int fakeangle, int balldis);
+    void action(int mvspeed, int state, int fakeangle, int balldis, int dir);
     int mvspeed = 0;
 
   private:
-    void Defend(int mvspeed, int dir, int angle, int balldis);
+    void Defend(int mvspeed, int angle, int balldis, int dir);
     int state;
     int dir;
     int goalmove = 0;
