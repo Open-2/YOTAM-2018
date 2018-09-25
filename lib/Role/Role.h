@@ -19,6 +19,7 @@ class Role{
     int dir;
     int goalmove = 0;
     int balldis = 0;
+    int goalCorrect;
     MotorController Motor;
     Compass compass;
     Camera camera;
