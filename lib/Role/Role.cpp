@@ -24,8 +24,12 @@ void Role::action(int mvspeed, int state, int fakeangle, int balldis, int dir) {
 
 void Role::Defend(int mvspeed, int angle, int balldis, int dir) {
   Motor.Setup();
-  // if (dir == 1) {
-// }
+  if (dir == 1) {
+    goalCorrect = 1/*???*/;
+  }
+  if (dir == 0) {
+    goalCorrect = -1/*Negative ???*/;
+  }
   if (angle <= 20 || angle >= 340) {
     Motor.Move(0, 0, 100);
   } else if (angle >= 270) {
