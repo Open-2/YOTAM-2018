@@ -18,6 +18,7 @@ class Role{
     int state;
     int dir;
     int goalmove = 0;
+    int goalCorrect;
     int balldis = 0;
     int goalCorrect;
     MotorController Motor;

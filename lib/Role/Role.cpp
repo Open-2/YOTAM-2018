@@ -24,6 +24,7 @@ void Role::action(int mvspeed, int state, int fakeangle, int balldis, int dir) {
 
 void Role::Defend(int mvspeed, int angle, int balldis, int dir) {
   Motor.Setup();
+<<<<<<< HEAD
   if (dir == 1) { //Blue
     goalCorrect = 1/*???*/;
     if (camera.bGoalAngle > 180){
@@ -31,6 +32,10 @@ void Role::Defend(int mvspeed, int angle, int balldis, int dir) {
     } else {
       speedmult = 1;
     }
+=======
+  if (dir == 1) {
+    goalCorrect = 1;
+>>>>>>> 173ef3d0f88c594f7c1a1a4cea6ef34d4f83aa10
   }
   if (dir == 0) { //Yellow
     goalCorrect = -1/*Negative ???*/;
