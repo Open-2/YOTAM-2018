@@ -8,12 +8,17 @@ robot = 1
 #DEBUGGING & TOGGLES (Set to false before Competitions)
 draw_cross = True      #Draws centre cross
 draw_rect = True       #Draws rectangle around blobs
-draw_line = False       #Draws line from centre cross to centre of blobs
-xy_coords = False       #Print the X & Y coords of the Blobs
+draw_line = True       #Draws line from centre cross to centre of blobs
+xy_coords = True       #Print the X & Y coords of the Blobs
 led_flash = True       #Flashes LED quickly
 print_out = False       #Prints the output values
+<<<<<<< HEAD
 fake_output = True     #Fakes output values
 bdistcent = True
+=======
+fake_output = False     #Fakes output values
+bdistcent = False
+>>>>>>> 7007fe6e71f3671e4b9a0b06cb6ca3c177c133c4
 
 #DEFINES
 centreX = 120
@@ -23,9 +28,9 @@ BDistanceCentre = 0
 
 # (L Min, L Max, A Min, A Max, B Min, B Max)
 if robot == 1:
-    ball = [(57, 91, 11, 80, -19, 68)]
-    blueGoal = [(0,0,0,0,0,0)]
-    yellowGoal = [(0,0,0,0,0,0)]
+    ball = [(36, 62, 21, 90, 24, 74)]
+    blueGoal = [(19, 32, -4, 17, -47, -26)]
+    yellowGoal = [(36, 58, -8, 20, 22, 62)]
 
 else:
     ball = [(0,0,0,0,0,0)]
