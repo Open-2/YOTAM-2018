@@ -10,6 +10,7 @@ class Camera{
     void setup();
     void update();
     void angleCalc();
+    void Test();
 
     bool isAvailable();
 
@@ -26,9 +27,15 @@ class Camera{
     int bGoalAngle = 0;
     int bAngle = 0;
     int camDistance = 0;
-    int ballDistance = 0;
+    int ballcamDistance = 0;
+    int ballDistance;
     int bGoalDistance;
     int yGoalDistance;
+    int bGoalcamDistance;
+    int yGoalcamDistance;
+    int bgoalCorrect;
+    int ygoalCorrect;
+  
 
 
 

@@ -12,7 +12,7 @@ draw_line = False       #Draws line from centre cross to centre of blobs
 xy_coords = False       #Print the X & Y coords of the Blobs
 led_flash = True       #Flashes LED quickly
 print_out = False       #Prints the output values
-fake_output = False     #Fakes output values
+fake_output = True     #Fakes output values
 bdistcent = True
 
 #DEFINES

@@ -4,6 +4,9 @@
 
 void Role::action(int mvspeed, int state, int fakeangle, int balldis, int dir) {
   Motor.Setup();
+    // if (dir == 1 {
+
+    // }
     if (state == 0) {
       //Attacker Code:
       if (balldis <= 15) {
@@ -24,27 +27,6 @@ void Role::action(int mvspeed, int state, int fakeangle, int balldis, int dir) {
 
 void Role::Defend(int mvspeed, int angle, int balldis, int dir) {
   Motor.Setup();
-<<<<<<< HEAD
-  if (dir == 1) { //Blue
-    goalCorrect = 1/*???*/;
-    if (camera.bGoalAngle > 180){
-      speedmult = -1;
-    } else {
-      speedmult = 1;
-    }
-=======
-  if (dir == 1) {
-    goalCorrect = 1;
->>>>>>> 173ef3d0f88c594f7c1a1a4cea6ef34d4f83aa10
-  }
-  if (dir == 0) { //Yellow
-    goalCorrect = -1/*Negative ???*/;
-    if (camera.yGoalAngle > 180){
-      speedmult = -1;
-    } else {
-      speedmult = 1;
-    }
-  }
   if (angle <= 20 || angle >= 340) {
     Motor.Move(0, 0, 100);
   } else if (angle >= 270) {

@@ -24,15 +24,19 @@ void setup() {
   Serial.begin(9600);
   // Wire.begin();
   camera.setup();
+  // debug.setCamera(&camera);
   Motor.Setup();
-  //compass.compassSetup();
-  //compass.calibrate();
+  // compass.compassSetup();
+  // compass.calibrate();
 }
 void loop() {
   // Motor.Setup();
   // debug.motorTest();
   // //"""Data Refreshing"""
-  // camera.update();
+  camera.update();
+  camera.Test();
+  // Serial.print(Serial3.read());
+  // debug.cameraTest();
   // // debug.motorTest();
   // compass.updateGyro();
   // //"""Angle/Correction Calculation"""
@@ -40,7 +44,9 @@ void loop() {
   // compass.compassCalc();
   // //"""Motor Movement Code"""
   // Motor.Move(camera.bAngle, 0, 255);
-  debug.motorTest();
+  // Motor.Move(0, compass.correction, 0);
+  // debug.motorTest();
+  // Motor.Move(45, 0, 255);
   // role.action(255, 1, 0, 80, 0);
   //Parameters:
   //First parameter is the speed of the robot.
