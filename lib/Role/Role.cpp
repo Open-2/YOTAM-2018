@@ -10,9 +10,9 @@ void Role::action(int mvspeed, int state, int fakeangle, int balldis, int dir) {
     if (state == 0) {
       //Attacker Code:
       if (balldis <= 15) {
-        Motor.Move(camera.bAngle, 0, mvspeed);
+        Motor.Move(camera.bAngle, camera.ygoalCorrect, mvspeed);
       } else {
-        Motor.Move(camera.ballAngle, 0, mvspeed);
+        Motor.Move(camera.ballAngle, camera.ygoalCorrect, mvspeed);
       }
     }
     if (state == 1) {

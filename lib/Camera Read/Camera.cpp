@@ -18,18 +18,21 @@ void Camera::update(){
       }
     }
   }
+  
   ballx = camBuffer[1];
   bally = camBuffer[2];
 
-  yellowGoalx = camBuffer[3];
-  yellowGoaly = camBuffer[4];
+  yellowGoalx = /*camBuffer[3];*/ 50;
+  yellowGoaly = /*camBuffer[4];*/ 50;
 
   blueGoalx = camBuffer[5];
   blueGoaly = camBuffer[6];
 
   ballAngle = (450 - degrees(atan2(ballx - 120, bally -120)))- 90;
-  // Fix this fucking shit smh
   ballAngle = (ballAngle%360);
+  //Meme
+  // ballAngle = 45;
+  //Meme
   yGoalAngle = (450 - degrees(atan2(yellowGoalx - 120, yellowGoaly -120)))- 90;
   yGoalAngle = (yGoalAngle%360);
   bGoalAngle = (450 - degrees(atan2(blueGoalx - 120, blueGoaly -120)))- 90;
@@ -37,17 +40,22 @@ void Camera::update(){
 }
 
 void Camera::Test(){
+   Serial.print("Ball x: ");
    Serial.print(ballx);
-   Serial.print(", ");
+   Serial.print(", ball y: ");
    Serial.print(bally);
-   Serial.print(", ");
+   Serial.print(", yellow goal x: ");
    Serial.print(yellowGoalx);
-   Serial.print(", ");
+   Serial.print(", yellow goal y: ");
    Serial.print(yellowGoaly);
-   Serial.print(", ");
+   Serial.print(", blue goal x: ");
    Serial.print(blueGoalx);
-   Serial.print(", ");
-   Serial.println(blueGoaly);
+   Serial.print(", blue goal y: ");
+   Serial.print(blueGoaly);
+   Serial.print(", ball angle: ");
+   Serial.print(ballAngle);
+   Serial.print(", ball distance: ");
+   Serial.println(ballDistance);
 }
 
 void Camera::angleCalc(){
@@ -60,12 +68,21 @@ void Camera::angleCalc(){
      bAngle = ballAngle /*- 2 * (ballAngle - 180)*/ + 90;
    }
  }
- // ballcamDistance = sqrt(((ballx-120)^2)+((bally-120)^2));
- // ballDistance = ((-59.1132*pow(45.5842, (-0.00842102*camDistance)))+102.468);
- // bGoalcamDistance = sqrt(((blueGoalx - 120) ^ 2) + ((blueGoaly - 120) ^ 2));
- // yGoalcamDistance = sqrt(((yellowGoalx - 120) ^ 2) + ((yellowGoaly - 120) ^ 2));
+ ballcamDistance = sqrt(((ballx-120)^2)+((bally-120)^2));
+ ballDistance = ((-59.1132*pow(45.5842, (-0.00842102*camDistance)))+102.468);
+ bGoalcamDistance = sqrt(((blueGoalx - 120) ^ 2) + ((blueGoaly - 120) ^ 2));
+ yGoalcamDistance = sqrt(((yellowGoalx - 120) ^ 2) + ((yellowGoaly - 120) ^ 2));
 
- // bgoalCorrect = -0.00451102*pow(bGoalAngle, 2) + 1.62397*bGoalAngle + 1.92341;
- // ygoalCorrect = -0.00451102*pow(yGoalAngle, 2) + 1.62398*bGoalAngle + 1.92341;
+ bgoalCorrect = (-0.00339513*pow(bGoalAngle, 2) + 1.22225*bGoalAngle - 2.50014) + 50;
+ if (bGoalAngle < 180) {
+   bgoalCorrect = bgoalCorrect * -1;
+ }
+ ygoalCorrect = (-0.00339513*pow(yGoalAngle, 2) + 1.22225*yGoalAngle - 2.50014) + 50;  
+ if (yGoalAngle < 180) {
+   ygoalCorrect = ygoalCorrect * -1;
+ }
+ if (ballAngle < 180) {
+   ballAngle = (ballAngle - 180) * -1;
+ }
 }
 

@@ -8,22 +8,19 @@ robot = 1
 #DEBUGGING & TOGGLES (Set to false before Competitions)
 draw_cross = True      #Draws centre cross
 draw_rect = True       #Draws rectangle around blobs
-draw_line = True       #Draws line from centre cross to centre of blobs
-xy_coords = True       #Print the X & Y coords of the Blobs
+draw_line = False       #Draws line from centre cross to centre of blobs
+xy_coords = False       #Print the X & Y coords of the Blobs
 led_flash = True       #Flashes LED quickly
 print_out = False       #Prints the output values
-<<<<<<< HEAD
-fake_output = True     #Fakes output values
-bdistcent = True
-=======
-fake_output = False     #Fakes output values
-bdistcent = False
->>>>>>> 7007fe6e71f3671e4b9a0b06cb6ca3c177c133c4
+fake_output = False      #Fakes output values
+bdistcent = False       #Calculates the distance to the ball on the mirror
+angle_print = True      #Prints the ball angle
 
 #DEFINES
 centreX = 120
 centreY = 120
 BDistanceCentre = 0
+angle = 360
 
 
 # (L Min, L Max, A Min, A Max, B Min, B Max)
@@ -162,6 +159,11 @@ while(True):
             LED(2).on()
             LED(2).off()
 
+        #Print ball angle
+        if angle_print:
+            angle = (450 - math.degrees(math.atan2(outBuffer[1] - 120, outBuffer[2] - 120)))- 90
+            angle = ballAngle = (angle%360)
+            print(angle)
 
         #Print OutBuffer
         if print_out:
