@@ -6,15 +6,32 @@ from pyb import UART, LED
 robot = 1
 
 #DEBUGGING & TOGGLES (Set to false before Competitions)
-draw_cross = True      #Draws centre cross
+draw_cross = False      #Draws centre cross
 draw_rect = True       #Draws rectangle around blobs
 draw_line = False       #Draws line from centre cross to centre of blobs
-xy_coords = False       #Print the X & Y coords of the Blobs
-led_flash = True       #Flashes LED quickly
+xy_coords = True       #Print the X & Y coords of the Blobs
+led_flash = False       #Flashes LED quickly
 print_out = False       #Prints the output values
-fake_output = False      #Fakes output values
+fake_output = False     #Fakes output values
 bdistcent = False       #Calculates the distance to the ball on the mirror
-angle_print = True      #Prints the ball angle
+angle_print = False     #Prints the ball angle
+
+#ULTIMATE MASTER DEBUG TOGGLE INCASE WE FORGET
+master_debug = False  #If true it turns off all the debug options
+
+if master_debug:
+    draw_cross = False
+    draw_rect = False
+    draw_line = False
+    xy_coords = False
+    led_flash = False
+    print_out = False
+    fake_output = False
+    bdistcent = False
+    angle_print = False
+
+
+
 
 #DEFINES
 centreX = 120
@@ -67,7 +84,7 @@ while(True):
 
 
 
-    outBuffer = [255,1,1,1,1,1,1]
+    outBuffer = [255,0,0,0,0,0,0]
 
     img = sensor.snapshot()
 
@@ -173,6 +190,7 @@ while(True):
                 except Exception as X:
                     print(X)
 
+        #Ball Distance to Centre
         if ballBlob != None and bdistcent:
             BDistanceCentre = math.sqrt(((outBuffer[1]-120)**2) + ((outBuffer[2]-120)**2))
             print(BDistanceCentre)
