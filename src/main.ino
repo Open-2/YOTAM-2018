@@ -53,7 +53,7 @@ void loop() {
   Motor.Move(0, camera.yGoalAngle, 0);
   // Motor.Move(0, 0, 70);
   // Motor.Move(0, 0, 255);
-  role.action(0, 0, 0, 80, 0, 0);
+  // role.action(255, 0, -1, 10, 0, 0);
   //Parameters:
   //First parameter is the speed of the robot.
   //Second parameter is the state of the robot. 0 means it is attacking, 1 means it is defending.

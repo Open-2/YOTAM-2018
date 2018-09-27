@@ -12,9 +12,9 @@ void Role::action(int mvspeed, int state, int fakeangle, int balldis, int dir, i
     if (comp == 0) {
       if (dir == 0) {
       if (balldis <= 15) {
-        Motor.Move(camera.bAngle, camera.ygoalCorrect, mvspeed);
+        Motor.Move(camera.bAngle, camera.yGoalAngle, mvspeed);
       } else {
-        Motor.Move(camera.ballAngle, camera.ygoalCorrect, mvspeed);
+        Motor.Move(camera.ballAngle, camera.yGoalAngle, mvspeed);
       }
     } else if (dir == 1) {
     if (balldis <= 15) {
@@ -25,9 +25,9 @@ void Role::action(int mvspeed, int state, int fakeangle, int balldis, int dir, i
     }
     } else if (comp == 1) {
       if (balldis <= 15) {
-        Motor.Move(camera.bAngle, 0, mvspeed);
+        Motor.Move(camera.bAngle, camera.ballAngle, mvspeed);
       } else {
-        Motor.Move(camera.ballAngle, 0, mvspeed);
+        Motor.Move(camera.ballAngle, camera.ballAngle, mvspeed);
     }
     }
     }

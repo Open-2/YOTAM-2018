@@ -19,11 +19,11 @@ void Camera::update(){
     }
   }
   
-  ballx = camBuffer[1];
-  bally = camBuffer[2];
+  ballx = camBuffer[3];
+  bally = camBuffer[4];
 
-  yellowGoalx = camBuffer[3];
-  yellowGoaly = camBuffer[4];
+  yellowGoalx = camBuffer[1];
+  yellowGoaly = camBuffer[2];
 
   blueGoalx = camBuffer[5];
   blueGoaly = camBuffer[6];
