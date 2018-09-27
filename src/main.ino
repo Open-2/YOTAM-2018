@@ -30,17 +30,18 @@ void setup() {
   // compass.calibrate();
 }
 void loop() {
+  Motor.Move(0, 0, 255);
   // Motor.Setup();
   // debug.motorTest();
   // //"""Data Refreshing"""
-  camera.update();
+  // camera.update();
   // camera.Test();
   // Serial.print(Serial3.read());
   // debug.cameraTest();
   // // debug.motorTest();
   // compass.updateGyro();
   // //"""Angle/Correction Calculation"""
-  camera.angleCalc();
+  // camera.angleCalc();
   // camera.Test();
   // compass.compassCalc();
   // //"""Motor Movement Code"""
@@ -50,9 +51,9 @@ void loop() {
   // debug.motorTest();
   // Motor.Move(45, 0, 255);
   // Motor.Move(0, -115, 255);
-  Motor.Move(0, camera.yGoalAngle, 0);
+  // Motor.Move(0, camera.yGoalAngle, 0);
   // Motor.Move(0, 0, 70);
-  // Motor.Move(0, 0, 255);
+  // Motor.Move(0, 0,  255);
   // role.action(255, 0, -1, 10, 0, 0);
   //Parameters:
   //First parameter is the speed of the robot.
