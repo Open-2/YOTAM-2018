@@ -19,11 +19,11 @@ void Camera::update(){
     }
   }
   
-  ballx = camBuffer[1];
-  bally = camBuffer[2];
+  ballx = camBuffer[3];
+  bally = camBuffer[4];
 
-  yellowGoalx = /*camBuffer[3];*/ 50;
-  yellowGoaly = /*camBuffer[4];*/ 50;
+  yellowGoalx = camBuffer[1];
+  yellowGoaly = camBuffer[2];
 
   blueGoalx = camBuffer[5];
   blueGoaly = camBuffer[6];
@@ -74,15 +74,14 @@ void Camera::angleCalc(){
  yGoalcamDistance = sqrt(((yellowGoalx - 120) ^ 2) + ((yellowGoaly - 120) ^ 2));
 
  bgoalCorrect = (-0.00339513*pow(bGoalAngle, 2) + 1.22225*bGoalAngle - 2.50014) + 50;
- if (bGoalAngle < 180) {
-   bgoalCorrect = bgoalCorrect * -1;
- }
- ygoalCorrect = (-0.00339513*pow(yGoalAngle, 2) + 1.22225*yGoalAngle - 2.50014) + 50;  
- if (yGoalAngle < 180) {
-   ygoalCorrect = ygoalCorrect * -1;
- }
- if (ballAngle < 180) {
-   ballAngle = (ballAngle - 180) * -1;
- }
+ 
+ ygoalCorrect = (-0.00439513*pow(yGoalAngle, 2) + 1.22225*yGoalAngle - 2.50014) + 50;  
+
+ if (yGoalAngle <= 180) {
+   yGoalAngle = yGoalAngle * -1 - 50;
+
+ } else {
+   yGoalAngle = (yGoalAngle - 2 * (yGoalAngle - 180)) + 50;
+  }
 }
 
