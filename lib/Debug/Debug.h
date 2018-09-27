@@ -13,7 +13,6 @@ class Debug{
     void cameraTest();
     void compassTest();
     void motorTestState(int state);
-    void Debug::setCamera(Camera *cam);
     bool motoron = true;
 
 
