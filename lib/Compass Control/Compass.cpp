@@ -62,30 +62,23 @@ void Compass::updateGyro() {
 	heading = doubleMod(heading, 360.0);
 
 	previousTime = currentTime;
+    if (heading <= 10 || heading >= 350) {
+        correction = 0;
+    } else if (heading <= 180) {
+        correction = 0.5 * ((heading - 2 * (heading - 180)));
+    } else {
+        correction = (heading * -1) * 0.5;
+        }
 }
 
 double Compass::calibrate() {
-    // motorController.brake(); stop robot
-
-    readGyroscope();
-
-    delay(COMPASS_CALIBRATION_TIME);
-
-    double reading = (double) readGyroscope().z;
-    calibration = reading;
-
-    return reading;
-  }
+    calibration = 0;
+    for (int cal = 0; cal < 1000; cal++)
+    {
+        calibration += readGyroscope().z;
+    }
+    calibration = calibration / 1000;
+}
 void Compass::compassCalc() {
 
-  unsigned long currentMillis = millis();
-
-  relativeHeading = heading > 180 ? (360 - heading) : heading;
-
-  double diffTime = ((double)(currentMillis - compMillis))/100.0;
-  double difference = ((double)(relativeHeading - previousHeading)) / diffTime;
-  compMillis = currentMillis;
-  previousHeading = relativeHeading;
-
-  int correction = (round(kp*((double)relativeHeading) + kd*difference)) * -1;
 }

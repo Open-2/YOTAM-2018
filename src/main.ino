@@ -1,15 +1,16 @@
-//"""Includes"""
+// //"""Includes"""
 
 #include <Arduino.h>
 #include <Camera.h>
 #include <Compass.h>
+#include <Wire.h>
 #include <Define.h>
 #include <MotorController.h>
 #include <Motors.h>
 #include <Debug.h>
 #include <Role.h>
 
-// """Library Name Allocation"""
+// // """Library Name Allocation"""
 
 Role role;
 Camera camera;
@@ -17,27 +18,51 @@ MotorController Motor;
 Debug debug;
 Compass compass;
 
-//"""Variable Naming"""
+// //"""Variable Naming"""
 const int GoalAcc = 7;
+const int MoveSpd = 255;
+
+unsigned long previousMillis = 0;
+const long interval = 200;
+bool voiding = false;
+int oldLight = 0;
+
+unsigned long compMillis = 0;
+int previousHeading = 0;
+const double kp = 4.5;
+const double kd = 9; //-8;
 
 void setup() {
   Serial.begin(9600);
-  // Wire.begin();
+  Wire.begin();
   camera.setup();
-  // debug.setCamera(&camera);
   Motor.Setup();
-  // compass.compassSetup();
-  // compass.calibrate();
+  compass.compassSetup();
+  compass.calibrate();
 }
 void loop() {
   // //"""Data Refreshing"""
   camera.update();
-  // compass.updateGyro();
+  compass.updateGyro();
   // //"""Angle/Correction Calculation"""
   camera.angleCalc();
   // compass.compassCalc();
+
+  // Serial.println(compass.heading);
+  // int relativeHeading = compass.heading > 180 ? (360 - compass.heading) : -compass.heading;
+  Motor.Move(camera.bAngle, compass.correction, 255);
+  // double diffTime = ((double)(currentMillis - compMillis)) / 100.0;
+  // double difference = ((double)(relativeHeading - previousHeading)) / diffTime;
+  // compMillis = currentMillis;
+  // previousHeading = relativeHeading;
+
+  // int correction = round(kp * ((double)relativeHeading) + kd * difference);
+
+  // Serial.println(compass.heading);
+  // Motor.Move(0, compass.correction, 0);
+  // Motor.Move(0, 0, 255);
   // //"""Motor Movement Code"""
-  Motor.Move(0, camera.yGoalAngle, 0);
+  // Motor.Move(90, camera.yGoalAngle, 150);
   // Motor.Move(90, 0 , 255);
   // role.action(255, 0, -1, 10, 0, 0);
   //Parameters:

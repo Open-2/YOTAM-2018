@@ -71,17 +71,11 @@ void Camera::angleCalc(){
  ballcamDistance = sqrt(((ballx-120)^2)+((bally-120)^2));
  ballDistance = ((-59.1132*pow(45.5842, (-0.00842102*camDistance)))+102.468);
  bGoalcamDistance = sqrt(((blueGoalx - 120) ^ 2) + ((blueGoaly - 120) ^ 2));
- yGoalcamDistance = sqrt(((yellowGoalx - 120) ^ 2) + ((yellowGoaly - 120) ^ 2));
+ yGoalcamDistance = sqrt((pow((yellowGoalx - 120),  2)) + (pow((yellowGoaly - 120), 2)));
 
  bgoalCorrect = (-0.00339513*pow(bGoalAngle, 2) + 1.22225*bGoalAngle - 2.50014) + 50;
  
  ygoalCorrect = (-0.00439513*pow(yGoalAngle, 2) + 1.22225*yGoalAngle - 2.50014) + 50;  
 
- if (yGoalAngle <= 180) {
-   yGoalAngle = (yGoalAngle * -1 - 60) * -1;
-
- } else {
-   yGoalAngle = -1 *((yGoalAngle - 2 * (yGoalAngle - 180)) + 60);
-  }
 }
 

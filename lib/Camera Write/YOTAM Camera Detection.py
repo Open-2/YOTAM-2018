@@ -42,7 +42,7 @@ angle = 360
 
 # (L Min, L Max, A Min, A Max, B Min, B Max)
 if robot == 1:
-    ball = [(36, 62, 21, 90, 24, 74)]
+    ball = [(20, 55, 25, 53, 4, 45)]
     blueGoal = [(19, 32, -4, 17, -47, -26)]
     yellowGoal = [(36, 58, -8, 20, 22, 62)]
 
@@ -62,9 +62,9 @@ sensor.set_auto_whitebal(False)
 sensor.set_windowing((40,0,240,240))
 #sensor.set_windowing((60,20,200,200))
 
-sensor.set_saturation(3)
-sensor.set_brightness(-2)
-sensor.set_contrast(3)
+sensor.set_saturation(-10)
+sensor.set_brightness(10)
+sensor.set_contrast(10)
 
 LED(1).on()
 time.sleep(100)

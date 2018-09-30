@@ -21,7 +21,7 @@ class Role{
     int goalCorrect;
     int balldis = 0;
     MotorController Motor;
-    Compass compass;
+    // Compass compass;
     Camera camera;
     Debug debug;
 
