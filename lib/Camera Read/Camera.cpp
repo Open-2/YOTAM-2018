@@ -28,14 +28,14 @@ void Camera::update(){
   blueGoalx = camBuffer[5];
   blueGoaly = camBuffer[6];
 
-  ballAngle = (450 - degrees(atan2(ballx - 120, bally -120)))- 90;
+  ballAngle = (450 - degrees(atan2(ballx - 92, bally - 92)))- 90;
   ballAngle = (ballAngle%360);
   //Meme
   // ballAngle = 45;
   //Meme
-  yGoalAngle = (450 - degrees(atan2(yellowGoalx - 120, yellowGoaly -120)))- 90;
+  yGoalAngle = (450 - degrees(atan2(yellowGoalx - 92, yellowGoaly - 92)))- 90;
   yGoalAngle = (yGoalAngle%360);
-  bGoalAngle = (450 - degrees(atan2(blueGoalx - 120, blueGoaly -120)))- 90;
+  bGoalAngle = (450 - degrees(atan2(blueGoalx - 92, blueGoaly - 92)))- 90;
   bGoalAngle = (bGoalAngle%360);
 }
 

@@ -9,6 +9,7 @@
 #include <Motors.h>
 #include <Debug.h>
 #include <Role.h>
+#include <PID.h>
 
 // // """Library Name Allocation"""
 
@@ -17,6 +18,7 @@ Camera camera;
 MotorController Motor;
 Debug debug;
 Compass compass;
+PID pid = PID(0.5,0,0.1,255);
 
 // //"""Variable Naming"""
 const int GoalAcc = 7;
@@ -45,12 +47,15 @@ void loop() {
   camera.update();
   compass.updateGyro();
   // //"""Angle/Correction Calculation"""
+  pid.update(compass.heading, 0);
   camera.angleCalc();
+  // camera.Test();
+  // Serial.println(camera.ballAngle);
   // compass.compassCalc();
-
+  // Serial.println(compass.heading);
   // Serial.println(compass.heading);
   // int relativeHeading = compass.heading > 180 ? (360 - compass.heading) : -compass.heading;
-  Motor.Move(camera.bAngle, compass.correction, 255);
+  // Motor.Move(0, -compass.correction, 0);
   // double diffTime = ((double)(currentMillis - compMillis)) / 100.0;
   // double difference = ((double)(relativeHeading - previousHeading)) / diffTime;
   // compMillis = currentMillis;
@@ -59,7 +64,7 @@ void loop() {
   // int correction = round(kp * ((double)relativeHeading) + kd * difference);
 
   // Serial.println(compass.heading);
-  // Motor.Move(0, compass.correction, 0);
+  Motor.Move(0, pid.correction, 0);
   // Motor.Move(0, 0, 255);
   // //"""Motor Movement Code"""
   // Motor.Move(90, camera.yGoalAngle, 150);
@@ -72,5 +77,4 @@ void loop() {
   //Fourth parameter is the distance to the ball.
   //Fifth parameter is the direction of the game. 0 means the direction is yellow, 1 means the direction is blue.
   //Sixth parameter is the compass correction toggle. 0 means off, 1 means on.
-  //Note: Correction max is 110 and minimum is variable
 } 

@@ -10,7 +10,7 @@ draw_cross = True      #Draws centre cross
 draw_rect = True       #Draws rectangle around blobs
 draw_line = True       #Draws line from centre cross to centre of blobs
 xy_coords = False       #Print the X & Y coords of the Blobs
-led_flash = False       #Flashes LED quickly
+led_flash = False          #Flashes LED quickly
 print_out = False       #Prints the output values
 fake_output = False     #Fakes output values
 bdistcent = False       #Calculates the distance to the ball on the mirror
@@ -34,15 +34,15 @@ if master_debug:
 
 
 #DEFINES
-centreX = 120
-centreY = 120
+centreX = 92
+centreY = 92
 BDistanceCentre = 0
 angle = 360
 
 
 # (L Min, L Max, A Min, A Max, B Min, B Max)
 if robot == 1:
-    ball = [(20, 55, 25, 53, 4, 45)]
+    ball = [(52, 90, 29, 76, -30, 65)]
     blueGoal = [(19, 32, -4, 17, -47, -26)]
     yellowGoal = [(36, 58, -8, 20, 22, 62)]
 
@@ -59,8 +59,7 @@ sensor.set_framesize(sensor.QVGA)
 sensor.skip_frames(time = 1000)
 sensor.set_auto_gain(False)
 sensor.set_auto_whitebal(False)
-sensor.set_windowing((40,0,240,240))
-#sensor.set_windowing((60,20,200,200))
+sensor.set_windowing((82, 20,184,184))
 
 sensor.set_saturation(-10)
 sensor.set_brightness(10)
@@ -90,7 +89,7 @@ while(True):
 
     img = sensor.snapshot()
 
-    ballBlob = BiggestBlob(img.find_blobs(ball,x_stride=4,y_stride=4,pixels_threshold=20))
+    ballBlob = BiggestBlob(img.find_blobs(ball,x_stride=4,y_stride=4,pixels_threshold=5))
     yellowBlob = BiggestBlob(img.find_blobs(yellowGoal,x_stride=15,y_stride=8,merge=True,margin=34,pixels_threshold=100))
     blueBlob = BiggestBlob(img.find_blobs(blueGoal,x_stride=15,y_stride=8,merge=True,margin=34,pixels_threshold=50))
 

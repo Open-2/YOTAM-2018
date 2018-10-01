@@ -43,16 +43,16 @@ void Role::action(int mvspeed, int state, int fakeangle, int balldis, int dir, i
 
 void Role::Defend(int mvspeed, int angle, int balldis, int dir) {
   Motor.Setup();
-  if (angle <= 20 || angle >= 340) {
-    Motor.Move(0, 0, 100);
-  } else if (angle >= 270) {
+    if (angle >= 270) {
     goalmove = (-0.0104938 * pow(angle, 2) + 3.77778 * angle + (-1.1369 * pow(10, -14)));
-    Motor.Move(90, 0, goalmove);
+    Motor.Move(90, camera.ygoalCorrect, goalmove);
   } else if (angle <= 90) {
     goalmove = (-0.0104938 * pow(angle, 2) + 3.77778 * angle + (-1.1369 * pow(10, -14)));
-    Motor.Move(270, 0, goalmove);
-  } else {
-    action(255, 0, -1, camera.ballDistance, dir, 0);
+    Motor.Move(270, camera.ygoalCorrect, goalmove);
   }
-
+  if (camera.yGoalDistance > 20) {
+    Motor.Move(180, camera.ygoalCorrect, 255);
+  } else if (camera.yGoalDistance < 10) {
+    Motor.Move(0, camera.ygoalCorrect, 255);
+  }
 }
