@@ -18,7 +18,7 @@ Camera camera;
 MotorController Motor;
 Debug debug;
 Compass compass;
-PID pid = PID(0.5, 1, 0.2, 255);
+// PID pid = PID(0.5, 1, 0.2, 255);
 
 // //"""Variable Naming"""
 // const int MoveSpd = 255;
@@ -48,6 +48,7 @@ void loop() {
   // //"""Data Refreshing"""
   camera.update();
   compass.updateGyro();
+  // corr = pid.update(compass.heading, 0);
   // //"""Angle/Correction Calculation"""
   // corr = pid.update(compass.heading, 0);
   camera.angleCalc();
@@ -68,14 +69,16 @@ void loop() {
   // Serial.print(compass.heading);
   // Serial.print(", ");
   // Serial.println(compass.correction);
+  // Motor.Move(0, 0, 255);
   // Motor.Move(camera.bAngle, compass.correction, 255);
   // Motor.Move(0, 0, 255);
   // //"""Motor Movement Code"""
   // Motor.Move(90, camera.yGoalAngle, 150);
   // Motor.Move(90, 0 , 255);
   // Motor.Move(0, 0, 255);
-  Motor.Move(0, -compass.correction, 0);
-  // role.action(0, camera.bAngle, -1, 10, 0, 1, camera.ballAngle, -compass.correction);
+  // Motor.Move(0, -corr, 0);
+  // Motor.Move(180, 0, 255);
+  role.action(255, camera.bAngle, -1, 10, 0 , 1, camera.ballAngle, compass.correction);
   //Parameters:
   //First parameter is the speed of the robot.
   //Second parameter is the state of the robot. -1 means it is defending, any other number is the movement direction when attacking.
