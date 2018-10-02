@@ -2,36 +2,34 @@
 #include <Role.h>
 
 
-void Role::action(int mvspeed, int state, int fakeangle, int balldis, int dir, int comp) {
-  Motor.Setup();
-   
+void Role::action(int mvspeed, int state, int fakeangle, int balldis, int dir, int comp, int bangle, int correction) {
+    Motor.Setup();
 
-    
-    if (state == 0) {
+    if (state != -1) {
       //Attacker Code:
     if (comp == 0) {
       if (dir == 0) {
       if (balldis <= 15) {
-        Motor.Move(camera.bAngle, camera.yGoalAngle, mvspeed);
+        Motor.Move(state, camera.yGoalAngle, mvspeed);
       } else {
-        Motor.Move(camera.ballAngle, camera.yGoalAngle, mvspeed);
+        Motor.Move(state, camera.yGoalAngle, mvspeed);
       }
     } else if (dir == 1) {
     if (balldis <= 15) {
-      Motor.Move(camera.bAngle, camera.bgoalCorrect, mvspeed);
+      Motor.Move(state, camera.bgoalCorrect, mvspeed);
     } else {
-      Motor.Move(camera.ballAngle, camera.bgoalCorrect, mvspeed);
-    }
-    }
+      Motor.Move(state, camera.bgoalCorrect, mvspeed);
+        }
+      }
     } else if (comp == 1) {
       if (balldis <= 15) {
-        Motor.Move(camera.bAngle, camera.ballAngle, mvspeed);
+        Motor.Move(state, correction, mvspeed);
       } else {
-        Motor.Move(camera.ballAngle, camera.ballAngle, mvspeed);
+        Motor.Move(state, correction, mvspeed);
+        }
+      }
     }
-    }
-    }
-    if (state == 1) {
+    if (state == -1) {
       //Defender Code
       if (fakeangle != -1) {
         Defend(mvspeed, fakeangle, balldis, dir);

@@ -18,21 +18,23 @@ Camera camera;
 MotorController Motor;
 Debug debug;
 Compass compass;
-PID pid = PID(0.5,0,0.1,255);
+PID pid = PID(0.5, 1, 0.2, 255);
 
 // //"""Variable Naming"""
-const int GoalAcc = 7;
-const int MoveSpd = 255;
+// const int MoveSpd = 255;
+// const int GoalAcc = 7;
 
-unsigned long previousMillis = 0;
-const long interval = 200;
-bool voiding = false;
-int oldLight = 0;
+// unsigned long previousMillis = 0;
+// const long interval = 200;
+// bool voiding = false;
+// int oldLight = 0;
 
-unsigned long compMillis = 0;
-int previousHeading = 0;
-const double kp = 4.5;
-const double kd = 9; //-8;
+// unsigned long compMillis = 0;
+// int previousHeading = 0;
+// const double kp = 4.5;
+// const double kd = 9; //-8;
+
+// double corr;
 
 void setup() {
   Serial.begin(9600);
@@ -47,7 +49,7 @@ void loop() {
   camera.update();
   compass.updateGyro();
   // //"""Angle/Correction Calculation"""
-  pid.update(compass.heading, 0);
+  // corr = pid.update(compass.heading, 0);
   camera.angleCalc();
   // camera.Test();
   // Serial.println(camera.ballAngle);
@@ -63,18 +65,24 @@ void loop() {
 
   // int correction = round(kp * ((double)relativeHeading) + kd * difference);
 
-  // Serial.println(compass.heading);
-  Motor.Move(0, pid.correction, 0);
+  // Serial.print(compass.heading);
+  // Serial.print(", ");
+  // Serial.println(compass.correction);
+  // Motor.Move(camera.bAngle, compass.correction, 255);
   // Motor.Move(0, 0, 255);
   // //"""Motor Movement Code"""
   // Motor.Move(90, camera.yGoalAngle, 150);
   // Motor.Move(90, 0 , 255);
-  // role.action(255, 0, -1, 10, 0, 0);
+  // Motor.Move(0, 0, 255);
+  Motor.Move(0, -compass.correction, 0);
+  // role.action(0, camera.bAngle, -1, 10, 0, 1, camera.ballAngle, -compass.correction);
   //Parameters:
   //First parameter is the speed of the robot.
-  //Second parameter is the state of the robot. 0 means it is attacking, 1 means it is defending.
+  //Second parameter is the state of the robot. -1 means it is defending, any other number is the movement direction when attacking.
   //Third parameter is the fake angle. If it is set to -1, it is off. Otherwise, it is the fake angle of the ball.
   //Fourth parameter is the distance to the ball.
   //Fifth parameter is the direction of the game. 0 means the direction is yellow, 1 means the direction is blue.
   //Sixth parameter is the compass correction toggle. 0 means off, 1 means on.
+  //Seventh parameter is the direction of the ball.
+  //Eighth parameter is the correction value.
 } 

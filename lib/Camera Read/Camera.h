@@ -35,8 +35,8 @@ class Camera{
     int yGoalcamDistance;
     int bgoalCorrect;
     int ygoalCorrect;
-    int yGoalDistance = 0;
-    int bGoalDistance = 0;
+    // int yGoalDistance = 0;
+    // int bGoalDistance = 0;
   
 
 

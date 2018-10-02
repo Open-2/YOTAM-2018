@@ -62,12 +62,13 @@ void Compass::updateGyro() {
 	heading = doubleMod(heading, 360.0);
 
 	previousTime = currentTime;
+
     if (heading <= 7.5 || heading >= 352.5) {
         correction = 0;
-    } else if (heading <= 180) {
-        correction = 0.5 * ((heading - 2 * (heading - 180)));
+    } else if (heading >= 180) {
+        correction = 2 * ((heading - 2 * (heading - 180)));
     } else {
-        correction = (heading * -1) * 0.5;
+        correction = (heading * -1) * 2;
         }
 }
 

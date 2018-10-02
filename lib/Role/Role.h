@@ -10,7 +10,7 @@
 
 class Role{
   public:
-    void action(int mvspeed, int state, int fakeangle, int balldis, int dir, int comp);
+    void action(int mvspeed, int state, int fakeangle, int balldis, int dir, int comp, int bangle, int correction);
     int mvspeed = 0;
 
   private:

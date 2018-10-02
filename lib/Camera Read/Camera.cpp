@@ -75,7 +75,19 @@ void Camera::angleCalc(){
 
  bgoalCorrect = (-0.00339513*pow(bGoalAngle, 2) + 1.22225*bGoalAngle - 2.50014) + 50;
  
- ygoalCorrect = (-0.00439513*pow(yGoalAngle, 2) + 1.22225*yGoalAngle - 2.50014) + 50;  
+ ygoalCorrect = (-0.00439513*pow(yGoalAngle, 2) + 1.22225*yGoalAngle - 2.50014) + 50;
 
+//  if (yGoalAngle <= 7.5 || yGoalAngle >= 352.5)
+//  {
+//    ygoalCorrect = 0;
+//  }
+//  else if (yGoalAngle <= 180)
+//  {
+//    ygoalCorrect = 0.5 * ((yGoalAngle - 2 * (yGoalAngle - 180)));
+//  }
+//  else
+//  {
+//    ygoalCorrect = (yGoalAngle * -1) * 0.5;
+//  }
 }
 

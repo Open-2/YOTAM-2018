@@ -28,7 +28,6 @@ double PID::update(double input, double setpoint, double modulus) {
         } else if (difference > modulus) {
             difference -= modulus;
         }
-
         derivative = difference / elapsedTime;
     } else {
         derivative = (input - lastInput) / elapsedTime;
@@ -37,6 +36,8 @@ double PID::update(double input, double setpoint, double modulus) {
     lastInput = input;
 
     double correction = kp * error + ki * integral - kd * derivative;
+
+    correction = (correction <= 180) ? correction : -1 * (correction - 2 * (correction - 180));
 
     return absMax == 0 ? correction : constrain(correction, -absMax, absMax);
 }
