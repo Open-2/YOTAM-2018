@@ -54,3 +54,7 @@ void Role::Defend(int mvspeed, int angle, int balldis, int dir) {
     Motor.Move(0, camera.ygoalCorrect, 255);
   }
 }
+
+void Role::shit() {
+
+}

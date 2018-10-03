@@ -35,23 +35,24 @@ Compass compass;
 // const double kd = 9; //-8;
 
 // double corr;
+  int mvspeed;
 
 void setup() {
   Serial.begin(9600);
-  Wire.begin();
-  camera.setup();
+  // Wire.begin();
+  // camera.setup();
   Motor.Setup();
-  compass.compassSetup();
-  compass.calibrate();
+  // compass.compassSetup();
+  // compass.calibrate();
 }
 void loop() {
   // //"""Data Refreshing"""
-  camera.update();
-  compass.updateGyro();
+  // camera.update();
+  // compass.updateGyro();
   // corr = pid.update(compass.heading, 0);
   // //"""Angle/Correction Calculation"""
   // corr = pid.update(compass.heading, 0);
-  camera.angleCalc();
+  // camera.angleCalc();
   // camera.Test();
   // Serial.println(camera.ballAngle);
   // compass.compassCalc();
@@ -78,14 +79,32 @@ void loop() {
   // Motor.Move(0, 0, 255);
   // Motor.Move(0, -corr, 0);
   // Motor.Move(180, 0, 255);
-  role.action(255, camera.bAngle, -1, 10, 0 , 1, camera.ballAngle, compass.correction);
-  //Parameters:
-  //First parameter is the speed of the robot.
-  //Second parameter is the state of the robot. -1 means it is defending, any other number is the movement direction when attacking.
-  //Third parameter is the fake angle. If it is set to -1, it is off. Otherwise, it is the fake angle of the ball.
-  //Fourth parameter is the distance to the ball.
-  //Fifth parameter is the direction of the game. 0 means the direction is yellow, 1 means the direction is blue.
-  //Sixth parameter is the compass correction toggle. 0 means off, 1 means on.
-  //Seventh parameter is the direction of the ball.
-  //Eighth parameter is the correction value.
+  Motor.Move(0, 0, 255);
+  // Motor.Move(0, camera.ygoalCorrect, 0);
+  // if (camera.ballAngle >= 270) {
+  //   mvspeed = (-0.0104938 * pow(camera.ballAngle, 2) + 3.77778 * camera.ballAngle + (-1.1369 * pow(10, -14)));
+  //   Motor.Move(90, camera.ygoalCorrect, mvspeed);
+  // } else if (camera.ballAngle <= 90) {
+  //   mvspeed = (-0.0104938 * pow(camera.ballAngle, 2) + 3.77778 * camera.ballAngle + (-1.1369 * pow(10, -14)));
+  //   Motor.Move(270, camera.ygoalCorrect, mvspeed);
+  // }
+  // if (camera.yGoalDistance > 20)
+  // {
+  //   Motor.Move(180, camera.ygoalCorrect, 255);
+  // }
+  // else if (camera.yGoalDistance < 10)
+  // {
+  //   Motor.Move(0, camera.ygoalCorrect, 255);
+    // Motor.Move(0, camera.ygoalCorrect, 255);
+    // Serial.println(compass.correction);
+    // role.action(0, camera.bAngle, -1, 10, 0 , 1, camera.ballAngle, compass.correction);
+    //Parameters:
+    //First parameter is the speed of the robot.
+    //Second parameter is the state of the robot. -1 means it is defending, any other number is the movement direction when attacking.
+    //Third parameter is the fake angle. If it is set to -1, it is off. Otherwise, it is the fake angle of the ball.
+    //Fourth parameter is the distance to the ball.
+    //Fifth parameter is the direction of the game. 0 means the direction is yellow, 1 means the direction is blue.
+    //Sixth parameter is the compass correction toggle. 0 means off, 1 means on.
+    //Seventh parameter is the direction of the ball.
+    //Eighth parameter is the correction value.
 } 

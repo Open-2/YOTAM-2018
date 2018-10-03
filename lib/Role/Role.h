@@ -12,6 +12,7 @@ class Role{
   public:
     void action(int mvspeed, int state, int fakeangle, int balldis, int dir, int comp, int bangle, int correction);
     int mvspeed = 0;
+    void shit();
 
   private:
     void Defend(int mvspeed, int angle, int balldis, int dir);
