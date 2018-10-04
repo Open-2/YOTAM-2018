@@ -54,6 +54,7 @@ void Role::Defend(int mvspeed, int angle, int balldis, int dir) {
     Motor.Move(0, camera.ygoalCorrect, 255);
   }
 }
+<<<<<<< HEAD
 
 void Role::shit(int ygoalx, int ygoaly, int bgoalx, int bgoaly, int ballx, int bally, int dir, int millistart, int correction, int ballAngle, int bAngle, int bgoalCorrect, int ygoalCorrect) {
   Motor.Setup();
@@ -128,3 +129,5 @@ void Role::shit(int ygoalx, int ygoaly, int bgoalx, int bgoaly, int ballx, int b
   //   }
   }
 }
+=======
+>>>>>>> parent of 554f8ae... Updates

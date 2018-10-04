@@ -39,6 +39,7 @@ centreY = 120
 BDistanceCentre = 0
 angle = 360
 
+<<<<<<< HEAD
 # ||| THRESHOLD SETUP AND WHITEBAL ||| - (L Min, L Max, A Min, A Max, B Min, B Max)
 if robot == 1: #Mind
     ball = [(46, 63, 18, 79, 11, 65)]
@@ -52,6 +53,20 @@ else: #Yeast
     curr_wbal = (-6.02073, -5.243186, -0.5613652)
 
 # ||| UART SETUP |||
+=======
+
+# (L Min, L Max, A Min, A Max, B Min, B Max)
+if robot == 1:
+    ball = [(52, 90, 29, 76, -30, 65)]
+    blueGoal = [(19, 32, -4, 17, -47, -26)]
+    yellowGoal = [(36, 58, -8, 20, 22, 62)]
+
+else:
+    ball = [(0,0,0,0,0,0)]
+    blueGoal = [(0,0,0,0,0,0)]
+    yellowGoal = [(0,0,0,0,0,0)]
+
+>>>>>>> parent of 554f8ae... Updates
 uart = UART(3, 9600, timeout_char = 1000)
 
 # ||| SENSOR SETUP |||

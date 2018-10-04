@@ -35,8 +35,11 @@ Compass compass;
 // const double kd = 9; //-8;
 
 // double corr;
+<<<<<<< HEAD
 int millistart = 0;
 int mvspeed;
+=======
+>>>>>>> parent of 554f8ae... Updates
 
 void setup() {
   Serial.begin(9600);
@@ -54,6 +57,7 @@ void loop() {
   // //"""Angle/Correction Calculation"""
   // corr = pid.update(compass.heading, 0);
   camera.angleCalc();
+<<<<<<< HEAD
 
   // role.shit(camera.yellowGoalx, camera.yellowGoaly, camera.blueGoalx, camera.blueGoaly, camera.ballx, camera.bally, 0, millistart, compass.correction, camera.ballAngle, camera.bAngle, camera.bgoalCorrect, camera.ygoalCorrect);
   // // camera.Test();
@@ -76,6 +80,9 @@ void loop() {
   //   Motor.Move(0, camera.ygoalCorrect, 0);
   // }
   // Motor.Move(0, compass.correction, 0);
+=======
+  // camera.Test();
+>>>>>>> parent of 554f8ae... Updates
   // Serial.println(camera.ballAngle);
   // Motor.Move(camera.ballAngle, 0, 255);
   // Motor.Move(0, -camera.bgoalCorrect, 0);
@@ -103,6 +110,7 @@ void loop() {
   // Motor.Move(0, 0, 255);
   // Motor.Move(0, -corr, 0);
   // Motor.Move(180, 0, 255);
+<<<<<<< HEAD
   // Motor.Move(0, 0, 255);
   // Motor.Move(0, camera.ygoalCorrect, 0);
   // if (camera.ballAngle >= 270) {
@@ -131,4 +139,16 @@ void loop() {
     //Sixth parameter is the compass correction toggle. 0 means off, 1 means on.
     //Seventh parameter is the direction of the ball.
     //Eighth parameter is the correction value.
+=======
+  role.action(255, camera.bAngle, -1, 10, 0 , 1, camera.ballAngle, compass.correction);
+  //Parameters:
+  //First parameter is the speed of the robot.
+  //Second parameter is the state of the robot. -1 means it is defending, any other number is the movement direction when attacking.
+  //Third parameter is the fake angle. If it is set to -1, it is off. Otherwise, it is the fake angle of the ball.
+  //Fourth parameter is the distance to the ball.
+  //Fifth parameter is the direction of the game. 0 means the direction is yellow, 1 means the direction is blue.
+  //Sixth parameter is the compass correction toggle. 0 means off, 1 means on.
+  //Seventh parameter is the direction of the ball.
+  //Eighth parameter is the correction value.
+>>>>>>> parent of 554f8ae... Updates
 } 
