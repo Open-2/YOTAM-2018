@@ -11,7 +11,7 @@ robot = 1  #0 = Yeast, 1 = Mind
 draw_cross = True      #Draws centre cross
 draw_rect = True       #Draws rectangle around blobs
 draw_line = False       #Draws line from centre cross to centre of blobs
-xy_coords = False       #Print the X & Y coords of the Blobs
+xy_coords = True       #Print the X & Y coords of the Blobs
 led_flash = True       #Flashes LED quickly
 print_out = False       #Prints the output values
 fake_output = False     #Fakes output values
@@ -39,7 +39,6 @@ centreY = 120
 BDistanceCentre = 0
 angle = 360
 
-<<<<<<< HEAD
 # ||| THRESHOLD SETUP AND WHITEBAL ||| - (L Min, L Max, A Min, A Max, B Min, B Max)
 if robot == 1: #Mind
     ball = [(46, 63, 18, 79, 11, 65)]
@@ -53,20 +52,6 @@ else: #Yeast
     curr_wbal = (-6.02073, -5.243186, -0.5613652)
 
 # ||| UART SETUP |||
-=======
-
-# (L Min, L Max, A Min, A Max, B Min, B Max)
-if robot == 1:
-    ball = [(52, 90, 29, 76, -30, 65)]
-    blueGoal = [(19, 32, -4, 17, -47, -26)]
-    yellowGoal = [(36, 58, -8, 20, 22, 62)]
-
-else:
-    ball = [(0,0,0,0,0,0)]
-    blueGoal = [(0,0,0,0,0,0)]
-    yellowGoal = [(0,0,0,0,0,0)]
-
->>>>>>> parent of 554f8ae... Updates
 uart = UART(3, 9600, timeout_char = 1000)
 
 # ||| SENSOR SETUP |||
@@ -112,7 +97,7 @@ def BiggestBlob(bBlob):
 while(True):
     outBuffer = [255,0,0,0,0,0,0]
     img = sensor.snapshot()
-    ballBlob = BiggestBlob(img.find_blobs(ball,x_stride=4,y_stride=4,pixels_threshold=5))
+    ballBlob = BiggestBlob(img.find_blobs(ball,x_stride=4,y_stride=4,pixels_threshold=20, area_thresgold=50))
     yellowBlob = BiggestBlob(img.find_blobs(yellowGoal,x_stride=15,y_stride=8,merge=True,margin=34,pixels_threshold=100))
     blueBlob = BiggestBlob(img.find_blobs(blueGoal,x_stride=15,y_stride=8,merge=True,margin=34,pixels_threshold=50))
 
