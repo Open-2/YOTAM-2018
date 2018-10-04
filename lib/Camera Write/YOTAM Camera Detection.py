@@ -5,7 +5,7 @@ import sensor, image, time, math
 from pyb import UART, LED
 
 # =+= ROBOT TOGGLE =+=
-robot = 1  #0 = Yeast, 1 = Mind
+robot = 0  #0 = Yeast, 1 = Mind
 
 # === DEBUGGING & TOGGLES (Set to false before Competitions) ===
 draw_cross = True      #Draws centre cross
@@ -15,7 +15,7 @@ xy_coords = False       #Print the X & Y coords of the Blobs
 led_flash = False       #Flashes LED quickly
 print_out = False       #Prints the output values
 fake_output = False     #Fakes output values
-bdistcent = True       #Calculates the distance to the ball on the mirror
+odistcent = False       #Calculates the distance to the objects on the mirror
 angle_print = False     #Prints the ball angle
 draw_text = False       #Draws OutBuffer onto Screen
 
@@ -46,10 +46,10 @@ if robot == 1: #Mind
     yellowGoal = [(35, 56, -34, 10, 42, 61)]
     curr_wbal = (-6.02073, -5.243186, -0.2762833)
 else: #Yeast
-    ball = [(0,0,0,0,0,0)]
-    blueGoal = [(0,0,0,0,0,0)]
-    yellowGoal = [(38, 73, -14, 16, 40, 79)]
-    curr_wbal = (-6.02073, -5.494869, -0.06828868)
+    ball = [(38, 63, 31, 71, 25, 67)]
+    blueGoal = [(35, 50, -29, -11, -34, -7)]
+    yellowGoal = [(62, 81, -21, 63, 46, 75)]
+    curr_wbal = (-6.02073, -5.243186, -0.5613652)
 
 # ||| UART SETUP |||
 uart = UART(3, 9600, timeout_char = 1000)
@@ -61,19 +61,19 @@ sensor.set_framesize(sensor.QVGA)
 sensor.skip_frames(time = 1000)
 
 # ||| GAIN |||
-curr_gain = sensor.get_gain_db()
-sensor.set_auto_gain(False, gain_db=curr_gain)
+#curr_gain = sensor.get_gain_db()
+sensor.set_auto_gain(False)#, gain_db=curr_gain)
 
 # ||| EXPOSURE |||
-curr_exposure = sensor.get_exposure_us()
-sensor.set_auto_exposure(False, exposure_us = int(curr_exposure))
+#curr_exposure = sensor.get_exposure_us()
+sensor.set_auto_exposure(False)#, exposure_us = int(curr_exposure))
 
 # ||| WHITE BAL |||
-sensor.set_auto_whitebal(False,
-rgb_gain_db=curr_wbal)
+sensor.set_auto_whitebal(False)#,
+#rgb_gain_db=curr_wbal)
 
 # ||| SET VALUES & WINDOWING |||
-sensor.set_windowing((82, 20,200,200))
+sensor.set_windowing((92, 20,200,200))
 sensor.set_saturation(3)
 sensor.set_brightness(-2)
 sensor.set_contrast(3)
@@ -191,9 +191,18 @@ while(True):
                     print(X)
 
         #Object Distance to Centre
-        if ballBlob != None and bdistcent:
-            BDistanceCentre = math.sqrt(((outBuffer[1]-centreX)**2) + ((outBuffer[2]-centreY)**2))
-            print(BDistanceCentre)
+        if odistcent:
+            if ballBlob != None:
+                BDistanceCentre = math.sqrt(((outBuffer[1]-centreX)**2) + ((outBuffer[2]-centreY)**2))
+                print('Ball:',BDistanceCentre)
+
+            if yellowBlob != None:
+                YGDistanceCentre = math.sqrt(((outBuffer[3]-centreX)**2) + ((outBuffer[4]-centreY)**2))
+                print('Yellow Goal:',YGDistanceCentre)
+
+            if blueBlob != None:
+                BGDistanceCentre = math.sqrt(((outBuffer[5]-centreX)**2) + ((outBuffer[6]-centreY)**2))
+                print('Blue Goal:',BGDistanceCentre)
 
         #Prints OutBuffer onto Screen
         if draw_text:
