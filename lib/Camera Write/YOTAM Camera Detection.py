@@ -5,14 +5,14 @@ import sensor, image, time, math
 from pyb import UART, LED
 
 # =+= ROBOT TOGGLE =+=
-robot = 0  #0 = Yeast, 1 = Mind
+robot = 1  #0 = Yeast, 1 = Mind
 
 # === DEBUGGING & TOGGLES (Set to false before Competitions) ===
 draw_cross = True      #Draws centre cross
 draw_rect = True       #Draws rectangle around blobs
 draw_line = False       #Draws line from centre cross to centre of blobs
 xy_coords = False       #Print the X & Y coords of the Blobs
-led_flash = False       #Flashes LED quickly
+led_flash = True       #Flashes LED quickly
 print_out = False       #Prints the output values
 fake_output = False     #Fakes output values
 odistcent = False       #Calculates the distance to the objects on the mirror
@@ -34,21 +34,21 @@ if master_debug:
   draw_text = False
 
 # ||| DEFINES |||
-centreX = 92
-centreY = 92
+centreX = 120
+centreY = 120
 BDistanceCentre = 0
 angle = 360
 
 # ||| THRESHOLD SETUP AND WHITEBAL ||| - (L Min, L Max, A Min, A Max, B Min, B Max)
 if robot == 1: #Mind
-    ball = [(35, 57, 57, 84, 36, 71)]
-    blueGoal = [(28, 55, -13, 14, -72, -32)]
-    yellowGoal = [(35, 56, -34, 10, 42, 61)]
+    ball = [(46, 63, 18, 79, 11, 65)]
+    blueGoal = [(6, 28, -26, 48, -42, -15)]
+    yellowGoal = [(43, 83, -19, 39, 27, 72)]
     curr_wbal = (-6.02073, -5.243186, -0.2762833)
 else: #Yeast
-    ball = [(38, 63, 31, 71, 25, 67)]
-    blueGoal = [(35, 50, -29, -11, -34, -7)]
-    yellowGoal = [(62, 81, -21, 63, 46, 75)]
+    ball = [(28, 68, 14, 100, 11, 127)]
+    blueGoal = [(24, 36, -42, 2, -50, -12)]
+    yellowGoal = [(51, 91, -47, 28, 26, 82)]
     curr_wbal = (-6.02073, -5.243186, -0.5613652)
 
 # ||| UART SETUP |||
@@ -73,7 +73,7 @@ sensor.set_auto_whitebal(False)#,
 #rgb_gain_db=curr_wbal)
 
 # ||| SET VALUES & WINDOWING |||
-sensor.set_windowing((92, 20,200,200))
+sensor.set_windowing((55, 0,240,240))
 sensor.set_saturation(3)
 sensor.set_brightness(-2)
 sensor.set_contrast(3)
@@ -175,6 +175,8 @@ while(True):
         if led_flash:
             LED(2).on()
             LED(2).off()
+            LED(1).on()
+            LED(1).off()
 
         #Print ball angle
         if angle_print:
