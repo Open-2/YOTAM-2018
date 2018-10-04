@@ -55,9 +55,30 @@ void loop() {
   // corr = pid.update(compass.heading, 0);
   camera.angleCalc();
 
-  role.shit(0, 0, 0, 0, 0, 0, 0, millistart, compass.correction);
-  // camera.Test();
+  // role.shit(camera.yellowGoalx, camera.yellowGoaly, camera.blueGoalx, camera.blueGoaly, camera.ballx, camera.bally, 0, millistart, compass.correction, camera.ballAngle, camera.bAngle, camera.bgoalCorrect, camera.ygoalCorrect);
+  // // camera.Test();
+  // Motor.Move(0, -camera.ygoalCorrect, 0);
+  // Serial.print(camera.yGoalAngle);
+  // Serial.print(", ");
+  // Serial.println(camera.ygoalCorrect);
+  // Serial.println(camera.bGoalAngle);
+  // Motor.Move(camera.yGoalAngle, compass.correction, 255);
+  // Motor.Move(camera.bAngle, 0, 255);
+  // Motor.Move(90, 0, 255);
   // Serial.println(camera.ballAngle);
+  // Motor.Move(90, 0, 255);
+  // Motor.Move(camera.ballAngle, 0, 255);
+  // Motor.Move(camera.bAngle, -camera.ygoalCorrect, 255);
+  Motor.Move(camera.bAngle, 0, 255);
+  // if (camera.yellowGoalx == 0 && camera.yellowGoaly == 0) {
+  //   Motor.Move(180, 0, 255);
+  // } else {
+  //   Motor.Move(0, camera.ygoalCorrect, 0);
+  // }
+  // Motor.Move(0, compass.correction, 0);
+  // Serial.println(camera.ballAngle);
+  // Motor.Move(camera.ballAngle, 0, 255);
+  // Motor.Move(0, -camera.bgoalCorrect, 0);
   // compass.compassCalc();
   // Serial.println(compass.heading);
   // Serial.println(compass.heading);

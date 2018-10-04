@@ -55,67 +55,76 @@ void Role::Defend(int mvspeed, int angle, int balldis, int dir) {
   }
 }
 
-void Role::shit(int ygoalx, int ygoaly, int bgoalx, int bgoaly, int ballx, int bally, int dir, int millistart, int correction) {
+void Role::shit(int ygoalx, int ygoaly, int bgoalx, int bgoaly, int ballx, int bally, int dir, int millistart, int correction, int ballAngle, int bAngle, int bgoalCorrect, int ygoalCorrect) {
   Motor.Setup();
+  mvangle = bAngle;
   if (dir == 0) {
+    mvcorrect = -ygoalCorrect;
     if (ygoalx == 0 && ygoaly == 0) {
-      camera.ygoalCorrect = camera.bgoalCorrect;
+      mvcorrect = bgoalCorrect;
       millistart = 0;
-      // Serial.println("Stage 1");
+      Serial.println("Stage 1");
     if (bgoalx == 0 && bgoaly == 0) {
-      camera.ygoalCorrect = correction;
-      camera.bAngle = camera.ballAngle;
+      mvcorrect = -correction;
+      mvangle = ballAngle;
       millistart = 0;
-      // Serial.println("Stage 2");
+      Serial.println("Stage 2");
     if (ballx == 0 && bally == 0) {
       //Some circular movement here
-      // Serial.println("Stage 3");
+      Serial.println("Stage 3");
       if (millistart == 0) {
         millistart = millis();
       }
       milliangle = (millis())/5;
-      camera.bAngle = milliangle;
+      mvangle = milliangle;
       if (milliangle == 360) {
         millistart = 0;
       }
-      Serial.println(milliangle);
-      Motor.Move(milliangle, correction, 255);
+      // Serial.println(milliangle);
+      // Motor.Move(milliangle, correction, 255);
         }
           }
+    Motor.Move(0, mvcorrect, 0);
+    Serial.print(mvangle);
+    Serial.print(", ");
+    Serial.println(mvcorrect);
     } else {
       //action(shit to put in inputs)
-      Motor.Move(camera.bAngle, camera.ygoalCorrect, 255);
+      Motor.Move(mvangle, mvcorrect, 255);
+      Serial.print(mvangle);
+      Serial.print(", ");
+      Serial.println(mvcorrect);
       // Serial.println("Not executed");
     }
-  } else if (dir == 1) {
-    if (ygoalx == 0 && ygoaly == 0) {
-      camera.ygoalCorrect = camera.bgoalCorrect;
-      millistart = 0;
-      // Serial.println("Stage 1");
-    if (bgoalx == 0 && bgoaly == 0) {
-      camera.ygoalCorrect = correction;
-      camera.bAngle = camera.ballAngle;
-      millistart = 0;
-      // Serial.println("Stage 2");
-    if (ballx == 0 && bally == 0) {
-      //Some circular movement here
-      // Serial.println("Stage 3");
-      if (millistart == 0) {
-        millistart = millis();
-      }
-      milliangle = (millis() - millistart) / 10;
-      camera.bAngle = milliangle;
-      if (milliangle == 360) {
-        millistart = millis();
-      }
-      Serial.println(milliangle);
-      Motor.Move(milliangle, correction, 255);
-        }
-      }
-    } else {
-      //action(shit to put in inputs)
-      Motor.Move(camera.bAngle, camera.ygoalCorrect, 255);
-      // Serial.println("Not executed");
-    }
+  // } else if (dir == 1) {
+  //   if (ygoalx == 0 && ygoaly == 0) {
+  //     bgoalCorrect = ygoalCorrect;
+  //     millistart = 0;
+  //     // Serial.println("Stage 1");
+  //   if (bgoalx == 0 && bgoaly == 0) {
+  //     bgoalCorrect = correction;
+  //     bAngle = ballAngle;
+  //     millistart = 0;
+  //     // Serial.println("Stage 2");
+  //   if (ballx == 0 && bally == 0) {
+  //     //Some circular movement here
+  //     // Serial.println("Stage 3");
+  //     if (millistart == 0) {
+  //       millistart = millis();
+  //     }
+  //     milliangle = (millis() - millistart) / 20;
+  //     bAngle = milliangle;
+  //     if (milliangle == 360) {
+  //       millistart = millis();
+  //     }
+  //     // Serial.println(milliangle);
+  //     Motor.Move(milliangle, correction, 255);
+  //       }
+  //     }
+  //   } else {
+  //     //action(shit to put in inputs)
+  //     Motor.Move(bAngle, bgoalCorrect, 255);
+  //     // Serial.println("Not executed");
+  //   }
   }
 }

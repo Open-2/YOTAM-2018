@@ -24,18 +24,24 @@ void Camera::update(){
 
   yellowGoalx = camBuffer[3];
   yellowGoaly = camBuffer[4];
+  // yellowGoalx = 0;
+  // yellowGoaly = 0;
 
   blueGoalx = camBuffer[5];
   blueGoaly = camBuffer[6];
+  // blueGoalx = 0;
+  // blueGoaly = 0;
 
-  ballAngle = (450 - degrees(atan2(ballx - 92, bally - 92)))- 90;
+  ballAngle = (450 - degrees(atan2(ballx - 100, bally - 100)))- 90;
   ballAngle = (ballAngle%360);
-  //Meme
-  // ballAngle = 45;
-  //Meme
-  yGoalAngle = (450 - degrees(atan2(yellowGoalx - 92, yellowGoaly - 92)))- 90;
+  ballAngle = ballAngle - 2 * (ballAngle - 180);
+      //Meme
+      // ballAngle = 45;
+      //Meme
+  yGoalAngle = (450 - degrees(atan2(yellowGoalx - 100, yellowGoaly - 100))) - 90;
   yGoalAngle = (yGoalAngle%360);
-  bGoalAngle = (450 - degrees(atan2(blueGoalx - 92, blueGoaly - 92)))- 90;
+  yGoalAngle = yGoalAngle - 2 * (yGoalAngle - 180);
+  bGoalAngle = (450 - degrees(atan2(blueGoalx - 100, blueGoaly - 100)))- 90;
   bGoalAngle = (bGoalAngle%360);
 }
 
@@ -75,14 +81,21 @@ void Camera::angleCalc(){
 
  bgoalCorrect = (-0.00339513*pow(bGoalAngle, 2) + 1.22225*bGoalAngle - 2.50014) + 50;
  
- ygoalCorrect = (-0.00439513*pow(yGoalAngle, 2) + 1.22225*yGoalAngle - 2.50014) + 50;
+//  ygoalCorrect = (-0.00439513*pow(yGoalAngle, 2) + 1.22225*yGoalAngle - 2.50014);
 
- if (yGoalAngle <= 10 || yGoalAngle >= 350) {
-   ygoalCorrect = 0;
- } else if (yGoalAngle <= 180) {
-   ygoalCorrect = 6 * ((yGoalAngle - 2 * (yGoalAngle - 180)));
-   } else {
-   ygoalCorrect = (yGoalAngle * -1) * 6;
- }
+  if (yGoalAngle <= 15 || yGoalAngle >= 345 || yGoalAngle == 135) {
+    ygoalCorrect = 0;
+  } else if (yGoalAngle <= 180) {
+    ygoalCorrect = 0.5 * ((yGoalAngle - 2 * (yGoalAngle - 180)));
+    } else {
+    ygoalCorrect = (yGoalAngle * -1) * 0.5;
+  }
+
+  if (bGoalAngle <= 10 || bGoalAngle >= 350) {
+    bgoalCorrect = 0;
+  } else if (bGoalAngle <= 180) {
+    bgoalCorrect = 2 * ((bGoalAngle - 2 * (bGoalAngle - 180)));
+  } else {
+    bgoalCorrect = (bGoalAngle * -1) * 2;
+  }
 }
-
