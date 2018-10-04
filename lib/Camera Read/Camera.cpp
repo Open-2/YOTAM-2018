@@ -21,6 +21,8 @@ void Camera::update(){
   
   ballx = camBuffer[1];
   bally = camBuffer[2];
+  // ballx = 0;
+  // bally = 0;
 
   yellowGoalx = camBuffer[3];
   yellowGoaly = camBuffer[4];
@@ -34,7 +36,6 @@ void Camera::update(){
 
   ballAngle = (450 - degrees(atan2(ballx - 100, bally - 100)))- 90;
   ballAngle = (ballAngle%360);
-  ballAngle = ballAngle - 2 * (ballAngle - 180);
       //Meme
       // ballAngle = 45;
       //Meme
@@ -79,39 +80,42 @@ void Camera::angleCalc(){
  bGoalcamDistance = sqrt(((blueGoalx - 120) ^ 2) + ((blueGoaly - 120) ^ 2));
  yGoalcamDistance = sqrt((pow((yellowGoalx - 120),  2)) + (pow((yellowGoaly - 120), 2)));
 
- bgoalCorrect = (-0.00339513*pow(bGoalAngle, 2) + 1.22225*bGoalAngle - 2.50014) + 50;
+//  bgoalCorrect = (-0.00339513*pow(bGoalAngle, 2) + 1.22225*bGoalAngle - 2.50014) + 50;
  
 //  ygoalCorrect = (-0.00439513*pow(yGoalAngle, 2) + 1.22225*yGoalAngle - 2.50014);
 
-<<<<<<< HEAD
-  if (yGoalAngle <= 15 || yGoalAngle >= 345 || yGoalAngle == 135) {
-    ygoalCorrect = 0;
-  } else if (yGoalAngle <= 180) {
-    ygoalCorrect = 0.5 * ((yGoalAngle - 2 * (yGoalAngle - 180)));
-    } else {
-    ygoalCorrect = (yGoalAngle * -1) * 0.5;
-  }
-=======
-//  if (yGoalAngle <= 7.5 || yGoalAngle >= 352.5)
-//  {
-//    ygoalCorrect = 0;
-//  }
-//  else if (yGoalAngle <= 180)
-//  {
-//    ygoalCorrect = 0.5 * ((yGoalAngle - 2 * (yGoalAngle - 180)));
-//  }
-//  else
-//  {
-//    ygoalCorrect = (yGoalAngle * -1) * 0.5;
-//  }
-}
->>>>>>> parent of 554f8ae... Updates
+ if (yGoalAngle <= 10 || yGoalAngle >= 350)
+ {
+   ygoalCorrect = 0;
+ }
+ else if (yGoalAngle <= 180)
+ {
+   ygoalCorrect = 0.3 * ((yGoalAngle - 2 * (yGoalAngle - 180)));
+ }
+ else
+ {
+   ygoalCorrect = (yGoalAngle * -1) * 0.3;
+ }
 
   if (bGoalAngle <= 10 || bGoalAngle >= 350) {
     bgoalCorrect = 0;
   } else if (bGoalAngle <= 180) {
-    bgoalCorrect = 2 * ((bGoalAngle - 2 * (bGoalAngle - 180)));
+    bgoalCorrect = 0.3 * ((bGoalAngle - 2 * (bGoalAngle - 180)));
   } else {
-    bgoalCorrect = (bGoalAngle * -1) * 2;
+    bgoalCorrect = (bGoalAngle * -1) * 0.3;
+  }
+
+  if (ballx == 0 && bally == 0) {
+    //Some circular movement here
+    // Serial.println("Stage 3");
+    milliangle = millis() / 1000;
+    if (milliangle % 2 == 0)
+    {
+      bAngle = 0;
+    }
+    else
+    {
+      bAngle = 180;
+    }
   }
 }
