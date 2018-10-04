@@ -66,10 +66,10 @@ void loop() {
   // Motor.Move(camera.bAngle, 0, 255);
   // Motor.Move(90, 0, 255);
   // Serial.println(camera.ballAngle);
-  // Motor.Move(90, 0, 255);
+  Motor.Move(0, camera.ygoalCorrect, 0);
   // Motor.Move(camera.ballAngle, 0, 255);
   // Motor.Move(camera.bAngle, -camera.ygoalCorrect, 255);
-  Motor.Move(camera.bAngle, 0, 255);
+  // Motor.Move(camera.bAngle, 0, 255);
   // if (camera.yellowGoalx == 0 && camera.yellowGoaly == 0) {
   //   Motor.Move(180, 0, 255);
   // } else {
