@@ -12,7 +12,7 @@ class Role{
   public:
     void action(int mvspeed, int state, int fakeangle, int balldis, int dir, int comp, int bangle, int correction);
     int mvspeed = 0;
-    void shit();
+    void shit(int ygoalx, int ygoaly, int bgoalx, int bgoaly, int ballx, int bally, int dir, int millistart, int correction);
 
   private:
     void Defend(int mvspeed, int angle, int balldis, int dir);
@@ -21,6 +21,7 @@ class Role{
     int goalmove = 0;
     int goalCorrect;
     int balldis = 0;
+    int milliangle;
     MotorController Motor;
     // Compass compass;
     Camera camera;

@@ -55,6 +55,67 @@ void Role::Defend(int mvspeed, int angle, int balldis, int dir) {
   }
 }
 
-void Role::shit() {
-
+void Role::shit(int ygoalx, int ygoaly, int bgoalx, int bgoaly, int ballx, int bally, int dir, int millistart, int correction) {
+  Motor.Setup();
+  if (dir == 0) {
+    if (ygoalx == 0 && ygoaly == 0) {
+      camera.ygoalCorrect = camera.bgoalCorrect;
+      millistart = 0;
+      // Serial.println("Stage 1");
+    if (bgoalx == 0 && bgoaly == 0) {
+      camera.ygoalCorrect = correction;
+      camera.bAngle = camera.ballAngle;
+      millistart = 0;
+      // Serial.println("Stage 2");
+    if (ballx == 0 && bally == 0) {
+      //Some circular movement here
+      // Serial.println("Stage 3");
+      if (millistart == 0) {
+        millistart = millis();
+      }
+      milliangle = (millis())/5;
+      camera.bAngle = milliangle;
+      if (milliangle == 360) {
+        millistart = 0;
+      }
+      Serial.println(milliangle);
+      Motor.Move(milliangle, correction, 255);
+        }
+          }
+    } else {
+      //action(shit to put in inputs)
+      Motor.Move(camera.bAngle, camera.ygoalCorrect, 255);
+      // Serial.println("Not executed");
+    }
+  } else if (dir == 1) {
+    if (ygoalx == 0 && ygoaly == 0) {
+      camera.ygoalCorrect = camera.bgoalCorrect;
+      millistart = 0;
+      // Serial.println("Stage 1");
+    if (bgoalx == 0 && bgoaly == 0) {
+      camera.ygoalCorrect = correction;
+      camera.bAngle = camera.ballAngle;
+      millistart = 0;
+      // Serial.println("Stage 2");
+    if (ballx == 0 && bally == 0) {
+      //Some circular movement here
+      // Serial.println("Stage 3");
+      if (millistart == 0) {
+        millistart = millis();
+      }
+      milliangle = (millis() - millistart) / 10;
+      camera.bAngle = milliangle;
+      if (milliangle == 360) {
+        millistart = millis();
+      }
+      Serial.println(milliangle);
+      Motor.Move(milliangle, correction, 255);
+        }
+      }
+    } else {
+      //action(shit to put in inputs)
+      Motor.Move(camera.bAngle, camera.ygoalCorrect, 255);
+      // Serial.println("Not executed");
+    }
+  }
 }

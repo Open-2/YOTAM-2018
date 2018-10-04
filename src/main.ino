@@ -35,24 +35,27 @@ Compass compass;
 // const double kd = 9; //-8;
 
 // double corr;
-  int mvspeed;
+int millistart = 0;
+int mvspeed;
 
 void setup() {
   Serial.begin(9600);
-  // Wire.begin();
-  // camera.setup();
+  Wire.begin();
+  camera.setup();
   Motor.Setup();
-  // compass.compassSetup();
-  // compass.calibrate();
+  compass.compassSetup();
+  compass.calibrate();
 }
 void loop() {
   // //"""Data Refreshing"""
-  // camera.update();
-  // compass.updateGyro();
+  camera.update();
+  compass.updateGyro();
   // corr = pid.update(compass.heading, 0);
   // //"""Angle/Correction Calculation"""
   // corr = pid.update(compass.heading, 0);
-  // camera.angleCalc();
+  camera.angleCalc();
+
+  role.shit(0, 0, 0, 0, 0, 0, 0, millistart, compass.correction);
   // camera.Test();
   // Serial.println(camera.ballAngle);
   // compass.compassCalc();
@@ -68,7 +71,7 @@ void loop() {
   // int correction = round(kp * ((double)relativeHeading) + kd * difference);
 
   // Serial.print(compass.heading);
-  // Serial.print(", ");
+  // Seria.print(", ");
   // Serial.println(compass.correction);
   // Motor.Move(0, 0, 255);
   // Motor.Move(camera.bAngle, compass.correction, 255);
@@ -79,7 +82,7 @@ void loop() {
   // Motor.Move(0, 0, 255);
   // Motor.Move(0, -corr, 0);
   // Motor.Move(180, 0, 255);
-  Motor.Move(0, 0, 255);
+  // Motor.Move(0, 0, 255);
   // Motor.Move(0, camera.ygoalCorrect, 0);
   // if (camera.ballAngle >= 270) {
   //   mvspeed = (-0.0104938 * pow(camera.ballAngle, 2) + 3.77778 * camera.ballAngle + (-1.1369 * pow(10, -14)));

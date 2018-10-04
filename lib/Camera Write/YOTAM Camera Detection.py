@@ -39,16 +39,6 @@ centreY = 92
 BDistanceCentre = 0
 angle = 360
 
-<<<<<<< HEAD
-
-# (L Min, L Max, A Min, A Max, B Min, B Max)
-if robot == 1:
-    ball = [(52, 90, 29, 76, -30, 65)]
-    blueGoal = [(19, 32, -4, 17, -47, -26)]
-    yellowGoal = [(66, 81, -3, 17, 17, 59)]
-
-else:
-=======
 # ||| THRESHOLD SETUP AND WHITEBAL ||| - (L Min, L Max, A Min, A Max, B Min, B Max)
 if robot == 1: #Mind
     ball = [(35, 57, 57, 84, 36, 71)]
@@ -56,7 +46,6 @@ if robot == 1: #Mind
     yellowGoal = [(35, 56, -34, 10, 42, 61)]
     curr_wbal = (-6.02073, -5.243186, -0.2762833)
 else: #Yeast
->>>>>>> a9fd0dff9ba9b3fcbf11d2d72bced3008fa3d679
     ball = [(0,0,0,0,0,0)]
     blueGoal = [(0,0,0,0,0,0)]
     yellowGoal = [(38, 73, -14, 16, 40, 79)]

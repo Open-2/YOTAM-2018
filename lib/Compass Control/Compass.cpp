@@ -63,7 +63,7 @@ void Compass::updateGyro() {
 
 	previousTime = currentTime;
 
-    if (heading <= 7.5 || heading >= 352.5) {
+    if (heading <= 10 || heading >= 350) {
         correction = 0;
     } else if (heading >= 180) {
         correction = 6 * ((heading - 2 * (heading - 180)));
