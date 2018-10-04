@@ -12,7 +12,10 @@ class Role{
   public:
     void action(int mvspeed, int state, int fakeangle, int balldis, int dir, int comp, int bangle, int correction);
     int mvspeed = 0;
+<<<<<<< HEAD
     void shit(int ygoalx, int ygoaly, int bgoalx, int bgoaly, int ballx, int bally, int dir, int millistart, int correction, int ballAngle, int bAngle, int bgoalCorrect, int ygoalCorrect);
+=======
+>>>>>>> parent of 554f8ae... Updates
 
   private:
     void Defend(int mvspeed, int angle, int balldis, int dir);
