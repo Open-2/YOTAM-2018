@@ -8,29 +8,53 @@ void Camera::setup(){
 }
 
 void Camera::update(){
-  if(Serial3.available() >= CAM_BUFFER_NUM) {
+  if(Serial3.available() >= 2 * CAM_BUFFER_NUM) {
     if(Serial3.read() == 255){
       for (int i = 1; i <= CAM_BUFFER_NUM; i++){
         currentin = Serial3.read();
-        if(currentin != -1 && currentin != 0 && currentin != 255){
+        if(currentin != -1 && currentin != 255){
           camBuffer[i] = currentin;             
         }
       }
     }
   }
   
-  ballx = camBuffer[1];
-  bally = camBuffer[2];
+  // ballx = camBuffer[1];
+  // bally = camBuffer[2];
+  ballx = 0;
+  bally = 0;
+  if(ballx == 0 && bally == 0){
+    ballExists = false;
+  }
+  else{
+    ballExists = true;
+  }
   // ballx = 0;
   // bally = 0;
 
   yellowGoalx = camBuffer[3];
   yellowGoaly = camBuffer[4];
+  if (yellowGoalx == 0 && yellowGoaly == 0)
+  {
+    yellowExists = false;
+  }
+  else
+  {
+    yellowExists = true;
+  }
   // yellowGoalx = 0;
   // yellowGoaly = 0;
 
   blueGoalx = camBuffer[5];
   blueGoaly = camBuffer[6];
+  if (blueGoalx == 0 && blueGoaly == 0)
+  {
+    blueExists = false;
+  }
+  else
+  {
+    blueExists = true;
+  }
   // blueGoalx = 0;
   // blueGoaly = 0;
 
@@ -66,35 +90,49 @@ void Camera::Test(){
 }
 
 void Camera::angleCalc(){
- if (ballAngle > 340 || ballAngle < 20) {
-   bAngle = 0;
- } else {
-   if (ballAngle > 180) {
-     bAngle = ballAngle /*- 2 * (ballAngle - 180)*/ - 90;
-   } else {
-     bAngle = ballAngle /*- 2 * (ballAngle - 180)*/ + 90;
-   }
- }
- ballcamDistance = sqrt(((ballx-120)^2)+((bally-120)^2));
- ballDistance = ((-59.1132*pow(45.5842, (-0.00842102*camDistance)))+102.468);
- bGoalcamDistance = sqrt(((blueGoalx - 120) ^ 2) + ((blueGoaly - 120) ^ 2));
- yGoalcamDistance = sqrt((pow((yellowGoalx - 120),  2)) + (pow((yellowGoaly - 120), 2)));
+//  if (ballAngle > 280 || ballAngle < 80) {
+//    if (ballAngle > 180)
+//    {
+//      bAngle = ballAngle /*- 2 * (ballAngle - 180)*/ - 10;
+//    }
+//    else
+//    {
+//      bAngle = ballAngle /*- 2 * (ballAngle - 180)*/ + 10;
+//    }
+//  } else {
+//    if (ballAngle > 180) {
+//      bAngle = ballAngle /*- 2 * (ballAngle - 180)*/ - 40;
+//    } else {
+//      bAngle = ballAngle /*- 2 * (ballAngle - 180)*/ + 40;
+//    }
+  if(ballAngle > 180) ballAngle -= 360;
+  bAngle = ballAngle * 1.3;
+  if (abs(ballAngle < 60))
+  {
+    mvspeed = 255;
+  }
+  // }
 
-//  bgoalCorrect = (-0.00339513*pow(bGoalAngle, 2) + 1.22225*bGoalAngle - 2.50014) + 50;
- 
-//  ygoalCorrect = (-0.00439513*pow(yGoalAngle, 2) + 1.22225*yGoalAngle - 2.50014);
+  ballcamDistance = sqrt(((ballx - 120) ^ 2) + ((bally - 120) ^ 2));
+  ballDistance = ((-59.1132 * pow(45.5842, (-0.00842102 * camDistance))) + 102.468);
+  bGoalcamDistance = sqrt(((blueGoalx - 120) ^ 2) + ((blueGoaly - 120) ^ 2));
+  yGoalcamDistance = sqrt((pow((yellowGoalx - 120), 2)) + (pow((yellowGoaly - 120), 2)));
 
- if (yGoalAngle <= 10 || yGoalAngle >= 350)
- {
-   ygoalCorrect = 0;
+  //  bgoalCorrect = (-0.00339513*pow(bGoalAngle, 2) + 1.22225*bGoalAngle - 2.50014) + 50;
+
+  //  ygoalCorrect = (-0.00439513*pow(yGoalAngle, 2) + 1.22225*yGoalAngle - 2.50014);
+
+  if (yGoalAngle <= 10 || yGoalAngle >= 350)
+  {
+    ygoalCorrect = 0;
  }
  else if (yGoalAngle <= 180)
  {
-   ygoalCorrect = 0.3 * ((yGoalAngle - 2 * (yGoalAngle - 180)));
+   ygoalCorrect = 0.15 * ((yGoalAngle - 2 * (yGoalAngle - 180)));
  }
  else
  {
-   ygoalCorrect = (yGoalAngle * -1) * 0.3;
+   ygoalCorrect = (yGoalAngle * -1) * 0.15;
  }
 
   if (bGoalAngle <= 10 || bGoalAngle >= 350) {
@@ -105,17 +143,23 @@ void Camera::angleCalc(){
     bgoalCorrect = (bGoalAngle * -1) * 0.3;
   }
 
-  // if (ballx == 0 && bally == 0) {
-  //   //Some circular movement here
-  //   // Serial.println("Stage 3");
-  //   milliangle = millis() / 1000;
-  //   if (milliangle % 2 == 0)
-  //   {
-  //     bAngle = 0;
-  //   }
-  //   else
-  //   {
-  //     bAngle = 180;
-  //   }
-  // }
+  if (ballx == 0 && bally == 0) {
+    //Some circular movement here
+    // Serial.println("Stage 3");
+    losscounter += 1;
+    if (losscounter >= 30) {
+    milliangle = millis() / 1000;
+    mvspeed = 130;
+    if (milliangle % 2 == 0)
+    {
+      bAngle = 0;
+    }
+    else
+    {
+      bAngle = 180;
+    }
+    }
+  } else {
+    losscounter = 0;
+  }
 }

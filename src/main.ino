@@ -49,6 +49,7 @@ void setup() {
 }
 void loop() {
   // //"""Data Refreshing"""
+  camera.mvspeed = 255;
   camera.update();
   compass.updateGyro();
   // corr = pid.update(compass.heading, 0);
@@ -63,29 +64,15 @@ void loop() {
   // compass.compassCalc();
   // Serial.println(compass.heading);
   // Serial.println(compass.heading);
-  // int relativeHeading = compass.heading > 180 ? (360 - compass.heading) : -compass.heading;
-  // Motor.Move(0, -compass.correction, 0);
-  // double diffTime = ((double)(currentMillis - compMillis)) / 100.0;
-  // double difference = ((double)(relativeHeading - previousHeading)) / diffTime;
-  // compMillis = currentMillis;
-  // previousHeading = relativeHeading;
-
-  // int correction = round(kp * ((double)relativeHeading) + kd * difference);
-
-  // Serial.print(compass.heading);
-  // Seria.print(", ");
-  // Serial.println(compass.correction);
-  // Motor.Move(0, 0, 255);
-  // if (camera.blueGoalx == 0 && camera.blueGoaly == 0) {
-  //   Motor.Move(camera.bAngle, -compass.correction, 255);
-  // } else {
-  //   Motor.Move(camera.bAngle, -compass.correction, 255);
-  // }
-  Serial.print("Ball = ")
-  Serial.print(camera.ballAngle)
-  Serial.print("Yellow Goal = ")
-  Serial.println(camera.yGoalAngle);
-  Motor.Move(camera.bAngle, 0, 255);
+    Motor.Move(camera.bAngle, -compass.correction, camera.mvspeed);
+  // Serial.print("Ball = ");
+  // Serial.print(camera.ballAngle);
+  // Serial.print(", Yellow Goal = ");
+  // Serial.println(camera.yGoalAngle);
+  // Serial.print(camera.ballExists);
+  // Serial.print(", ");
+  // Serial.println(Serial3.read());
+  // Motor.Move(camera.bAngle, 0, 255);
 
   // Motor.Move(0, 0, 255);
   // //"""Motor Movement Code"""
