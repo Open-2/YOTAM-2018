@@ -105,17 +105,17 @@ void Camera::angleCalc(){
     bgoalCorrect = (bGoalAngle * -1) * 0.3;
   }
 
-  if (ballx == 0 && bally == 0) {
-    //Some circular movement here
-    // Serial.println("Stage 3");
-    milliangle = millis() / 1000;
-    if (milliangle % 2 == 0)
-    {
-      bAngle = 0;
-    }
-    else
-    {
-      bAngle = 180;
-    }
-  }
+  // if (ballx == 0 && bally == 0) {
+  //   //Some circular movement here
+  //   // Serial.println("Stage 3");
+  //   milliangle = millis() / 1000;
+  //   if (milliangle % 2 == 0)
+  //   {
+  //     bAngle = 0;
+  //   }
+  //   else
+  //   {
+  //     bAngle = 180;
+  //   }
+  // }
 }
