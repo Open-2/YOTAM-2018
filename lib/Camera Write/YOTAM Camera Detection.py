@@ -5,15 +5,15 @@ import sensor, image, time, math
 from pyb import UART, LED
 
 # =+= ROBOT TOGGLE =+=
-robot = 1  #0 = Yeast, 1 = Mind
+robot = 0  #0 = Yeast, 1 = Mind
 
 # === DEBUGGING & TOGGLES (Set to false before Competitions) ===
 draw_cross = True      #Draws centre cross
 draw_rect = True       #Draws rectangle around blobs
 draw_line = False       #Draws line from centre cross to centre of blobs
-xy_coords = True       #Print the X & Y coords of the Blobs
+xy_coords = False       #Print the X & Y coords of the Blobs
 led_flash = True       #Flashes LED quickly
-print_out = False       #Prints the output values
+print_out = True       #Prints the output values
 fake_output = False     #Fakes output values
 odistcent = False       #Calculates the distance to the objects on the mirror
 angle_print = False     #Prints the ball angle
@@ -46,10 +46,10 @@ if robot == 1: #Mind
     yellowGoal = [(43, 83, -19, 39, 27, 72)]
     curr_wbal = (-6.02073, -5.243186, -0.2762833)
 else: #Yeast
-    ball = [(28, 68, 14, 100, 11, 127)]
+    ball = [(16, 100, 28, 71, 11, 58)]
     blueGoal = [(24, 36, -42, 2, -50, -12)]
-    yellowGoal = [(51, 91, -47, 28, 26, 82)]
-    curr_wbal = (-6.02073, -5.243186, -0.5613652)
+    yellowGoal = [(34, 58, -70, -21, 30, 58)]
+    curr_wbal = (-6.02073, -2.868481, 5.986629)
 
 # ||| UART SETUP |||
 uart = UART(3, 9600, timeout_char = 1000)
@@ -69,11 +69,11 @@ sensor.set_auto_gain(False)#, gain_db=curr_gain)
 sensor.set_auto_exposure(False)#, exposure_us = int(curr_exposure))
 
 # ||| WHITE BAL |||
-sensor.set_auto_whitebal(False)#,
-#rgb_gain_db=curr_wbal)
+sensor.set_auto_whitebal(False,
+rgb_gain_db=curr_wbal)
 
 # ||| SET VALUES & WINDOWING |||
-sensor.set_windowing((55, 0,240,240))
+sensor.set_windowing((81, 20,175,175))
 sensor.set_saturation(3)
 sensor.set_brightness(-2)
 sensor.set_contrast(3)
@@ -97,7 +97,7 @@ def BiggestBlob(bBlob):
 while(True):
     outBuffer = [255,0,0,0,0,0,0]
     img = sensor.snapshot()
-    ballBlob = BiggestBlob(img.find_blobs(ball,x_stride=4,y_stride=4,pixels_threshold=20, area_thresgold=50))
+    ballBlob = BiggestBlob(img.find_blobs(ball,x_stride=2,y_stride=2,pixels_threshold=0))
     yellowBlob = BiggestBlob(img.find_blobs(yellowGoal,x_stride=15,y_stride=8,merge=True,margin=34,pixels_threshold=100))
     blueBlob = BiggestBlob(img.find_blobs(blueGoal,x_stride=15,y_stride=8,merge=True,margin=34,pixels_threshold=50))
 
