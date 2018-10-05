@@ -81,8 +81,12 @@ void loop() {
   // } else {
   //   Motor.Move(camera.bAngle, -compass.correction, 255);
   // }
- 
+  Serial.print("Ball = ")
+  Serial.print(camera.ballAngle)
+  Serial.print("Yellow Goal = ")
+  Serial.println(camera.yGoalAngle);
   Motor.Move(camera.bAngle, 0, 255);
+
   // Motor.Move(0, 0, 255);
   // //"""Motor Movement Code"""
   // Motor.Move(90, camera.yGoalAngle, 150);
