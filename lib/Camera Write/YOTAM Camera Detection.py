@@ -5,7 +5,7 @@ import sensor, image, time, math
 from pyb import UART, LED
 
 # =+= ROBOT TOGGLE =+=
-robot = 1  #0 = Yeast, 1 = Mind
+robot = 0  #0 = Yeast, 1 = Mind
 
 # === DEBUGGING & TOGGLES (Set to false before Competitions) ===
 draw_cross = True      #Draws centre cross
@@ -54,10 +54,10 @@ if robot == 1: #Mind
     #Hotel Room
     ball = [(46, 72, 26, 89, 2, 68)]
     blueGoal = [(42, 56, -45, -6, -51, -18)]
-    yellowGoal = [(76, 95, -33, 7, 37, 97)]
+    yellowGoal = [(46, 54, 1, 50, 35, 67)]
 
 
-    curr_wbal = (-6.02073, -2.868481, 5.986629)
+    curr_wbal = (-6.02073, -4.99849, 5.986629)
     vwin_val = (55, 0,240,240)
 else: #Yeast
     #ball = [(46, 79, 14, 78, 31, 84)]
