@@ -5,7 +5,7 @@ import sensor, image, time, math
 from pyb import UART, LED
 
 # =+= ROBOT TOGGLE =+=
-robot = 0  #0 = Yeast, 1 = Mind
+robot = 1  #0 = Yeast, 1 = Mind
 
 # === DEBUGGING & TOGGLES (Set to false before Competitions) ===
 draw_cross = True      #Draws centre cross
@@ -42,33 +42,22 @@ angle = 360
 # ||| THRESHOLD SETUP AND WHITEBAL ||| - (L Min, L Max, A Min, A Max, B Min, B Max)
 if robot == 1: #Mind
     # ||| TABLE 11 |||
-    #ball = [(43, 81, 28, 57, 19, 73)]
-    #blueGoal = [(42, 56, -45, -6, -51, -18)]
-    #yellowGoal = [(79, 99, -37, -1, 28, 99)]
+    ball = [(43, 81, 28, 57, 19, 73)]
+    blueGoal = [(42, 56, -45, -6, -51, -18)]
+    yellowGoal = [(79, 99, -37, -1, 28, 99)]
 
     # ||| TABLE 12 |||
     #ball = [(47, 76, 10, 68, 3, 83)]
     #blueGoal = [(32, 45, -26, 4, -38, -19)]
     #yellowGoal = [(79, 99, -37, -1, 28, 99)]
 
-    #Hotel Room
-    ball = [(46, 72, 26, 89, 2, 68)]
-    blueGoal = [(42, 56, -45, -6, -51, -18)]
-    yellowGoal = [(46, 54, 1, 50, 35, 67)]
-
-
-    curr_wbal = (-6.02073, -4.99849, 5.986629)
+    curr_wbal = (-6.02073, -4.878651, -0.4892338)
     vwin_val = (55, 0,240,240)
 else: #Yeast
-    #ball = [(46, 79, 14, 78, 31, 84)]
-    #blueGoal = [(42, 51, -3, 25, -71, -37)]
-    #yellowGoal = [(69, 100, -23, 9, 24, 87)]
-
-    ball = [(32, 68, 27, 80, -4, 75)]#[(40, 50, 4, 38, 0, 60)]
+    ball = [(46, 79, 14, 78, 31, 84)]
     blueGoal = [(42, 51, -3, 25, -71, -37)]
-    yellowGoal = [(47, 65, -17, 17, 47, 72)]
-
-    curr_wbal = (-6.02073, -3.454361, 5.986629)
+    yellowGoal = [(69, 100, -23, 9, 24, 87)]
+    curr_wbal = (-6.02073, -5.243186, -1.238527)
     vwin_val = (40, 0, 249,240)
 
 # ||| UART SETUP |||
@@ -95,7 +84,7 @@ rgb_gain_db=curr_wbal)
 # ||| SET VALUES & WINDOWING |||
 sensor.set_windowing(vwin_val)
 sensor.set_saturation(3)
-sensor.set_brightness(3)  #Change to -3
+sensor.set_brightness(-3)
 sensor.set_contrast(3)
 
 # ||| INDICATOR LED |||
