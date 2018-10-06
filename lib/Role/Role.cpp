@@ -54,37 +54,33 @@ void Role::Defend(int mvspeed, int angle, int balldis, int dir) {
     Motor.Move(0, camera.ygoalCorrect, 255);
   }
 }
-<<<<<<< HEAD
 
 void Role::shit(int ygoalx, int ygoaly, int bgoalx, int bgoaly, int ballx, int bally, int dir, int millistart, int correction, int ballAngle, int bAngle, int bgoalCorrect, int ygoalCorrect) {
   Motor.Setup();
   mvangle = bAngle;
   if (dir == 0) {
     mvcorrect = -ygoalCorrect;
-    if (ygoalx == 0 && ygoaly == 0) {
-      mvcorrect = bgoalCorrect;
-      millistart = 0;
-      Serial.println("Stage 1");
-    if (bgoalx == 0 && bgoaly == 0) {
-      mvcorrect = -correction;
-      mvangle = ballAngle;
-      millistart = 0;
-      Serial.println("Stage 2");
+    // if (ygoalx == 0 && ygoaly == 0) {
+    //   mvcorrect = bgoalCorrect;
+    //   millistart = 0;
+    //   Serial.println("Stage 1");
+    // if (bgoalx == 0 && bgoaly == 0) {
+    //   mvcorrect = -correction;
+    //   mvangle = ballAngle;
+    //   millistart = 0;
+    //   Serial.println("Stage 2");
     if (ballx == 0 && bally == 0) {
       //Some circular movement here
       Serial.println("Stage 3");
-      if (millistart == 0) {
-        millistart = millis();
+      milliangle = millis()/1000;
+      if (milliangle%2 == 0) {
+        mvangle = 0;
+      } else {
+        mvangle = 180;
       }
-      milliangle = (millis())/5;
-      mvangle = milliangle;
-      if (milliangle == 360) {
-        millistart = 0;
       }
       // Serial.println(milliangle);
       // Motor.Move(milliangle, correction, 255);
-        }
-          }
     Motor.Move(0, mvcorrect, 0);
     Serial.print(mvangle);
     Serial.print(", ");
@@ -128,6 +124,3 @@ void Role::shit(int ygoalx, int ygoaly, int bgoalx, int bgoaly, int ballx, int b
   //     // Serial.println("Not executed");
   //   }
   }
-}
-=======
->>>>>>> parent of 554f8ae... Updates

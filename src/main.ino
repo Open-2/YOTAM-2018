@@ -35,11 +35,9 @@ Compass compass;
 // const double kd = 9; //-8;
 
 // double corr;
-<<<<<<< HEAD
-int millistart = 0;
-int mvspeed;
-=======
->>>>>>> parent of 554f8ae... Updates
+int ballAngles;
+int x;
+int y;
 
 void setup() {
   Serial.begin(9600);
@@ -51,96 +49,42 @@ void setup() {
 }
 void loop() {
   // //"""Data Refreshing"""
+  camera.mvspeed = 255;
   camera.update();
   compass.updateGyro();
   // corr = pid.update(compass.heading, 0);
   // //"""Angle/Correction Calculation"""
   // corr = pid.update(compass.heading, 0);
   camera.angleCalc();
-<<<<<<< HEAD
-
-  // role.shit(camera.yellowGoalx, camera.yellowGoaly, camera.blueGoalx, camera.blueGoaly, camera.ballx, camera.bally, 0, millistart, compass.correction, camera.ballAngle, camera.bAngle, camera.bgoalCorrect, camera.ygoalCorrect);
-  // // camera.Test();
-  // Motor.Move(0, -camera.ygoalCorrect, 0);
-  // Serial.print(camera.yGoalAngle);
-  // Serial.print(", ");
-  // Serial.println(camera.ygoalCorrect);
-  // Serial.println(camera.bGoalAngle);
-  // Motor.Move(camera.yGoalAngle, compass.correction, 255);
-  // Motor.Move(camera.bAngle, 0, 255);
-  // Motor.Move(90, 0, 255);
-  // Serial.println(camera.ballAngle);
-  Motor.Move(0, camera.ygoalCorrect, 0);
-  // Motor.Move(camera.ballAngle, 0, 255);
-  // Motor.Move(camera.bAngle, -camera.ygoalCorrect, 255);
-  // Motor.Move(camera.bAngle, 0, 255);
-  // if (camera.yellowGoalx == 0 && camera.yellowGoaly == 0) {
-  //   Motor.Move(180, 0, 255);
-  // } else {
-  //   Motor.Move(0, camera.ygoalCorrect, 0);
-  // }
-  // Motor.Move(0, compass.correction, 0);
-=======
+  // Serial.print(camera.ballAngle);
   // camera.Test();
->>>>>>> parent of 554f8ae... Updates
   // Serial.println(camera.ballAngle);
   // Motor.Move(camera.ballAngle, 0, 255);
   // Motor.Move(0, -camera.bgoalCorrect, 0);
   // compass.compassCalc();
   // Serial.println(compass.heading);
   // Serial.println(compass.heading);
-  // int relativeHeading = compass.heading > 180 ? (360 - compass.heading) : -compass.heading;
-  // Motor.Move(0, -compass.correction, 0);
-  // double diffTime = ((double)(currentMillis - compMillis)) / 100.0;
-  // double difference = ((double)(relativeHeading - previousHeading)) / diffTime;
-  // compMillis = currentMillis;
-  // previousHeading = relativeHeading;
+    Motor.Move(camera.bAngle, -compass.correction, camera.mvspeed);
+  // Serial.print("Ball = ");
+  // Serial.print(camera.ballAngle);
+  // Serial.print(", Yellow Goal = ");
+  // Serial.println(camera.yGoalAngle);
+  // Serial.print(camera.ballExists);
+  // Serial.print(", ");
+  // Serial.println(Serial3.read());
+  // Motor.Move(camera.bAngle, 0, 255);
 
-  // int correction = round(kp * ((double)relativeHeading) + kd * difference);
-
-  // Serial.print(compass.heading);
-  // Seria.print(", ");
-  // Serial.println(compass.correction);
-  // Motor.Move(0, 0, 255);
-  // Motor.Move(camera.bAngle, compass.correction, 255);
   // Motor.Move(0, 0, 255);
   // //"""Motor Movement Code"""
   // Motor.Move(90, camera.yGoalAngle, 150);
   // Motor.Move(90, 0 , 255);
+  // Motor.Move(90, 0, 255);
   // Motor.Move(0, 0, 255);
   // Motor.Move(0, -corr, 0);
   // Motor.Move(180, 0, 255);
-<<<<<<< HEAD
-  // Motor.Move(0, 0, 255);
-  // Motor.Move(0, camera.ygoalCorrect, 0);
-  // if (camera.ballAngle >= 270) {
-  //   mvspeed = (-0.0104938 * pow(camera.ballAngle, 2) + 3.77778 * camera.ballAngle + (-1.1369 * pow(10, -14)));
-  //   Motor.Move(90, camera.ygoalCorrect, mvspeed);
-  // } else if (camera.ballAngle <= 90) {
-  //   mvspeed = (-0.0104938 * pow(camera.ballAngle, 2) + 3.77778 * camera.ballAngle + (-1.1369 * pow(10, -14)));
-  //   Motor.Move(270, camera.ygoalCorrect, mvspeed);
-  // }
-  // if (camera.yGoalDistance > 20)
-  // {
-  //   Motor.Move(180, camera.ygoalCorrect, 255);
-  // }
-  // else if (camera.yGoalDistance < 10)
-  // {
-  //   Motor.Move(0, camera.ygoalCorrect, 255);
-    // Motor.Move(0, camera.ygoalCorrect, 255);
-    // Serial.println(compass.correction);
-    // role.action(0, camera.bAngle, -1, 10, 0 , 1, camera.ballAngle, compass.correction);
-    //Parameters:
-    //First parameter is the speed of the robot.
-    //Second parameter is the state of the robot. -1 means it is defending, any other number is the movement direction when attacking.
-    //Third parameter is the fake angle. If it is set to -1, it is off. Otherwise, it is the fake angle of the ball.
-    //Fourth parameter is the distance to the ball.
-    //Fifth parameter is the direction of the game. 0 means the direction is yellow, 1 means the direction is blue.
-    //Sixth parameter is the compass correction toggle. 0 means off, 1 means on.
-    //Seventh parameter is the direction of the ball.
-    //Eighth parameter is the correction value.
-=======
-  role.action(255, camera.bAngle, -1, 10, 0 , 1, camera.ballAngle, compass.correction);
+  // role.action(255, camera.bAngle, -1, 10, 0 , 1, camera.ballAngle, compass.correction);
+  // Motor.Move(90, 0, 255);
+  // Motor.Move(camera.bAngle, -compass.correction, 255);
   //Parameters:
   //First parameter is the speed of the robot.
   //Second parameter is the state of the robot. -1 means it is defending, any other number is the movement direction when attacking.
@@ -150,5 +94,4 @@ void loop() {
   //Sixth parameter is the compass correction toggle. 0 means off, 1 means on.
   //Seventh parameter is the direction of the ball.
   //Eighth parameter is the correction value.
->>>>>>> parent of 554f8ae... Updates
 } 
