@@ -11,9 +11,15 @@ robot = 0  #0 = Yeast, 1 = Mind
 draw_cross = True      #Draws centre cross
 draw_rect = True       #Draws rectangle around blobs
 draw_line = False       #Draws line from centre cross to centre of blobs
+<<<<<<< HEAD
 xy_coords = True       #Print the X & Y coords of the Blobs
 led_flash = True       #Flashes LED quickly
 print_out = False       #Prints the output values
+=======
+xy_coords = False       #Print the X & Y coords of the Blobs
+led_flash = True       #Flashes LED quickly
+print_out = True       #Prints the output values
+>>>>>>> parent of 6908806... Pre-Comp Commit
 fake_output = False     #Fakes output values
 odistcent = False       #Calculates the distance to the objects on the mirror
 angle_print = False     #Prints the ball angle

@@ -21,16 +21,10 @@ class Camera{
     int camBuffer[CAM_BUFFER_NUM] = {0};
     int ballx = 0;
     int bally = 0;
-    bool ballExists;
-
     int blueGoalx = 0;
     int blueGoaly = 0;
-    bool blueExists;
-
     int yellowGoalx = 0;
     int yellowGoaly = 0;
-    bool yellowExists;
-
     int ballAngle = 0;
     int yGoalAngle = 0;
     int bGoalAngle = 0;
@@ -44,8 +38,6 @@ class Camera{
     int yGoalcamDistance;
     int bgoalCorrect;
     int ygoalCorrect;
-    int mvspeed;
-    int losscounter;
     int milliangle;
     // int yGoalDistance = 0;
     // int bGoalDistance = 0;
