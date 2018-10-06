@@ -3,17 +3,20 @@
 
 #include <Arduino.h>
 #include <Define.h>
-
+#include <Common.h>
 
 class Camera{
   public:
     void setup();
     void update();
     void angleCalc();
+    void defenceCalc(double heading);
     void Test();
 
     bool isAvailable();
 
+    int forwardmove;
+    int sidemove;
 
     int camBuffer[CAM_BUFFER_NUM] = {0};
     int ballx = 0;
@@ -46,12 +49,5 @@ class Camera{
     int milliangle;
     // int yGoalDistance = 0;
     // int bGoalDistance = 0;
-  
-
-
-
-
-
 };
-
 #endif

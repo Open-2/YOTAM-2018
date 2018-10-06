@@ -10,6 +10,7 @@
 #include <Debug.h>
 #include <Role.h>
 #include <PID.h>
+#include <Goalie.h>
 
 // // """Library Name Allocation"""
 
@@ -18,6 +19,7 @@ Camera camera;
 MotorController Motor;
 Debug debug;
 Compass compass;
+Goalie goalie;
 // PID pid = PID(0.5, 1, 0.2, 255);
 
 // //"""Variable Naming"""
@@ -35,9 +37,12 @@ Compass compass;
 // const double kd = 9; //-8;
 
 // double corr;
-int ballAngles;
-int x;
-int y;
+// int ballAngles;
+// int x;
+// int y;
+int vertmove;
+int hormove;
+int counter;
 
 void setup() {
   Serial.begin(9600);
@@ -46,6 +51,7 @@ void setup() {
   Motor.Setup();
   compass.compassSetup();
   compass.calibrate();
+  pinMode(13, OUTPUT);
 }
 void loop() {
   // //"""Data Refreshing"""
@@ -56,6 +62,44 @@ void loop() {
   // //"""Angle/Correction Calculation"""
   // corr = pid.update(compass.heading, 0);
   camera.angleCalc();
+  goalie.goalieRun();
+  // camera.defenceCalc(compass.heading);
+  // Motor.Move(0, -camera.ygoalCorrect, 0);
+  // Serial.print(camera.yGoalAngle);
+  // Serial.print(", ");
+  // Serial.println(camera.yGoalcamDistance);
+  // Motor.Move(0, 0, 90);
+  // Motor.motorFrontLeft.Move(90);
+  // Motor.Move(0, -camera.ygoalCorrect, 0);
+
+  // vertmove = 0;
+  // hormove = 0;
+  // counter = 0;
+  // if (camera.yellowExists) {
+  //   camera.mvspeed = 255;
+  //   if (camera.yGoalAngle > 200) {
+  //     hormove = 90;
+  //     counter += 1;
+  //   } else if (camera.yGoalAngle < 160) {
+  //     hormove = 270;
+  //     counter += 1;
+  //   }
+  //   // Serial.println(camera.yGoalcamDistance);
+  //   if (camera.yGoalcamDistance > 100) {
+  //     vertmove = 180;
+  //     counter += 1;
+  //   } else if (camera.yGoalcamDistance < 60) {
+  //     vertmove = 0;
+  //     counter += 1;
+  //   }
+  // } else {
+  //   camera.mvspeed = 0;
+  //   vertmove = 0;
+  //   hormove = 0;
+  //   counter = 0;
+  // }
+  // Motor.Move((hormove + vertmove)/counter, compass.correction, camera.mvspeed);
+  // Motor.Move(camera.ballAngle, -compass.correction, 255);
   // Serial.print(camera.ballAngle);
   // camera.Test();
   // Serial.println(camera.ballAngle);
@@ -64,7 +108,22 @@ void loop() {
   // compass.compassCalc();
   // Serial.println(compass.heading);
   // Serial.println(compass.heading);
-    Motor.Move(camera.bAngle, -compass.correction, camera.mvspeed);
+    // if (camera.yellowGoalx == 0 && camera.yellowGoaly == 0) {
+    // Motor.Move(camera.bAngle, camera.ygoalCorrect, camera.mvspeed);
+    // Motor.Move(0, 0, 255);
+    // role.Defend(255, camera.ballAngle, 60, 1, -compass.correction);
+    // Motor.Move(270, camera.ygoalCorrect, 150);
+    // Serial.print(camera.ballAngle);
+    // Serial.print(", ");
+    // Serial.println(camera.ballcamDistance);
+    // Serial.print(", ");
+    // Serial.print(camera.yGoalAngle);
+    // Serial.print(", ");
+    // Serial.println(camera.yGoalcamDistance);
+    // Serial.println(camera.ballAngle);
+    // } else {
+      // Motor.Move(camera.bAngle, -camera.ygoalCorrect, camera.mvspeed);
+    // }
   // Serial.print("Ball = ");
   // Serial.print(camera.ballAngle);
   // Serial.print(", Yellow Goal = ");

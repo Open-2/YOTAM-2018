@@ -66,9 +66,9 @@ void Compass::updateGyro() {
     if (heading <= 10 || heading >= 350) {
         correction = 0;
     } else if (heading >= 180) {
-        correction = 6 * ((heading - 2 * (heading - 180)));
+        correction = 1.5 * ((heading - 2 * (heading - 180)));
     } else {
-        correction = (heading * -1) * 6;
+        correction = (heading * -1) * 1.5;
         }
 }
 

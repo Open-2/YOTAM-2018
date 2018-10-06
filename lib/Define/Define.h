@@ -22,7 +22,7 @@
 
 #define MOTOR_ANGLE 45
 
-//Yeast Pins
+//Mind Pins
 #define MOTOR_FRONT_LEFT_ENA 7
 #define MOTOR_FRONT_LEFT_IN1 6
 #define MOTOR_FRONT_LEFT_IN2 5
@@ -40,7 +40,7 @@
 #define MOTOR_FRONT_RIGHT_IN2 12
 #define MOTOR_FRONT_RIGHT_REVERSED true
 
-// //Mind Pins
+// //Yeast Pins
 // #define MOTOR_FRONT_LEFT_ENA 2
 // #define MOTOR_FRONT_LEFT_IN1 4
 // #define MOTOR_FRONT_LEFT_IN2 3

@@ -5,7 +5,7 @@ import sensor, image, time, math
 from pyb import UART, LED
 
 # =+= ROBOT TOGGLE =+=
-robot = 1  #0 = Yeast, 1 = Mind
+robot = 0  #0 = Yeast, 1 = Mind
 
 # === DEBUGGING & TOGGLES (Set to false before Competitions) ===
 draw_cross = True      #Draws centre cross

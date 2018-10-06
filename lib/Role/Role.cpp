@@ -32,26 +32,32 @@ void Role::action(int mvspeed, int state, int fakeangle, int balldis, int dir, i
     if (state == -1) {
       //Defender Code
       if (fakeangle != -1) {
-        Defend(mvspeed, fakeangle, balldis, dir);
+        Defend(mvspeed, fakeangle, balldis, dir, correction);
       } else {
-      Defend(mvspeed, camera.bAngle, balldis, dir);
+      Defend(mvspeed, camera.bAngle, balldis, dir, correction);
   }
 }
 }
 
-void Role::Defend(int mvspeed, int angle, int balldis, int dir) {
+void Role::Defend(int mvspeed, int angle, int balldis, int dir, int correction) {
   Motor.Setup();
-    if (angle >= 270) {
-    goalmove = (-0.0104938 * pow(angle, 2) + 3.77778 * angle + (-1.1369 * pow(10, -14)));
-    Motor.Move(90, camera.ygoalCorrect, goalmove);
-  } else if (angle <= 90) {
-    goalmove = (-0.0104938 * pow(angle, 2) + 3.77778 * angle + (-1.1369 * pow(10, -14)));
-    Motor.Move(270, camera.ygoalCorrect, goalmove);
-  }
-  if (camera.yGoalDistance > 20) {
-    Motor.Move(180, camera.ygoalCorrect, 255);
-  } else if (camera.yGoalDistance < 10) {
-    Motor.Move(0, camera.ygoalCorrect, 255);
+    if (angle > 330 || angle < 30) {
+      Motor.Move(0, -correction, 255);
+    }
+    if (angle >= 90) {
+    goalmove = (-0.0104938 * pow(angle, 2) + 3.77778 * angle + (-1.1369 * pow(10, -14)))+20;
+    Motor.Move(90, correction, goalmove);
+  } else if (angle <= 270) {
+    goalmove = (-0.0104938 * pow(angle, 2) + 3.77778 * angle + (-1.1369 * pow(10, -14)))+20;
+    Motor.Move(270, correction, goalmove);
+
+  // }
+  // if (camera.yGoalDistance > 70) {
+  //   Motor.Move(180, correction, 255);
+  // } else if (camera.yGoalDistance < 50) {
+  //   Motor.Move(0, correction, 255);
+  } else {
+    Motor.Move(0, -correction, 0);
   }
 }
 
