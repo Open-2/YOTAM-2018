@@ -10,13 +10,13 @@ class Camera{
     void setup();
     void update();
     void angleCalc();
-    void defenceCalc(double heading);
+    // void defenceCalc(double heading);
     void Test();
 
     bool isAvailable();
 
-    int forwardmove;
-    int sidemove;
+    // int forwardmove;
+    // int sidemove;
 
     int camBuffer[CAM_BUFFER_NUM] = {0};
     int ballx = 0;
@@ -41,5 +41,11 @@ class Camera{
     int milliangle;
     // int yGoalDistance = 0;
     // int bGoalDistance = 0;
+
+    int mvspeed = 255;
+    int losscounter;
+
+    bool ballExists;
+    
 };
 #endif
