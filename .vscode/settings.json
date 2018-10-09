@@ -6,5 +6,6 @@
     "terminal.integrated.env.osx": {
         "PATH": "/Users/Henry/.platformio/penv/bin:/Users/Henry/.platformio/penv:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin",
         "PLATFORMIO_CALLER": "vscode"
-    }
+    },
+    "C_Cpp.intelliSenseEngineFallback": "Enabled"
 }
