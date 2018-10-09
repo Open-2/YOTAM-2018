@@ -90,21 +90,6 @@ void Camera::Test(){
 }
 
 void Camera::angleCalc(){
-//  if (ballAngle > 280 || ballAngle < 80) {
-//    if (ballAngle > 180)
-//    {
-//      bAngle = ballAngle /*- 2 * (ballAngle - 180)*/ - 10;
-//    }
-//    else
-//    {
-//      bAngle = ballAngle /*- 2 * (ballAngle - 180)*/ + 10;
-//    }
-//  } else {
-//    if (ballAngle > 180) {
-//      bAngle = ballAngle /*- 2 * (ballAngle - 180)*/ - 40;
-//    } else {
-//      bAngle = ballAngle /*- 2 * (ballAngle - 180)*/ + 40;
-//    }
   if(ballAngle > 180) ballAngle -= 360;
   if (ballAngle > 100 && ballAngle < -100) {
     if (ballAngle > 0) {

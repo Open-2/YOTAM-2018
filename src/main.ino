@@ -1,4 +1,4 @@
-// //"""Includes"""
+//"""Includes"""
 
 #include <Arduino.h>
 #include <Camera.h>
@@ -7,42 +7,14 @@
 #include <Define.h>
 #include <MotorController.h>
 #include <Motors.h>
-#include <Debug.h>
-#include <Role.h>
 #include <PID.h>
 // #include <Defender.h>
 
-// // """Library Name Allocation"""
+// """Library Name Allocation"""
 
-Role role;
 Camera camera;
 MotorController Motor;
-Debug debug;
 Compass compass;
-// PID pid = PID(0.5, 1, 0.2, 255);
-
-// //"""Variable Naming"""
-// const int MoveSpd = 255;
-// const int GoalAcc = 7;
-
-// unsigned long previousMillis = 0;
-// const long interval = 200;
-// bool voiding = false;
-// int oldLight = 0;
-
-// unsigned long compMillis = 0;
-// int previousHeading = 0;
-// const double kp = 4.5;
-// const double kd = 9; //-8;
-
-// double corr;
-// int ballAngles;
-// int x;
-// int y;
-int vertmove;
-int hormove;
-int counter;
-int goaliemv;
 
 void setup() {
   Serial.begin(9600);
@@ -55,16 +27,9 @@ void setup() {
 }
 void loop() {
   // //"""Data Refreshing"""
-  // camera.mvspeed = 255;
   camera.update();
   compass.updateGyro();
-  // corr = pid.update(compass.heading, 0);
-  // //"""Angle/Correction Calculation"""
-  // corr = pid.update(compass.heading, 0);
   camera.angleCalc();
-  // defender.goalieRun();
-
-  // Motor.Move(camera.bAngle, -compass.correction, camera.mvspeed);
   Serial.println(camera.ballAngle);
   if (camera.ballExists == false) {
     if (millis() < 5000) {
