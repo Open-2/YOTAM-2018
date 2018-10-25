@@ -1,4 +1,4 @@
-/*###SETUP! DO NOT TOUCH!*/
+/*###SETUP*/
 
 #include <Arduino.h>
 #include <Camera.h>
@@ -8,6 +8,7 @@
 #include <MotorController.h>
 #include <Motors.h>
 #include <PID.h>
+#include <Role.h>
 
 Camera camera;
 MotorController Motor;
@@ -25,7 +26,7 @@ void setup() {
   compass.calibrate();
 }
 
-/*SETUP! DO NOT TOUCH!*/
+/*SETUP*/
 
 void loop() {
 
@@ -40,7 +41,7 @@ debugState = 0;
 
 /*DEBUG TOGGLES*/
 
-/*DEBUG CODE! DO NOT TOUCH!*/
+/*DEBUG CODE*/
 
 debugTime = millis();
 
@@ -70,9 +71,9 @@ switch(debugState) {
     break;
 }
 
-/*DEBUG CODE! DO NOT TOUCH!*/
+/*DEBUG CODE*/
 
-/*MAIN CODE! DO NOT TOUCH!*/
+/*MAIN CODE*/
 
  camera.update();
  compass.updateGyro();
@@ -88,4 +89,4 @@ switch(debugState) {
   }
 }
 
-/*MAIN CODE! DO NOT TOUCH!*/
+/*MAIN CODE*/

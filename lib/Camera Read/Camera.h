@@ -46,6 +46,8 @@ class Camera{
     int losscounter;
 
     bool ballExists;
+    bool blueExists;
+    bool yellowExists;
     
 };
 #endif

@@ -11,22 +11,19 @@ robot = 0  #0 = Yeast, 1 = Mind
 draw_cross = True      #Draws centre cross
 draw_rect = True       #Draws rectangle around blobs
 draw_line = False       #Draws line from centre cross to centre of blobs
-<<<<<<< HEAD
 xy_coords = True       #Print the X & Y coords of the Blobs
 led_flash = True       #Flashes LED quickly
 print_out = False       #Prints the output values
-=======
 xy_coords = False       #Print the X & Y coords of the Blobs
 led_flash = True       #Flashes LED quickly
 print_out = True       #Prints the output values
->>>>>>> parent of 6908806... Pre-Comp Commit
 fake_output = False     #Fakes output values
 odistcent = False       #Calculates the distance to the objects on the mirror
 angle_print = False     #Prints the ball angle
 draw_text = False       #Draws OutBuffer onto Screen
 
 # =+= ULTIMATE MASTER DEBUG TOGGLE INCASE WE FORGET =+=
-master_debug = False     #If true it turns off all the debug options
+master_debug = True     #If true it turns off all the debug options
 if master_debug:
   draw_cross = False
   draw_rect = False
@@ -94,14 +91,14 @@ sensor.set_auto_gain(False, gain_db=curr_gain)
 curr_exposure = sensor.get_exposure_us()
 sensor.set_auto_exposure(False, exposure_us = int(curr_exposure))
 
-# ||| WHITE BAL |||
-sensor.set_auto_whitebal(False,
-rgb_gain_db=curr_wbal)
+## ||| WHITE BAL |||
+#sensor.set_auto_whitebal(False,
+#rgb_gain_db=curr_wbal)
 
 # ||| SET VALUES & WINDOWING |||
 sensor.set_windowing(vwin_val)
 sensor.set_saturation(3)
-sensor.set_brightness(3)  #Change to -3
+sensor.set_brightness(-3)  #Change to -3
 sensor.set_contrast(3)
 
 # ||| INDICATOR LED |||

@@ -21,42 +21,38 @@ void Camera::update(){
   
   ballx = camBuffer[1];
   bally = camBuffer[2];
-  // ballx = 0;
-  // bally = 0;
   if(ballx == 0 && bally == 0){
     ballExists = false;
   }
   else{
     ballExists = true;
   }
-  // ballx = 0;
-  // bally = 0;
 
   yellowGoalx = camBuffer[3];
   yellowGoaly = camBuffer[4];
-  // if (yellowGoalx == 0 && yellowGoaly == 0)
-  // {
-    // yellowExists = false;
-  // }
-  // else
-  // {
-  //   yellowExists = true;
-  // }
-  // yellowGoalx = 0;
-  // yellowGoaly = 0;
+  if (yellowGoalx == 0 && yellowGoaly == 0)
+  {
+    yellowExists = false;
+  }
+  else
+  {
+    yellowExists = true;
+  }
+  yellowGoalx = 0;
+  yellowGoaly = 0;
 
   blueGoalx = camBuffer[5];
   blueGoaly = camBuffer[6];
-  // if (blueGoalx == 0 && blueGoaly == 0)
-  // {
-  //   blueExists = false;
-  // }
-  // else
-  // {
-  //   blueExists = true;
-  // }
-  // blueGoalx = 0;
-  // blueGoaly = 0;
+  if (blueGoalx == 0 && blueGoaly == 0)
+  {
+    blueExists = false;
+  }
+  else
+  {
+    blueExists = true;
+  }
+  blueGoalx = 0;
+  blueGoaly = 0;
 
   ballAngle = (450 - degrees(atan2(ballx - 120, bally - 120)))- 90;
   ballAngle = (ballAngle%360);
@@ -128,12 +124,10 @@ void Camera::angleCalc(){
   }
  
       ballcamDistance = sqrt(pow((ballx - 120), 2) + (pow((bally - 120), 2)));
-      // ballDistance = ((-59.1132 * pow(45.5842, (-0.00842102 * camDistance))) + 102.468);
       bGoalcamDistance = sqrt(pow((blueGoalx - 120), 2) + (pow((blueGoaly - 120), 2)));
       yGoalcamDistance = sqrt((pow((yellowGoalx - 120), 2)) + (pow((yellowGoaly - 120), 2)));
 
-      //  bgoalCorrect = (-0.00339513*pow(bGoalAngle, 2) + 1.22225*bGoalAngle - 2.50014) + 50;
-
+      //  bgoalCorrect = (-0.00339513*pow(bGoalAngle, 2) + 1.22225*bGoalAngle - 2.50014);
       //  ygoalCorrect = (-0.00439513*pow(yGoalAngle, 2) + 1.22225*yGoalAngle - 2.50014);
 
       //   if (yGoalAngle <= 10 || yGoalAngle >= 350)
@@ -156,49 +150,4 @@ void Camera::angleCalc(){
       //   } else {
       //     bgoalCorrect = (bGoalAngle * -1) * 0.3;
       //   }
-
-      //   if (ballx == 0 && bally == 0) {
-      //     //Some circular movement here
-      //     // Serial.println("Stage 3");
-      //     losscounter += 1;
-      //     if (losscounter >= 30) {
-      //       bAngle = 180;
-      //       mvspeed = 255;
-      //     }
-      //     milliangle = millis() / 2000;
-      //     mvspeed = 130;
-      //     if (milliangle % 2 == 0) {
-      //       bAngle = 180;
-      //     } else if (milliangle % 2 == 1) {
-      //       bAngle = 0;
-      //       }
-      //   } else {
-      //     losscounter = 0;
-      //   }
 }
-
-// void Camera::defenceCalc(double heading){
-//   if(yellowExists) {
-//     if (ballExists) {
-//       if (ballAngle < 90 || ballAngle > 270) {
-//         if (ballcamDistance < 70 && yGoalcamDistance < 100) {
-//           //orbit calc
-//         } else {
-//           if ((ballAngle < 20 || ballAngle < 340) && ballcamDistance < 70 && yGoalcamDistance < 100) {
-//            forwardmove = (yGoalcamDistance - 70) * 5;
-//            sidemove = (yGoalAngle - 90) * 5;
-
-//            bAngle = doubleMod((degrees(atan2(sidemove, forwardmove))), 360);
-//            mvspeed = sqrt(sidemove * sidemove + forwardmove * forwardmove); 
-//           }
-//         }
-//       } else {
-//         mvspeed = 255;
-//       }
-//     } else {
-//       mvspeed = 0;
-//     }
-//   } else {
-//     //orbit calc
-//   }
-// }
