@@ -11,15 +11,9 @@ robot = 0  #0 = Yeast, 1 = Mind
 draw_cross = True      #Draws centre cross
 draw_rect = True       #Draws rectangle around blobs
 draw_line = False       #Draws line from centre cross to centre of blobs
-<<<<<<< HEAD
 xy_coords = True       #Print the X & Y coords of the Blobs
 led_flash = True       #Flashes LED quickly
 print_out = False       #Prints the output values
-=======
-xy_coords = False       #Print the X & Y coords of the Blobs
-led_flash = True       #Flashes LED quickly
-print_out = True       #Prints the output values
->>>>>>> parent of 6908806... Pre-Comp Commit
 fake_output = False     #Fakes output values
 odistcent = False       #Calculates the distance to the objects on the mirror
 angle_print = False     #Prints the ball angle
@@ -60,10 +54,10 @@ if robot == 1: #Mind
     #Hotel Room
     ball = [(46, 72, 26, 89, 2, 68)]
     blueGoal = [(42, 56, -45, -6, -51, -18)]
-    yellowGoal = [(46, 54, 1, 50, 35, 67)]
+    yellowGoal = [(76, 95, -33, 7, 37, 97)]
 
 
-    curr_wbal = (-6.02073, -4.99849, 5.986629)
+    curr_wbal = (-6.02073, -2.868481, 5.986629)
     vwin_val = (55, 0,240,240)
 else: #Yeast
     #ball = [(46, 79, 14, 78, 31, 84)]

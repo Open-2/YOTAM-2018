@@ -33,10 +33,13 @@ void loop() {
 
 debugState = 0;
 
-//State 0 is motor debug.
-//State 1 is camera debug.
-//State 2 is IMU debug.
-
+//State 0 is all motor debug.
+//State 1 is individual motor debug.
+//State 2 is camera debug.
+//State 3 is IMU debug.
+//State 4 is light sensor debug.
+//State 5 is light gate debug.
+//State 6 is LIDAR debug.
 
 /*DEBUG TOGGLES*/
 
@@ -61,18 +64,49 @@ switch(debugState) {
     }
     break;
   case 1:
-    Serial.println(camera.ballAngle);
-    break;  
+    debugTime = (debugTime - debugTime % 2000) / 2000;
+    if (debugTime == 1) {
+      Motor.motorFrontLeft.Move(255);
+    }
+    if (debugTime == 2) {
+      Motor.motorBackLeft.Move(255);
+    }
+    if (debugTime == 3) {
+      Motor.motorBackRight.Move(255);
+    }
+    if (debugTime == 4) {
+      Motor.motorFrontRight.Move(255);
+    }
+    break;
   case 2:
+    Serial.print("Ball: ");
+    Serial.print(camera.ballAngle);
+    Serial.print(", ");
+    Serial.print("Yellow Goal: ");
+    Serial.print(camera.yGoalAngle);
+    Serial.print(", ");
+    Serial.print("Blue Goal: ");
+    Serial.println(camera.bGoalAngle);
+    break;  
+  case 3:
     Serial.print(compass.heading);
     Serial.print(", ");
     Serial.println(compass.correction);
+    break;
+  case 4:
+    //light sensor debug.
+    break;
+  case 5:
+    //light gate debug.
+    break;
+  case 6:
+    //LIDAR debug.
     break;
 }
 
 /*DEBUG CODE! DO NOT TOUCH!*/
 
-/*MAIN CODE! DO NOT TOUCH!*/
+/*MAIN C  ODE! DO NOT TOUCH!*/
 
  camera.update();
  compass.updateGyro();
