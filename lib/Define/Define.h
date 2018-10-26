@@ -19,7 +19,6 @@
 #define COMPASS_CALIBRATION_TIME 1000
 
 //Motor Definitions
-
 #define MOTOR_ANGLE 45
 
 //Mind Pins
@@ -59,9 +58,7 @@
 // #define MOTOR_FRONT_RIGHT_REVERSED false
 
 
-
 //Camera Definitions
-
 #define CAM_BUFFER_NUM 7
 
 #endif
