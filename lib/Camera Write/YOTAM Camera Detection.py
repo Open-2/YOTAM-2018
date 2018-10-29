@@ -7,6 +7,8 @@ from pyb import UART, LED
 # =+= ROBOT TOGGLE =+=
 robot = 0  #0 = Yeast, 1 = Mind
 
+clock = time.clock()
+
 # === DEBUGGING & TOGGLES (Set to false before Competitions) ===
 draw_cross = True      #Draws centre cross
 draw_rect = True       #Draws rectangle around blobs
@@ -229,3 +231,6 @@ while(True):
         #Prints OutBuffer onto Screen
         if draw_text:
             img.draw_string(5, 5, "S " + " ".join(str(x) for x in outBuffer[1:7]))
+
+        print(clock.fps())
+        clock.tick()

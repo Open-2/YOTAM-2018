@@ -1,4 +1,4 @@
-# |=|=| YOTAM Camera Code |=|=| #
+# |=|=| YOTAM camera Code |=|=| #
 
 # ||| IMPORTS |||
 import sensor, image, time, math
@@ -7,19 +7,19 @@ from pyb import UART, LED
 # =+= ROBOT TOGGLE =+=
 robot = 2  #1 = Yeast, 2 = Mind
 
-camDebug = True
+cameraDebug = True
 FPSDebug = False
 
 centreX = 120
 centreY = 120
 
 # ||| THRESHOLD SETUP||| - (L Min, L Max, A Min, A Max, B Min, B Max)
-if robot == 2:
-    camThresholds = [((44, 66, 43, 83, 19, 79),),    #Ball
+if robot == 1: #YEAST
+    cameraThresholds = [((44, 66, 43, 83, 19, 79),),    #Ball
                      ((27, 41, -23, 5, -38, -16),),  #Blue Goal
                      ((60, 87, -88, -30, -44, 71),)] #Yellow Goal
-else:
-    camThresholds = [((34, 67, 57, 89, 4, 62),),     #Ball
+else: #MIND
+    cameraThresholds = [((34, 67, 57, 89, 4, 62),),     #Ball
                      ((27, 41, -23, 5, -38, -16),),  #Blue Goal
                      ((39, 81, -13, 27, 16, 67),)]   #Yellow Goal
 
@@ -37,23 +37,23 @@ class Sender:
     def __init__(self):
         self.uart = UART(3, 9600, timeout_char = 1000)
 
-    def sendData(self, sendBuffer):
+    def UART(self, outBuffer):
         self.uart.writechar(255)
-        for i in sendBuffer:
+        for i in outBuffer:
             self.uart.writechar(i)
 class Reader:
-    def __init__(self,thresholds,debugCam=False):
-        self.setupCam()
+    def __init__(self,thresholds,debugcamera=False):
+        self.cameraSetup()
 
         self.thresholds = thresholds
-        self.debug = debugCam
+        self.debug = debugcamera
 
-    def update(self):
+    def scan(self):
         img = sensor.snapshot()
 
-        ballBlob = self.getXY(biggestBlob(img.find_blobs(self.thresholds[0],x_stride=2,y_stride=2)))
-        blueBlob = self.getXY(biggestBlob(img.find_blobs(self.thresholds[1],x_stride=15,y_stride=8,merge=True,margin=34,pixels_threshold=100)))
-        yellowBlob = self.getXY(biggestBlob(img.find_blobs(self.thresholds[2],x_stride=15,y_stride=8,merge=True,margin=34,pixels_threshold=50)))
+        ballBlob = self.getCoords(biggestBlob(img.find_blobs(self.thresholds[0],x_stride=2,y_stride=2)))
+        blueBlob = self.getCoords(biggestBlob(img.find_blobs(self.thresholds[1],x_stride=15,y_stride=8,merge=True,margin=34,pixels_threshold=100)))
+        yellowBlob = self.getCoords(biggestBlob(img.find_blobs(self.thresholds[2],x_stride=15,y_stride=8,merge=True,margin=34,pixels_threshold=50)))
 
         if self.debug:
             img.draw_cross(centreX, centreY)
@@ -70,13 +70,13 @@ class Reader:
 
         self.data = (ballBlob[0],ballBlob[1],blueBlob[0],blueBlob[1],yellowBlob[0],yellowBlob[1])
 
-    def getXY(self,blob):
+    def getCoords(self,blob):
             return (blob.cx(),blob.cy()) if blob else (0,0)
 
     def getData(self):
         return self.data
 
-    def setupCam(self):
+    def cameraSetup(self):
         sensor.reset()
         sensor.set_pixformat(sensor.RGB565)
         sensor.set_framesize(sensor.QVGA)
@@ -94,12 +94,12 @@ class Reader:
         LED(1).off()
 
 send = Sender()
-cam = Reader(camThresholds,debugCam=camDebug)
+camera = Reader(cameraThresholds,debugcamera=cameraDebug)
 
 clock = time.clock()
 while True:
-    cam.update()
-    send.sendData(cam.getData())
+    camera.scan()
+    send.UART(camera.getData())
     if FPSDebug:
         print(clock.fps())
         clock.tick()
