@@ -12,9 +12,7 @@ void Camera::update(){
     if(Serial3.read() == 255){
       for (int i = 1; i <= CAM_BUFFER_NUM; i++){
         currentin = Serial3.read();
-        if(currentin != -1 && currentin != 255){
-          camBuffer[i] = currentin;             
-        }
+        if(currentin != -1 && currentin != 255) camBuffer[i] = currentin;                
       }
     }
   }
@@ -86,42 +84,42 @@ void Camera::Test(){
 }
 
 void Camera::angleCalc(){
-  if(ballAngle > 180) ballAngle -= 360;
-  if (ballAngle > 100 && ballAngle < -100) {
-    if (ballAngle > 0) {
-      bAngle = 220;
-    } else {
-      bAngle = 140;
-    }
-  } else {
-  bAngle = ballAngle * 1.4;
-  } 
-  if (abs(ballAngle) < 50) {
-    if (abs(ballAngle) < 15) {
-      mvspeed = 255;
-      bAngle = 0; 
-    } else {
-      if (ballAngle < 0) {
-      bAngle = ballAngle + 15;
-    } else {
-      bAngle = ballAngle - 15;
-    }
-    }
-  }
-  if (ballAngle > 100 || ballAngle < -100)
-  {
-    if (ballAngle > 0)
-    {
-      bAngle = 220;
-    }
-    else
-    {
-      bAngle = 140;
-    }
-  }
-  if (ballcamDistance > 90) {
-    bAngle = ballAngle;
-  }
+  // if(ballAngle > 180) ballAngle -= 360;
+  // if (ballAngle > 100 && ballAngle < -100) {
+  //   if (ballAngle > 0) {
+  //     bAngle = 220;
+  //   } else {
+  //     bAngle = 140;
+  //   }
+  // } else {
+  // bAngle = ballAngle * 1.4;
+  // } 
+  // if (abs(ballAngle) < 50) {
+  //   if (abs(ballAngle) < 15) {
+  //     mvspeed = 255;
+  //     bAngle = 0; 
+  //   } else {
+  //     if (ballAngle < 0) {
+  //     bAngle = ballAngle + 15;
+  //   } else {
+  //     bAngle = ballAngle - 15;
+  //   }
+  //   }
+  // }
+  // if (ballAngle > 100 || ballAngle < -100)
+  // {
+  //   if (ballAngle > 0)
+  //   {
+  //     bAngle = 220;
+  //   }
+  //   else
+  //   {
+  //     bAngle = 140;
+  //   }
+  // }
+  // if (ballcamDistance > 90) {
+  //   bAngle = ballAngle;
+  // }
  
       ballcamDistance = sqrt(pow((ballx - 120), 2) + (pow((bally - 120), 2)));
       bGoalcamDistance = sqrt(pow((blueGoalx - 120), 2) + (pow((blueGoaly - 120), 2)));
@@ -150,4 +148,11 @@ void Camera::angleCalc(){
       //   } else {
       //     bgoalCorrect = (bGoalAngle * -1) * 0.3;
       //   }
+      if (ballAngle <= 10 || ballAngle >= 350) {
+        ballCorrect = 0;
+      } else if (ballAngle >= 180) {
+        ballCorrect = 1.5 * ((ballAngle - 2 * (ballAngle - 180)));
+      } else {
+        ballCorrect = (ballAngle * -1) * 1.5;
+      }
 }

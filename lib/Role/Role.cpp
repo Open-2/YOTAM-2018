@@ -14,19 +14,34 @@ void Role::attack(int cor, int bangle, int bdist) {
     Motor.Move(moveangle, cor, mvspeed);
 }
 
-void Role::defend(int cor, int bangle, int bdist, int bcor) {
+void Role::defend(int cor, int bangle, int bdist, int bcor, int goaldist, int goalangle) {
     Serial.println("Defending");
-    defenderCalc(bangle, bdist);
+    defenderCalc(bangle, bdist, goaldist, goalangle);
     if (bangle > 90 && bangle < 270) {
         attack(cor, bangle, bdist);
     } else {
-        Motor.Move(moveangle, cor, mvspeed);
+        Motor.Move(moveangle, bcor, mvspeed);
     }
 }
 
-void Role::defenderCalc(int bangle, int bdist) {
+void Role::defenderCalc(int bangle, int bdist, int goaldist, int goalangle) {
     Serial.println("Defender Calculating");
-    if (bangle < 90 && bangle < 25) moveangle = bangle * 2.75;
+    if (bangle < 90 && bangle > 25) {
+        mvspeed = bangle * 2.75;
+        moveangle = 90;
+    }
+    if (bangle > 270 && bangle < 335) {
+        mvspeed = (bangle + 2 * (180 - bangle)) * 2.75;
+        moveangle = 270;
+    }
+    if (bangle > 335 || bangle < 25) {
+        moveangle = 0;
+        mvspeed = 255;
+        } 
+    if (goaldist > 90) {
+        moveangle = goalangle;
+        mvspeed = 255;
+        }
 }
 
 void Role::attackerCalc(int bangle, int bdist) {
