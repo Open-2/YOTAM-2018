@@ -1,35 +1,49 @@
-#include <Role.h>
+#include "Role.h"
 #include <math.h>
 
-void Role::attack() {
+void Role::attack(int cor, int bangle, int bdist) {
     Serial.println("Attacking");
+    attackerCalc(bangle, bdist);
+    if (bangle == 135) {
+    if (millis() < 5000) {
+        Motor.Move(0, cor, 255); 
+    } else {
+        Motor.Move(180, cor, 125);
+        }
+    }
+    Motor.Move(moveangle, cor, mvspeed);
 }
 
-void Role::defend() {
+void Role::defend(int cor, int bangle, int bdist, int bcor) {
     Serial.println("Defending");
+    defenderCalc(bangle, bdist);
+    if (bangle > 90 && bangle < 270) {
+        attack(cor, bangle, bdist);
+    } else {
+        Motor.Move(moveangle, cor, mvspeed);
+    }
 }
 
-void Role::defenderCalc() {
+void Role::defenderCalc(int bangle, int bdist) {
     Serial.println("Defender Calculating");
+    if (bangle < 90 && bangle < 25) moveangle = bangle * 2.75;
 }
 
-void Role::attackerCalc() {
+void Role::attackerCalc(int bangle, int bdist) {
     Serial.println("Attacker Calculating");
-    if (camera.ballx != 0 && camera.bally != 0) {
-        if (camera.ballAngle > 180) camera.ballAngle -= 360;
-        if (abs(camera.ballAngle) > 100) {
-            camera.ballAngle > 0 ? camera.bAngle = 220 : camera.bAngle = 140; 
-        } else {
-            camera.bAngle = camera.ballAngle * 1.4;
-        }
-        if (abs(camera.ballAngle) < 50) {
-            if (abs(camera.ballAngle) < 15) {
-                mvspeed = 255;
-                camera.bAngle = 0;
-            } else if (camera.ballAngle < 0) camera.bAngle = (camera.ballAngle < 0 ? camera.ballAngle + 15 : camera.ballAngle - 15);
-        if (abs(camera.ballAngle) > 100) camera.bAngle = (camera.bAngle > 0 ? 220 : 140);
-        if (camera.ballcamDistance > 90) camera.bAngle = camera.ballAngle;
-        }
+    if (bangle > 180) bangle -= 360;
+    if (abs(bangle) > 100) {
+        bangle > 0 ? moveangle = 220 : moveangle = 140; 
+    } else {
+        moveangle = bangle * 1.4;
+    }
+    if (abs(bangle) < 50) {
+        if (abs(bangle) < 15) {
+            mvspeed = 255;
+            moveangle = 0;
+        } else if (bangle < 0) moveangle = (bangle < 0 ? bangle + 15 : bangle - 15);
+    if (abs(bangle) > 100) moveangle = (moveangle > 0 ? 220 : 140);
+    if (bdist > 90) moveangle = bangle;
     }
 }
 

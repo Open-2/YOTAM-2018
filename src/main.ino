@@ -1,6 +1,6 @@
 /*###SETUP*/
 
-#include <Arduino.h>
+#include "Arduino.h"
 #include <Camera.h>
 #include <Compass.h>
 #include <Wire.h>
@@ -13,6 +13,7 @@
 Camera camera;
 MotorController Motor;
 Compass compass;
+Role role;
 
 int debugState;
 int debugTime;
@@ -112,15 +113,6 @@ switch(debugState) {
  camera.update();
  compass.updateGyro();
  camera.angleCalc();
-  if (camera.ballExists == false) {
-    if (millis() < 5000) {
-      Motor.Move(0, -compass.correction, 255);
-      } else {
-        Motor.Move(180, -compass.correction, 125);
-      }
-    } else {
-    Motor.Move(camera.bAngle, -compass.correction, camera.mvspeed);
-  }
-}
+ role.attack(compass.correction, camera.ballAngle, camera.ballcamDistance);
 
 /*MAIN CODE*/
