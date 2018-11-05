@@ -113,7 +113,7 @@ switch(debugState) {
  camera.update();
  compass.updateGyro();
  camera.angleCalc();
-//  role.attack(compass.correction, camera.ballAngle, camera.ballcamDistance);
- role.defend(compass.correction, camera.ballAngle, camera.ballcamDistance, camera.ballCorrect, camera.yGoalcamDistance)
+ //role.attack(compass.correction, camera.ballAngle, camera.ballcamDistance);
+ role.defend(compass.correction, camera.ballAngle, camera.ballcamDistance, camera.ballCorrect, camera.yGoalcamDistance, camera.yGoalAngle)
 
 /*MAIN CODE*/

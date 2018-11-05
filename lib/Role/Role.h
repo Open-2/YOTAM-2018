@@ -9,7 +9,7 @@
 class Role {
 public:
     void attack(int cor, int bangle, int bdist);
-    void defend(int cor, int bangle, int bdist, int bcor, int goaldist);
+    void defend(int cor, int bangle, int bdist, int bcor, int goaldist, int goalangle);
 private:
     void defenderCalc(int bangle, int bdist, int goaldist, int goalangle);
     void attackerCalc(int bangle, int bdist);
