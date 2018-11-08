@@ -1,4 +1,4 @@
-/*###SETUP*/
+/*|||SETUP|||*/
 
 #include "Arduino.h"
 #include <Camera.h>
@@ -27,11 +27,11 @@ void setup() {
   compass.calibrate();
 }
 
-/*SETUP*/
+/*|||SETUP|||*/
 
 void loop() {
 
-/*DEBUG TOGGLES*/
+/*|||DEBUG TOGGLES|||*/
 
 debugState = 0;
 
@@ -43,77 +43,88 @@ debugState = 0;
 //State 5 is light gate debug.
 //State 6 is LIDAR debug.
 
-/*DEBUG TOGGLES*/
+/*|||DEBUG TOGGLES|||*/
 
-/*DEBUG CODE*/
+/*|||DEBUG CODE|||*/
 
 debugTime = millis();
 
 switch(debugState) {
-  case 0:
-    debugTime = (debugTime - debugTime%2000)/2000;
-    if (debugTime == 1) {
-      Motor.Move(0, 0, 255);
-    }
-    if (debugTime == 2) {
-      Motor.Move(90, 0, 255);
-    }
-    if (debugTime == 3) {
-      Motor.Move(180, 0, 255);
-    }
-    if (debugTime == 4) {
-      Motor.Move(270, 0, 255);
-    }
-    break;
-  case 1:
-    debugTime = (debugTime - debugTime % 2000) / 2000;
-    if (debugTime == 1) {
-      Motor.motorFrontLeft.Move(255);
-    }
-    if (debugTime == 2) {
-      Motor.motorBackLeft.Move(255);
-    }
-    if (debugTime == 3) {
-      Motor.motorBackRight.Move(255);
-    }
-    if (debugTime == 4) {
-      Motor.motorFrontRight.Move(255);
-    }
-    break;
-  case 2:
-    Serial.print("Ball: ");
-    Serial.print(camera.ballAngle);
-    Serial.print(", ");
-    Serial.print("Yellow Goal: ");
-    Serial.print(camera.yGoalAngle);
-    Serial.print(", ");
-    Serial.print("Blue Goal: ");
-    Serial.println(camera.bGoalAngle);
-    break;  
-  case 3:
-    Serial.print(compass.heading);
-    Serial.print(", ");
-    Serial.println(compass.correction);
-    break;
-  case 4:
-    //light sensor debug.
-    break;
-  case 5:
-    //light gate debug.
-    break;
-  case 6:
-    //LIDAR debug.
-    break;
+     case 0:
+
+        //Move in all four 90 degree motor angles, alternating between directions every 2 seconds.
+        debugTime = (debugTime - debugTime%2000)/2000;
+        if (debugTime == 1) {
+        Motor.Move(0, 0, 255);
+        }
+        if (debugTime == 2) {
+        Motor.Move(90, 0, 255);
+        }
+        if (debugTime == 3) {
+        Motor.Move(180, 0, 255);
+        }
+        if (debugTime == 4) {
+        Motor.Move(270, 0, 255);
+        }
+        break;
+    case 1:
+
+        //Move each motor individually, switching motors every 2 seconds.
+        debugTime = (debugTime - debugTime % 2000) / 2000;
+        if (debugTime == 1) {
+        Motor.motorFrontLeft.Move(255);
+        }
+        if (debugTime == 2) {
+        Motor.motorBackLeft.Move(255);
+        }
+        if (debugTime == 3) {
+        Motor.motorBackRight.Move(255);
+        }
+        if (debugTime == 4) {
+        Motor.motorFrontRight.Move(255);
+        }
+        break;
+    case 2:
+
+        //Output all significant camera values to the terminal.
+        Serial.print("Ball: ");
+        Serial.print(camera.ballAngle);
+        Serial.print(", ");
+        Serial.print("Yellow Goal: ");
+        Serial.print(camera.yGoalAngle);
+        Serial.print(", ");
+        Serial.print("Blue Goal: ");
+        Serial.println(camera.bGoalAngle);
+        break;  
+    case 3:
+
+        //Output all significant compass values to the terminal.
+        Serial.print(compass.heading);
+        Serial.print(", ");
+        Serial.println(compass.correction);
+        break;
+    case 4:
+
+        //Output all significant light sensor values to the terminal.
+        break;
+    case 5:
+
+        //Output all significant light gate values to the terminal.
+        break;
+    case 6:
+    
+        //Output all significant LRF/LIDAR values to the terminal.
+        break;
 }
 
-/*DEBUG CODE*/
+/*|||DEBUG CODE|||*/
 
-/*MAIN CODE*/
+/*|||MAIN CODE|||*/
 
- camera.update();
- compass.updateGyro();
- camera.angleCalc();
- //role.attack(compass.correction, camera.ballAngle, camera.ballcamDistance);
- role.defend(compass.correction, camera.ballAngle, camera.ballcamDistance, camera.ballCorrect, camera.yGoalcamDistance, camera.yGoalAngle)
+    camera.update();
+    compass.updateGyro();
+    camera.angleCalc();
+    //role.attack(-compass.correction, camera.ballAngle, camera.ballcamDistance);
+    role.defend(-compass.correction, camera.ballAngle, camera.ballcamDistance, -camera.ballCorrect, camera.yGoalcamDistance, camera.yGoalAngle)
 
-/*MAIN CODE*/
+/*|||MAIN CODE|||*/
