@@ -22,7 +22,7 @@ angle_print = False     #Prints the ball angle
 draw_text = False       #Draws OutBuffer onto Screen
 
 # =+= ULTIMATE MASTER DEBUG TOGGLE INCASE WE FORGET =+=
-master_debug = True     #If true it turns off all the debug options
+master_debug = False     #If true it turns off all the debug options
 if master_debug:
   draw_cross = False
   draw_rect = False
@@ -54,7 +54,7 @@ if robot == 1: #Mind
     #yellowGoal = [(79, 99, -37, -1, 28, 99)]
 
     #Hotel Room
-    ball = [(46, 72, 26, 89, 2, 68)]
+    ball = [(16, 66, 43, 83, 19, 79)]
     blueGoal = [(42, 56, -45, -6, -51, -18)]
     yellowGoal = [(76, 95, -33, 7, 37, 97)]
 
@@ -66,12 +66,12 @@ else: #Yeast
     #blueGoal = [(42, 51, -3, 25, -71, -37)]
     #yellowGoal = [(69, 100, -23, 9, 24, 87)]
 
-    ball = [(32, 68, 27, 80, -4, 75)]#[(40, 50, 4, 38, 0, 60)]
+    ball = [(22, 79, 25, 83, 29, 79)]#[(40, 50, 4, 38, 0, 60)]
     blueGoal = [(42, 51, -3, 25, -71, -37)]
     yellowGoal = [(65, 85, -14, 21, 46, 83)]
 
     curr_wbal = (-6.02073, -3.454361, 5.986629)
-    vwin_val = (40, 0, 249,240)
+    vwin_val = (55, 0,240,240)
 
 # ||| UART SETUP |||
 uart = UART(3, 9600, timeout_char = 1000)
@@ -232,5 +232,5 @@ while(True):
         if draw_text:
             img.draw_string(5, 5, "S " + " ".join(str(x) for x in outBuffer[1:7]))
 
-        print(clock.fps())
-        clock.tick()
+        #print(clock.fps())
+        #clock.tick()
