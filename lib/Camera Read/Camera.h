@@ -39,6 +39,7 @@ class Camera{
     int bgoalCorrect;
     int ygoalCorrect;
     int milliangle;
+    int ballCorrect;
     // int yGoalDistance = 0;
     // int bGoalDistance = 0;
 
