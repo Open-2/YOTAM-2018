@@ -8,7 +8,7 @@ void Role::attack(int cor, int bangle, int bdist) {
     attackerCalc(bangle, bdist);
 
     //If the ball does not exist, run this code.
-    if (camera.ballExists = false) {
+    if (camera.ballExists == false) {
 
         //If it is still the first 5 seconds after being turned on, move directly forwards.
         if (millis() < 5000) {
@@ -41,7 +41,7 @@ void Role::defend(int cor, int bangle, int bdist, int bcor, int goaldist, int go
     }
 
     //If the combined distance of the ball and the goal is high enough, run the next if else statement. 
-    if ((bdist + goaldist) > 180) {  
+    if ((bdist + goaldist) > 200) { 
 
         //If the ball is behind and the above is still true, move towards the goal.
         if (bangle > 70 && bangle < 290) {
@@ -56,7 +56,7 @@ void Role::defend(int cor, int bangle, int bdist, int bcor, int goaldist, int go
 
 void Role::defenderCalc(int bangle, int bdist, int goaldist, int goalangle) {
     Serial.println("Defender Calculating");
-    mvspeed = 255;
+    mvspeed = 150;
 
     //When the goal is too far away, move back towards it.
     if (goaldist > 80) moveangle = goalangle;
@@ -66,13 +66,13 @@ void Role::defenderCalc(int bangle, int bdist, int goaldist, int goalangle) {
 
     //When the ball is to the left but not behind, move left.
     if (bangle < 70 && bangle > 25) {
-        mvspeed = bangle * 2.75;
+        mvspeed = bangle * 2;
         moveangle = 90;
     }
 
     //When the ball is to the right but not behind, move right.
     if (bangle > 290 && bangle < 335) {
-        mvspeed = (bangle + 2 * (180 - bangle)) * 2.75;
+        mvspeed = (bangle + 2 * (180 - bangle)) * 2;
         moveangle = 270;
     }
 
@@ -85,6 +85,8 @@ void Role::defenderCalc(int bangle, int bdist, int goaldist, int goalangle) {
 
 void Role::attackerCalc(int bangle, int bdist) {
     Serial.println("Attacker Calculating");
+    
+    mvspeed = 150;
 
     //If the ball angle is more than 180, take away 360.
     if (bangle > 180) bangle -= 360;
@@ -103,7 +105,6 @@ void Role::attackerCalc(int bangle, int bdist) {
 
         //If the absolute value of the ball angle is less than 15, surge into the ball.
         if (abs(bangle) < 15) {
-            mvspeed = 255;
             moveangle = 0;
 
         //Otherwise, move angle is offest in the opposite direction of the ball.
