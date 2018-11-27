@@ -29,7 +29,9 @@ void Camera::update(){
 
   //Assign the ball values and check if the ball exists.
   ballx = camBuffer[1];
+  // ballx = 50;
   bally = camBuffer[2];
+  // bally = 50;
   if(ballx == 0 && bally == 0){
     ballExists = false;
   }
@@ -73,7 +75,7 @@ void Camera::update(){
   yGoalAngle = (yGoalAngle%360);
 
   //Calculate the 2 significant angles of the blue goal.
-  yGoalAngle = yGoalAngle - 2 * (yGoalAngle - 180);
+  // yGoalAngle = yGoalAngle - 2 * (yGoalAngle - 180);
   bGoalAngle = (450 - degrees(atan2(blueGoalx - 100, blueGoaly - 100)))- 90;
   bGoalAngle = (bGoalAngle%360);
 }
@@ -147,4 +149,8 @@ void Camera::angleCalc(){
       {
         ballCorrect = (ballAngle * -1) * 1.5;
       }
+}
+
+void Camera::corCalc(int val1, int val2) {
+  int realCor = (val1 + val2)/2;
 }

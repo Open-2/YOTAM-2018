@@ -9,11 +9,13 @@
 #include <Motors.h>
 #include <PID.h>
 #include <Role.h>
+#include <Point.h>
 
 Camera camera;
 MotorController Motor;
 Compass compass;
 Role role;
+Point point;
 
 int debugState;
 int debugTime;
@@ -47,75 +49,75 @@ debugState = 0;
 
 /*|||DEBUG CODE|||*/
 
-debugTime = millis();
+// debugTime = millis();
 
-switch(debugState) {
-     case 0:
+// switch(debugState) {
+//      case 0:
 
-        //Move in all four 90 degree motor angles, alternating between directions every 2 seconds.
-        debugTime = (debugTime - debugTime%2000)/2000;
-        if (debugTime == 1) {
-        Motor.Move(0, 0, 255);
-        }
-        if (debugTime == 2) {
-        Motor.Move(90, 0, 255);
-        }
-        if (debugTime == 3) {
-        Motor.Move(180, 0, 255);
-        }
-        if (debugTime == 4) {
-        Motor.Move(270, 0, 255);
-        }
-        break;
-    case 1:
+//         //Move in all four 90 degree motor angles, alternating between directions every 2 seconds.
+//         debugTime = (debugTime - debugTime%2000)/2000;
+//         if (debugTime == 1) {
+//         Motor.Move(0, 0, 255);
+//         }
+//         if (debugTime == 2) {
+//         Motor.Move(90, 0, 255);
+//         }
+//         if (debugTime == 3) {
+//         Motor.Move(180, 0, 255);
+//         }
+//         if (debugTime == 4) {
+//         Motor.Move(270, 0, 255);
+//         }
+//         break;
+//     case 1:
 
-        //Move each motor individually, switching motors every 2 seconds.
-        debugTime = (debugTime - debugTime % 2000) / 2000;
-        if (debugTime == 1) {
-        Motor.motorFrontLeft.Move(255);
-        }
-        if (debugTime == 2) {
-        Motor.motorBackLeft.Move(255);
-        }
-        if (debugTime == 3) {
-        Motor.motorBackRight.Move(255);
-        }
-        if (debugTime == 4) {
-        Motor.motorFrontRight.Move(255);
-        }
-        break;
-    case 2:
+//         //Move each motor individually, switching motors every 2 seconds.
+//         debugTime = (debugTime - debugTime % 2000) / 2000;
+//         if (debugTime == 1) {
+//         Motor.motorFrontLeft.Move(255);
+//         }
+//         if (debugTime == 2) {
+//         Motor.motorBackLeft.Move(255);
+//         }
+//         if (debugTime == 3) {
+//         Motor.motorBackRight.Move(255);
+//         }
+//         if (debugTime == 4) {
+//         Motor.motorFrontRight.Move(255);
+//         }
+//         break;
+//     case 2:
 
-        //Output all significant camera values to the terminal.
-        Serial.print("Ball: ");
-        Serial.print(camera.ballAngle);
-        Serial.print(", ");
-        Serial.print("Yellow Goal: ");
-        Serial.print(camera.yGoalAngle);
-        Serial.print(", ");
-        Serial.print("Blue Goal: ");
-        Serial.println(camera.bGoalAngle);
-        break;  
-    case 3:
+//         //Output all significant camera values to the terminal.
+//         Serial.print("Ball: ");
+//         Serial.print(camera.ballAngle);
+//         Serial.print(", ");
+//         Serial.print("Yellow Goal: ");
+//         Serial.print(camera.yGoalAngle);
+//         Serial.print(", ");
+//         Serial.print("Blue Goal: ");
+//         Serial.println(camera.bGoalAngle);
+//         break;  
+//     case 3:
 
-        //Output all significant compass values to the terminal.
-        Serial.print(compass.heading);
-        Serial.print(", ");
-        Serial.println(compass.correction);
-        break;
-    case 4:
+//         //Output all significant compass values to the terminal.
+//         Serial.print(compass.heading);
+//         Serial.print(", ");
+//         Serial.println(compass.correction);
+//         break;
+//     case 4:
 
-        //Output all significant light sensor values to the terminal.
-        break;
-    case 5:
+//         //Output all significant light sensor values to the terminal.
+//         break;
+//     case 5:
 
-        //Output all significant light gate values to the terminal.
-        break;
-    case 6:
+//         //Output all significant light gate values to the terminal.
+//         break;
+//     case 6:
     
-        //Output all significant LRF/LIDAR values to the terminal.
-        break;
-}
+//         //Output all significant LRF/LIDAR values to the terminal.
+//         break;
+// }
 
 /*|||DEBUG CODE|||*/
 
@@ -124,7 +126,24 @@ switch(debugState) {
     camera.update();
     compass.updateGyro();
     camera.angleCalc();
+    point.pointCalc(camera.ballx - 120, camera.bally - 120, 40);
+    Serial.print(point.nextPointX);
+    Serial.print(", ");
+    Serial.print(point.nextPointY);
+    Serial.print(" + ");
+    Serial.print(point.defPointX);
+    Serial.print(", ");
+    Serial.print(point.defPointY);
+    Serial.print(" + ");
+    Serial.println(point.mvAngle);
+    // Motor.Move(point.mvAngle, -compass.correction, 255);
+    
+    // camera.corCalc(camera.ygoalCorrect, compass.correction);
+    // Motor.Move(0, camera.realcor, 0);
+
     //role.attack(-compass.correction, camera.ballAngle, camera.ballcamDistance);
-    role.defend(-compass.correction, camera.ballAngle, camera.ballcamDistance, -camera.ballCorrect, camera.yGoalcamDistance, camera.yGoalAngle)
+    // role.defend(-compass.correction, camera.ballAngle, camera.ballcamDistance, -camera.ballCorrect, camera.yGoalcamDistance, camera.yGoalAngle)
 
 /*|||MAIN CODE|||*/
+
+}

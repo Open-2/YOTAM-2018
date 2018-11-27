@@ -13,11 +13,14 @@ class Camera{
     // void defenceCalc(double heading);
     void Test();
 
+    void corCalc(int val1, int val2);
+
     bool isAvailable();
 
     // int forwardmove;
     // int sidemove;
 
+    int realcor;
     int camBuffer[CAM_BUFFER_NUM] = {0};
     int ballx = 0;
     int bally = 0;
