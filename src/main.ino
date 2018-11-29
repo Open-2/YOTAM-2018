@@ -126,7 +126,7 @@ debugState = 0;
     camera.update();
     compass.updateGyro();
     camera.angleCalc();
-    point.pointCalc(camera.ballx - 120, camera.bally - 120, 40);
+    point.pointCalc(camera.ballx - 120, camera.bally - 80, 40, 20);
     Serial.print(point.nextPointX);
     Serial.print(", ");
     Serial.print(point.nextPointY);

@@ -29,9 +29,9 @@ void Camera::update(){
 
   //Assign the ball values and check if the ball exists.
   ballx = camBuffer[1];
-  // ballx = 50;
+  // ballx = 115;
   bally = camBuffer[2];
-  // bally = 50;
+  // bally = 115;
   if(ballx == 0 && bally == 0){
     ballExists = false;
   }

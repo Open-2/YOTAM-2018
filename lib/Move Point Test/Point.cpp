@@ -3,7 +3,7 @@
 
 void Point::pointCalc(int ballx, int bally, int minOrbit, int kickRadius){
     defPointX = ballx;
-    defPointY = bally + 40;
+    defPointY = bally;
 
     nextPointX = defPointX/50;
     nextPointY = defPointY/50;

@@ -15,6 +15,7 @@ public:
     double nextPointY;
     double nextDist;
     int mvAngle;
+    int mvSpeed;
 
 };
 
