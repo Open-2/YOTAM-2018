@@ -25,8 +25,8 @@ void setup() {
   Wire.begin();
   camera.setup();
   Motor.Setup();
-  compass.compassSetup();
-  compass.calibrate();
+  // compass.compassSetup();
+  // compass.calibrate();
 }
 
 /*|||SETUP|||*/
@@ -126,7 +126,13 @@ debugState = 0;
     camera.update();
     compass.updateGyro();
     camera.angleCalc();
-    point.pointCalc(camera.ballx - 120, camera.bally - 80, 40, 20);
+
+    // Motor.Move(0, 0, 255);
+    // Motor.Move(90, 0, 255);
+
+    point.pointCalc(camera.ballx - 120, camera.bally - 160, 40, 20, 40);
+
+    // Motor.Move()
     Serial.print(point.nextPointX);
     Serial.print(", ");
     Serial.print(point.nextPointY);
@@ -136,7 +142,8 @@ debugState = 0;
     Serial.print(point.defPointY);
     Serial.print(" + ");
     Serial.println(point.mvAngle);
-    // Motor.Move(point.mvAngle, -compass.correction, 255);
+    // Motor.Move(0, 0, 255);
+    // Motor.Move(point.mvAngle, 0, 255);
     
     // camera.corCalc(camera.ygoalCorrect, compass.correction);
     // Motor.Move(0, camera.realcor, 0);
