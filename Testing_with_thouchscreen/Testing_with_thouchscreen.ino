@@ -102,6 +102,7 @@ void setup(void) {
   tft.fillRect(BOXSIZE*3, 0, BOXSIZE, BOXSIZE, CYAN);
   tft.fillRect(BOXSIZE*4, 0, BOXSIZE, BOXSIZE, BLUE);
   tft.fillRect(BOXSIZE*5, 0, BOXSIZE, BOXSIZE, MAGENTA);
+  tft.fillRect(120,180,BOXSIZE,BOXSIZE,WHITE)
   // tft.fillRect(BOXSIZE*6, 0, BOXSIZE, BOXSIZE, WHITE);
  
   tft.drawRect(0, 0, BOXSIZE, BOXSIZE, WHITE);

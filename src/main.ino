@@ -10,12 +10,14 @@
 #include <PID.h>
 #include <Role.h>
 #include <Point.h>
+#include <Screen.h>
 
 Camera camera;
 MotorController Motor;
 Compass compass;
 Role role;
 Point point;
+Screen screen;
 
 int debugState;
 int debugTime;
@@ -25,6 +27,8 @@ void setup() {
   Wire.begin();
   camera.setup();
   Motor.Setup();
+  screen.init();
+
   // compass.compassSetup();
   // compass.calibrate();
 }
@@ -123,25 +127,25 @@ debugState = 0;
 
 /*|||MAIN CODE|||*/
 
-    camera.update();
-    compass.updateGyro();
-    camera.angleCalc();
+  //  camera.update();
+  //   compass.updateGyro();
+  //   camera.angleCalc();
 
     // Motor.Move(0, 0, 255);
     // Motor.Move(90, 0, 255);
 
-    point.pointCalc(camera.ballx - 120, camera.bally - 160, 40, 20, 40);
+    // point.pointCalc(camera.ballx - 120, camera.bally - 160, 40, 20, 40);
 
     // Motor.Move()
-    Serial.print(point.nextPointX);
-    Serial.print(", ");
-    Serial.print(point.nextPointY);
-    Serial.print(" + ");
-    Serial.print(point.defPointX);
-    Serial.print(", ");
-    Serial.print(point.defPointY);
-    Serial.print(" + ");
-    Serial.println(point.mvAngle);
+    // Serial.print(point.nextPointX);
+    // Serial.print (", ");
+    // Serial.print(point.nextPointY);
+    // Serial.print(" + ");
+    // Serial.print(point.defPointX);
+    // Serial.print(", ");
+    // Serial.print(point.defPointY);
+    // Serial.print(" + ");
+    // Serial.println(point.mvAngle);
     // Motor.Move(0, 0, 255);
     // Motor.Move(point.mvAngle, 0, 255);
     
@@ -151,6 +155,6 @@ debugState = 0;
     //role.attack(-compass.correction, camera.ballAngle, camera.ballcamDistance);
     // role.defend(-compass.correction, camera.ballAngle, camera.ballcamDistance, -camera.ballCorrect, camera.yGoalcamDistance, camera.yGoalAngle)
 
-/*|||MAIN CODE|||*/
+    /*|||MAIN CODE|||*/
 
 }

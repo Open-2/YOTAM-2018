@@ -10,7 +10,7 @@ BALL_A = [(44, 66, 43, 83, 19, 79)]
 BLUE_GOAL_A = [(42, 56, -45, -6, -51, -18)]
 YELLOW_GOAL_A = [(76, 95, -33, 7, 37, 97)]
 
-WHITE_BAL_A = (-6.02073, -4.99849, -0.1370855)
+WHITE_BAL_A = (-6.02073, -6.02073, -0.4892338)
 
 VWIN_A = (55, 0, 240, 240)
 CENTRE_X_A = 91
@@ -84,6 +84,7 @@ def send(data):
     uart.writechar(255)
     for i in data:
         uart.writechar(i)
+        print(i)
 
 def biggestBlob(bBlob):
     if not bBlob:
@@ -121,8 +122,6 @@ def getCoords(blob):
     return (blob.cx(),blob.cy()) if blob else (NO_ANGLE,NO_ANGLE)
 
 
-
-
 while True:
     if DEBUG_WHITEBALANCE:
         # Print out white balance values
@@ -132,10 +131,5 @@ while True:
             debugCount = 0
 
     else:
-            data = scan(BALL,BLUE_GOAL,YELLOW_GOAL,debug)
-            send(data)
-
-
-
-
-
+        data = scan(BALL,BLUE_GOAL,YELLOW_GOAL,debug)
+        send(data)
