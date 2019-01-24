@@ -124,14 +124,16 @@ debugState = 0;
 /*|||MAIN CODE|||*/
 
     camera.update();
-    compass.updateGyro();
+    // compass.updateGyro();
     camera.angleCalc();
 
     // Motor.Move(0, 0, 255);
     // Motor.Move(90, 0, 255);
 
-    point.pointCalc(camera.ballx - 120, camera.bally - 160, 40, 20, 40);
+    point.AttackCalc(/*camera.ballx - 120*/-32, /*camera.bally - 120*/-60, 60, 20, 80, camera.blueGoalx - 120, camera.blueGoaly - 120);
+    // point.moveExec();
 
+    // Motor.Move(point.mvAngle, 0, 255); 
     // Motor.Move()
     Serial.print(point.nextPointX);
     Serial.print(", ");
@@ -142,6 +144,11 @@ debugState = 0;
     Serial.print(point.defPointY);
     Serial.print(" + ");
     Serial.println(point.mvAngle);
+    // Serial.print(camera.ballx);
+    // Serial.print(", ");
+    // Serial.print(camera.bally);
+    // Serial.print(", ");
+    // Serial.println(camera.ballAngle);
     // Motor.Move(0, 0, 255);
     // Motor.Move(point.mvAngle, 0, 255);
     
