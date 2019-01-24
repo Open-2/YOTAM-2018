@@ -1,4 +1,4 @@
-#include <Common.h>
+#include "Common.h"
 #include <Math.h>
 
 int sign(int value) {
@@ -66,3 +66,8 @@ double degreesToRadians(double degrees) {
 //     return angle < rightAngle && angle > leftAngle;
 //   }
 // }
+
+double distanceBetween(double x1, double x2, double y1, double y2)
+{
+  return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+}

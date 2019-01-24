@@ -16,6 +16,8 @@ double doubleMod(double value, double maxValue);
 
 bool isAngleBetween(int angle, int leftAngle, int rightAngle);
 
+double distanceBetween(double x1, double y1, double x2, double y2);
+
 struct Vector3D {
   double x;
   double y;

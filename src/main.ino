@@ -10,12 +10,14 @@
 #include <PID.h>
 #include <Role.h>
 #include <Point.h>
+#include <Screen.h>
 
 Camera camera;
 MotorController Motor;
 Compass compass;
 Role role;
 Point point;
+Screen screen;
 
 int debugState;
 int debugTime;
@@ -25,6 +27,8 @@ void setup() {
   Wire.begin();
   camera.setup();
   Motor.Setup();
+  screen.init();
+
   // compass.compassSetup();
   // compass.calibrate();
 }
@@ -158,6 +162,6 @@ debugState = 0;
     //role.attack(-compass.correction, camera.ballAngle, camera.ballcamDistance);
     // role.defend(-compass.correction, camera.ballAngle, camera.ballcamDistance, -camera.ballCorrect, camera.yGoalcamDistance, camera.yGoalAngle)
 
-/*|||MAIN CODE|||*/
+    /*|||MAIN CODE|||*/
 
 }
