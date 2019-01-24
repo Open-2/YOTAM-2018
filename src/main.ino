@@ -10,14 +10,14 @@
 #include <PID.h>
 #include <Role.h>
 #include <Point.h>
-#include <Screen.h>
+// #include <Screen.h>
 
 Camera camera;
 MotorController Motor;
 Compass compass;
 Role role;
 Point point;
-Screen screen;
+// Screen screen;
 
 int debugState;
 int debugTime;
@@ -27,7 +27,7 @@ void setup() {
   Wire.begin();
   camera.setup();
   Motor.Setup();
-  screen.init();
+  // screen.init();
 
   // compass.compassSetup();
   // compass.calibrate();
@@ -134,10 +134,10 @@ debugState = 0;
     // Motor.Move(0, 0, 255);
     // Motor.Move(90, 0, 255);
 
-    point.AttackCalc(/*camera.ballx - 120*/-32, /*camera.bally - 120*/-60, 60, 20, 80, camera.blueGoalx - 120, camera.blueGoaly - 120);
-    // point.moveExec();
+    point.AttackCalc(/*camera.ballx - 120*/-32, /*camera.bally - 120*/60, 70, 20, 80, camera.blueGoalx - 120, camera.blueGoaly - 120);
+    point.moveExec();
 
-    // Motor.Move(point.mvAngle, 0, 255); 
+    // Motor.Move(point.mvAngle, 0, 255);   
     // Motor.Move()
     Serial.print(point.nextPointX);
     Serial.print(", ");

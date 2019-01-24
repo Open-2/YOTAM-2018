@@ -21,7 +21,7 @@ void Point::moveExec(){
 
 void Point::AttackCalc(int ballx, int bally, int minOrbit, int kickRadiusX, int kickRadiusY, int goalx, int goaly){
     ballChangeX = 0;
-    ballChangeY = 40;
+    ballChangeY = -minOrbit;
     ballLock = true;
     ballOrbitCalc(ballx, bally, goalx, goaly);
     if (abs(sqrt(pow((ballx - nextPointX), 2) + (pow((bally - nextPointY), 2)))) <= minOrbit){
