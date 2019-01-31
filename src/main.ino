@@ -1,6 +1,6 @@
 /*|||SETUP|||*/
 
-#include "Arduino.h"
+#include <Arduino.h>
 #include <Camera.h>
 #include <Compass.h>
 #include <Wire.h>
@@ -128,29 +128,33 @@ debugState = 0;
 /*|||MAIN CODE|||*/
 
     camera.update();
-    // compass.updateGyro();
+    compass.updateGyro();
     camera.angleCalc();
 
     // Motor.Move(0, 0, 255);
     // Motor.Move(90, 0, 255);
 
-    point.AttackCalc(/*camera.ballx - 120*/-32, /*camera.bally - 120*/60, 70, 20, 80, camera.blueGoalx - 120, camera.blueGoaly - 120);
+    point.AttackCalc(camera.ballx - 120, camera.bally - 120, 50, 20, 80, camera.blueGoalx - 120, camera.blueGoaly - 120);
     point.moveExec();
 
-    // Motor.Move(point.mvAngle, 0, 255);   
+    // Motor.Move(270, 0, 255);
+    Motor.Move(point.mvAngle, compass.correction, 255);   
     // Motor.Move()
-    Serial.print(point.nextPointX);
-    Serial.print(", ");
-    Serial.print(point.nextPointY);
-    Serial.print(" + ");
-    Serial.print(point.defPointX);
-    Serial.print(", ");
-    Serial.print(point.defPointY);
-    Serial.print(" + ");
-    Serial.println(point.mvAngle);
+    // Serial.print(point.nextPointX);
+    // Serial.print(", ");
+    // Serial.print(point.nextPointY);
+    // Serial.print(" + ");
+    // Serial.print(point.defPointX);
+    // Serial.print(", ");
+    // Serial.print(point.defPointY);
+    // Serial.print(" + ");
+    // Serial.println(point.mvAngle);
     // Serial.print(camera.ballx);
     // Serial.print(", ");
     // Serial.print(camera.bally);
+    // Serial.print(camera.ballx - 120);
+    // Serial.print(", ");
+    // Serial.print(camera.bally - 120);
     // Serial.print(", ");
     // Serial.println(camera.ballAngle);
     // Motor.Move(0, 0, 255);
