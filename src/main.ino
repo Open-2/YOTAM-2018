@@ -134,15 +134,17 @@ debugState = 0;
     // Motor.Move(0, 0, 255);
     // Motor.Move(90, 0, 255);
 
-    point.AttackCalc(camera.ballx - 120, camera.bally - 120, 50, 20, 80, camera.blueGoalx - 120, camera.blueGoaly - 120);
+    // point.AttackCalc(camera.ballx - 120, camera.bally - 120, 50, 20, 80, camera.blueGoalx - 120, camera.blueGoaly - 120);
+    point.DefendCalc(camera.ballx - 120, camera.bally - 120, 50, 70, 0, -60, 100, 20);
     point.moveExec();
+    // Serial.println(camera.ballx);
 
     // Motor.Move(270, 0, 255);
-    Motor.Move(point.mvAngle, compass.correction, 255);   
+    // Motor.Move(point.mvAngle, compass.correction, 255);   
     // Motor.Move()
     // Serial.print(point.nextPointX);
     // Serial.print(", ");
-    // Serial.print(point.nextPointY);
+    // Serial.print(point.nextPointY);  
     // Serial.print(" + ");
     // Serial.print(point.defPointX);
     // Serial.print(", ");
@@ -154,17 +156,12 @@ debugState = 0;
     // Serial.print(camera.bally);
     // Serial.print(camera.ballx - 120);
     // Serial.print(", ");
-    // Serial.print(camera.bally - 120);
+    // Serial.println(camera.bally - 120);
     // Serial.print(", ");
     // Serial.println(camera.ballAngle);
-    // Motor.Move(0, 0, 255);
-    // Motor.Move(point.mvAngle, 0, 255);
     
     // camera.corCalc(camera.ygoalCorrect, compass.correction);
     // Motor.Move(0, camera.realcor, 0);
-
-    //role.attack(-compass.correction, camera.ballAngle, camera.ballcamDistance);
-    // role.defend(-compass.correction, camera.ballAngle, camera.ballcamDistance, -camera.ballCorrect, camera.yGoalcamDistance, camera.yGoalAngle)
 
     /*|||MAIN CODE|||*/
 
