@@ -12,7 +12,7 @@ void Camera::setup(){
 void Camera::update(){
 
   //Check if the amount of bytes available in serial is more than 2 times the maximum data length +1.
-  if(Serial3.available() >= 2 * CAM_BUFFER_NUM) {
+  if(Serial3.available() >= 4 * CAM_BUFFER_NUM) {
 
     //If the value "255" is received from serial, proceed.
     if(Serial3.read() == 255){

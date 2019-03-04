@@ -20,19 +20,19 @@ void Point::moveExec(){
     mvAngle = (mvAngle % 360);
 }
 
-void Point::AttackCalc(int ballx, int bally, int minOrbit, int kickRadiusX, int kickRadiusY, int goalx, int goaly){
+void Point::AttackCalc(int ballx, int bally, int goalx, int goaly){
     ballOrbitCalc(ballx, bally, goalx, goaly);
     ballChangeX = 0;
-    ballChangeY = -minOrbit;
+    ballChangeY = 50;
     ballLock = true;
     goalLock = false;
-    if (abs(sqrt(pow((ballx - nextPointX), 2) + (pow((bally - nextPointY), 2)))) <= minOrbit){
-        nextDist = minOrbit / abs(sqrt(pow((nextPointX - ballx), 2) + (pow((nextPointY - bally), 2))));
+    if (abs(sqrt(pow((ballx - nextPointX), 2) + (pow((bally - nextPointY), 2)))) <= 60){
+        nextDist = 50 / abs(sqrt(pow((nextPointX - ballx), 2) + (pow((nextPointY - bally), 2))));
         nextPointX = ballx + ((nextPointX - ballx) * nextDist);
         nextPointY = bally + ((nextPointY - bally) * nextDist);
     }
     mvSpeed = 25 * abs(sqrt(pow((ballx - nextPointX), 2) + (pow((bally - nextPointY), 2))));
-    if (abs(nextPointX) <= kickRadiusX && abs(nextPointY) <= kickRadiusY) {
+    if (abs(nextPointX) <= 40 && abs(nextPointY) <= 60) {
         ballChangeX = 0;
         ballChangeY = 0;
         ballLock = true;
@@ -42,24 +42,24 @@ void Point::AttackCalc(int ballx, int bally, int minOrbit, int kickRadiusX, int 
 }
 
 
-void Point::DefendCalc(int ballx, int bally, int minRadius, int maxRadius, int goalx, int goaly, int kickRadiusX, int kickRadiusY){
+void Point::DefendCalc(int ballx, int bally, int goalx, int goaly){
     ballChangeX = 0;
     ballChangeY = 0;
     ballLock = true;
     goalLock = false;
     Serial.println("Restarting Loop");
     ballOrbitCalc(ballx, bally, goalx, goaly);
-    // if (abs(sqrt(pow((goalx - nextPointX), 2) + (pow((goaly - nextPointY), 2)))) >= 60) {
-    //     nextDist = 60 / abs(sqrt(pow((goalx), 2) + (pow((goaly), 2))));
-    //     nextPointX = (goalx + ((nextPointX - goalx) * nextDist));
-    //     nextPointY = (goaly + ((nextPointY - goaly) * nextDist));
-    //     Serial.println("Too close to the ball, moving around.");
-    // } else {
-        //     returnCheck = false;
-        // }
-        if (abs(ballx - nextPointX) <= kickRadiusX && abs(bally - nextPointY) <= kickRadiusY && bally >= 0){
+    if (abs(sqrt(pow((ballx - nextPointX), 2) + (pow((bally - nextPointY), 2)))) >= 60) {
+        nextDist = 60 / abs(sqrt(pow((ballx), 2) + (pow((bally), 2))));
+        nextPointX = (ballx + ((nextPointX - ballx) * nextDist));
+        nextPointY = (bally + ((nextPointY - bally) * nextDist));
+        Serial.println("Too close to the ball, moving around.");
+    } else {
+            returnCheck = false;
+        }
+        if (abs(ballx - nextPointX) <= 40 && abs(bally - nextPointY) <= 50 && bally >= 0){
             Serial.println("Checking for kick distance.");
-            if (abs(sqrt(pow((goalx - nextPointX), 2) + (pow((goaly - nextPointX), 2)))) <= maxRadius + 20){
+            if (abs(sqrt(pow((goalx - nextPointX), 2) + (pow((goaly - nextPointX), 2)))) <= 100){
                 ballChangeX = 0;
                 ballChangeY = 0;
                 ballLock = true;
